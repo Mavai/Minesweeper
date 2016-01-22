@@ -1,6 +1,6 @@
 #Aihemäärittely
 
-**Aihe:
+**Aihe:**
 Miinaharava, peli jossa n x n ruudukkoon piilotetaan m määrä "miinoja" ja pelaajan on tarkoitus löytää ne räjäyttämättä yhtään.
 Jokainen ruutu ilmoittaa viereisten miinojen määrän. Peli päättyy kun kaikki miinat on löydetty, tai jos pelaaja avaa ruudun, jossa on miina.
 
