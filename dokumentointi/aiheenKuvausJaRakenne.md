@@ -7,11 +7,11 @@ Jokainen ruutu ilmoittaa viereisten miinojen m‰‰r‰n. Peli p‰‰ttyy kun kaikki mii
 Peliss‰ voi olla useita vaikeusasteita riippuen ruudukon koosta ja miinojen m‰‰r‰st‰. Pelin loputtua ilmoitetaan k‰ytettyjen vuorojen m‰‰r‰.
 
 
-** K‰ytt‰j‰t:
+** K‰ytt‰j‰t:**
 Pelaaja
 
 
-**Pelaajan toiminnot:
+**Pelaajan toiminnot:**
 -Pelin aloitus
 -Ruudun avaaminen
 -Ruudun merkkaaminen
