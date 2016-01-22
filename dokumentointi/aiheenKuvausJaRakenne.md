@@ -3,7 +3,9 @@
 **Aihe:**
 
 Miinaharava, peli jossa n x n ruudukkoon piilotetaan m määrä "miinoja" ja pelaajan on tarkoitus löytää ne räjäyttämättä yhtään.
-Jokainen ruutu ilmoittaa viereisten miinojen määrän. Peli päättyy kun kaikki miinat on löydetty, tai jos pelaaja avaa ruudun, jossa on miina.
+Pelaaja räjäyttää miinan, jos hän avaa ruudun, jossa on miina. Peli päättyy kun kaikki miinat on löydetty tai jos pelaaja räjäyttää miinan.
+
+Jokainen ruutu ilmoittaa avatessa viereisten miinojen määrän.
 
 Pelissä voi olla useita vaikeusasteita riippuen ruudukon koosta ja miinojen määrästä. Pelin loputtua ilmoitetaan käytettyjen vuorojen määrä.
 
