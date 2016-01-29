@@ -3,6 +3,7 @@
 
 Miinaharava, peli jossa n x n ruudukkoon piilotetaan m määrä "miinoja" ja pelaajan on tarkoitus löytää ne räjäyttämättä yhtään.
 
+#Dokumentaatio  
 [aiheen kuvaus](dokumentointi/aiheenKuvausJaMääritelmä.md)  
 [tuntikirjanpito](dokumentointi/tuntikirjanpito.md)
 
