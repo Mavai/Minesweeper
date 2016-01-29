@@ -40,10 +40,10 @@ public class MiinaharavaTest {
         assertFalse(alusta.getAlusta()[1][1].onKiinni());
     }
 
-    private String muodostaSyote(String... lines) {
+    private String muodostaSyote(String... rivit) {
         String syote = "";
-        for (String line : lines) {
-            syote += line + "\n";
+        for (String rivi : rivit) {
+            syote += rivi + "\n";
         }
         return syote;
     }

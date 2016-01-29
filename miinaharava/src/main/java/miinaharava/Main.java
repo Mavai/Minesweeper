@@ -28,10 +28,10 @@ public class Main {
         
     }
     
-    public static String muodostaSyote(String... lines) {
+    public static String muodostaSyote(String... rivit) {
         String syote = "";
-        for (String line : lines) {
-            syote += line + "\n";
+        for (String rivi : rivit) {
+            syote += rivi + "\n";
         }
         return syote;
     }
