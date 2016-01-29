@@ -1,1 +1,1 @@
-![Alt text][http://yuml.me/eccf0f2c]
+![Luokkakaavio][http://yuml.me/eccf0f2c]
