@@ -9,22 +9,22 @@ public class Main {
     
     public static void main(String[] args) {
         
-//        Scanner lukija = new Scanner(System.in);
-//        Pelialusta alusta = new Pelialusta(10, 10, 10);
-//        
-//        Miinaharava peli = new Miinaharava(alusta, lukija);
-//        
-//        peli.aloita();
+        Scanner lukija = new Scanner(System.in);
+        Pelialusta alusta = new Pelialusta(10, 10, 10);
         
-        Pelialusta alusta = new Pelialusta(3, 3, 1);
-        
-        String syote = muodostaSyote("1", "1", "999");
-        
-        Miinaharava peli = new Miinaharava(alusta, new Scanner(syote));
+        Miinaharava peli = new Miinaharava(alusta, lukija);
         
         peli.aloita();
         
-        System.out.println(alusta.getAlusta()[1][1].onKiinni());
+//        Pelialusta alusta = new Pelialusta(3, 3, 1);
+//        
+//        String syote = muodostaSyote("1", "1", "999");
+//        
+//        Miinaharava peli = new Miinaharava(alusta, new Scanner(syote));
+//        
+//        peli.aloita();
+//        
+//        System.out.println(alusta.getAlusta()[1][1].onKiinni());
         
     }
     

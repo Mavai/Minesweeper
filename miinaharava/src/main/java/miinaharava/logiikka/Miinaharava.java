@@ -19,6 +19,7 @@ public class Miinaharava {
     public void aloita() {
         System.out.println("Tervetuloa 'Miinaharava' -peliin.");
         System.out.println("Pelataksesi anna koordinaatteja X ja Y arvoilla " + 0 + " - " + (pelialusta.getAlusta().length - 1) + ".");
+        System.out.println("Lopettaaksesi syötä 999 kierroksen alussa.");
         int[] koordinaatit = new int[2];
         this.kaynnissa = true;
         while (kaynnissa) {

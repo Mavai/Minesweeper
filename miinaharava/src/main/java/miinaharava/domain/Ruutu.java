@@ -10,7 +10,6 @@ public class Ruutu {
     private int viereisetMiinat;
     private boolean sisaltaaMiinan;
     private boolean kiinni;
-    private List<Ruutu> viereisetRuudut;
 
     public Ruutu(int x, int y) {
         this.x = x;
