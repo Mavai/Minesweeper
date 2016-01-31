@@ -21,3 +21,6 @@ Peliss‰ voi olla useita vaikeusasteita riippuen ruudukon koosta ja miinojen m‰‰r
 - Ruudun avaaminen
 - Ruudun merkkaaminen
 - Pelin lopetus
+
+##Luokkakaavio  
+![alt text](http://yuml.me/eccf0f2c.png)
