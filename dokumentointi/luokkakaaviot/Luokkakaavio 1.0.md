@@ -1,3 +1,3 @@
 #Viikon 2 luokkakaavio:
 
-![alt text](http://yuml.me/eccf0f2c "Luokkakaavio vk 1")
+![alt text](E:\Users\Marko Vainio\Documents\GitHub "Luokkakaavio vk 1")
