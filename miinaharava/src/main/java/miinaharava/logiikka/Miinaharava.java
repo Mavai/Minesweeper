@@ -2,7 +2,7 @@ package miinaharava.logiikka;
 
 import java.util.Scanner;
 import miinaharava.domain.Ruutu;
-import miinaharava.kayttoliittyma.Pelialusta;
+import miinaharava.domain.Pelialusta;
 import miinaharava.kayttoliittyma.Tekstikayttoliittyma;
 
 public class Miinaharava {

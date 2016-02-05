@@ -1,6 +1,5 @@
 package miinaharava.domain;
 
-import miinaharava.kayttoliittyma.Pelialusta;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

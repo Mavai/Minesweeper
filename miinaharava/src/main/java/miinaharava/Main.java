@@ -2,7 +2,7 @@ package miinaharava;
 
 import java.util.Random;
 import java.util.Scanner;
-import miinaharava.kayttoliittyma.Pelialusta;
+import miinaharava.domain.Pelialusta;
 import miinaharava.logiikka.Miinaharava;
 
 public class Main {

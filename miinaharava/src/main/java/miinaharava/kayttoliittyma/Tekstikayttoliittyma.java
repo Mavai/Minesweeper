@@ -1,5 +1,6 @@
 package miinaharava.kayttoliittyma;
 
+import miinaharava.domain.Pelialusta;
 import java.util.Scanner;
 import miinaharava.domain.Ruutu;
 import miinaharava.logiikka.Miinaharava;
