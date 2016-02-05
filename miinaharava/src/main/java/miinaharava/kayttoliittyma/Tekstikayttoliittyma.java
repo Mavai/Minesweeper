@@ -48,6 +48,10 @@ public class Tekstikayttoliittyma {
             System.out.println("HÄVISIT!");
             return false;
         }
+        if (peli.kaikkiAvattu()) {
+            System.out.println("VOITIT");
+            return false;
+        }
         return true;
     }
 }

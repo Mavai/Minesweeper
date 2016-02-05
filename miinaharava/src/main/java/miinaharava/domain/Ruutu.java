@@ -151,4 +151,12 @@ public class Ruutu {
         }
         return viereiset;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Ruutu verrattava = (Ruutu) obj;
+        
+        return (verrattava.x == this.x && verrattava.y == this.y);
+    }
+    
 }

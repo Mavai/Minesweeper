@@ -49,4 +49,13 @@ public class Miinaharava {
             }
         }
     }
+
+    public boolean kaikkiAvattu() {
+        for (Ruutu ruutu : pelialusta.getTavallisetRuudut()) {
+            if (ruutu.onKiinni()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

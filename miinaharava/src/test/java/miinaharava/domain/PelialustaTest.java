@@ -39,5 +39,10 @@ public class PelialustaTest {
     public void oikeaMaaraMiinoja() {
         assertEquals(10,alusta.getMiinat().size());
     }
+    
+    @Test
+    public void tavallisiaRuutujaOikeaMaara() {
+        assertEquals(15, alusta.getTavallisetRuudut().size());
+    }
 
 }

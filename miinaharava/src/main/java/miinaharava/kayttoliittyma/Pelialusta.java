@@ -11,11 +11,13 @@ public class Pelialusta {
     private int miinojenLkm;
     private Ruutu[][] alusta;
     private List<Miina> miinat;
+    private List<Ruutu> tavallisetRuudut;
 
     public Pelialusta(int leveys, int miinojenLkm) {
         this.leveys = leveys;
         this.miinojenLkm = miinojenLkm;
         this.miinat = new ArrayList<>();
+        this.tavallisetRuudut = new ArrayList<>();
         luo();
     }
 
@@ -25,6 +27,10 @@ public class Pelialusta {
 
     public List<Miina> getMiinat() {
         return miinat;
+    }
+
+    public List<Ruutu> getTavallisetRuudut() {
+        return tavallisetRuudut;
     }
     
     public void luo() {
@@ -37,6 +43,7 @@ public class Pelialusta {
         luoMiinat(miinojenLkm);
         sijoitaMiinat();
         laskeViereisetMiinat();
+        laskeTavallisetRuudut();
     }
     
     public void tulosta() {
@@ -62,7 +69,18 @@ public class Pelialusta {
     
     public void sijoitaMiinat() {
         for (Miina miina : miinat) {
+            Ruutu poistettava = alusta[miina.getX()][miina.getY()];
             alusta[miina.getX()][miina.getY()].asetaMiina();
+        }
+    }
+    
+    public void laskeTavallisetRuudut() {
+        for (int i = 0; i < alusta.length; i++) {
+            for (int j = 0; j < alusta.length; j++) {
+                if (!alusta[j][i].sisaltaaMiinan()) {
+                    tavallisetRuudut.add(alusta[j][i]);
+                }
+            }
         }
     }
     

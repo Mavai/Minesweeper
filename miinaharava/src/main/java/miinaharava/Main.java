@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         
         Scanner lukija = new Scanner(System.in);
-        Pelialusta alusta = new Pelialusta(5, 20);
+        Pelialusta alusta = new Pelialusta(3, 2);
         
         Miinaharava peli = new Miinaharava(alusta, lukija);
         
