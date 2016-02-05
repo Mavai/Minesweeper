@@ -125,38 +125,57 @@ public class Ruutu {
 
     public ArrayList<Ruutu> viereisetRuudutSivuilla(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
         if (x == 0) {
-            viereiset.add(alusta[x][y - 1]);
-            viereiset.add(alusta[x + 1][y - 1]);
-            viereiset.add(alusta[x + 1][y]);
-            viereiset.add(alusta[x + 1][y + 1]);
-            viereiset.add(alusta[x][y + 1]);
+            return vasenSivu(viereiset, alusta, x, y);
         } else if (x == alusta.length - 1) {
-            viereiset.add(alusta[x][y - 1]);
-            viereiset.add(alusta[x - 1][y - 1]);
-            viereiset.add(alusta[x - 1][y]);
-            viereiset.add(alusta[x - 1][y + 1]);
-            viereiset.add(alusta[x][y + 1]);
+            return oikeaSivu(viereiset, alusta, x, y);
         } else if (y == 0) {
-            viereiset.add(alusta[x + 1][y]);
-            viereiset.add(alusta[x - 1][y]);
-            viereiset.add(alusta[x + 1][y + 1]);
-            viereiset.add(alusta[x - 1][y + 1]);
-            viereiset.add(alusta[x][y + 1]);
+            return ylaSivu(viereiset, alusta, x, y);
         } else {
-            viereiset.add(alusta[x + 1][y]);
-            viereiset.add(alusta[x + 1][y - 1]);
-            viereiset.add(alusta[x][y - 1]);
-            viereiset.add(alusta[x - 1][y - 1]);
-            viereiset.add(alusta[x - 1][y]);
+            return alaSivu(viereiset, alusta, x, y);
         }
+    }
+
+    public ArrayList<Ruutu> vasenSivu(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
+        viereiset.add(alusta[x][y - 1]);
+        viereiset.add(alusta[x + 1][y - 1]);
+        viereiset.add(alusta[x + 1][y]);
+        viereiset.add(alusta[x + 1][y + 1]);
+        viereiset.add(alusta[x][y + 1]);
+        return viereiset;
+    }
+
+    public ArrayList<Ruutu> oikeaSivu(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
+        viereiset.add(alusta[x][y - 1]);
+        viereiset.add(alusta[x - 1][y - 1]);
+        viereiset.add(alusta[x - 1][y]);
+        viereiset.add(alusta[x - 1][y + 1]);
+        viereiset.add(alusta[x][y + 1]);
+        return viereiset;
+    }
+
+    public ArrayList<Ruutu> ylaSivu(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
+        viereiset.add(alusta[x + 1][y]);
+        viereiset.add(alusta[x - 1][y]);
+        viereiset.add(alusta[x + 1][y + 1]);
+        viereiset.add(alusta[x - 1][y + 1]);
+        viereiset.add(alusta[x][y + 1]);
+        return viereiset;
+    }
+
+    public ArrayList<Ruutu> alaSivu(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
+        viereiset.add(alusta[x + 1][y]);
+        viereiset.add(alusta[x + 1][y - 1]);
+        viereiset.add(alusta[x][y - 1]);
+        viereiset.add(alusta[x - 1][y - 1]);
+        viereiset.add(alusta[x - 1][y]);
         return viereiset;
     }
 
     @Override
     public boolean equals(Object obj) {
         Ruutu verrattava = (Ruutu) obj;
-        
+
         return (verrattava.x == this.x && verrattava.y == this.y);
     }
-    
+
 }

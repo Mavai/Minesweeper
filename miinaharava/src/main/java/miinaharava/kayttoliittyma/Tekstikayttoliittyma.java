@@ -36,22 +36,47 @@ public class Tekstikayttoliittyma {
         return koordinaatit;
     }
     
-    public boolean tulostaKierros() {
-        pelialusta.tulosta();
+    public Ruutu avattava() {
         int[] koordinaatit = kysyKoordinaatit();
-        if (koordinaatit[0] == 999) {
+        Ruutu avattava;
+        try {
+            avattava = pelialusta.getAlusta()[koordinaatit[0]][koordinaatit[1]];
+        } catch (Exception e) {
+            avattava = null;
+        }
+        return avattava;
+        
+    }
+    
+    public boolean tulostaKierros() {
+        tulostaAlue();
+        Ruutu avattava = avattava();
+        if (avattava == null) {
             return false;
         }
-        Ruutu avattava = pelialusta.getAlusta()[koordinaatit[0]][koordinaatit[1]];
         if (!peli.avaaRuutu(avattava)) {
-            pelialusta.tulosta();
-            System.out.println("HÄVISIT!");
-            return false;
+            return havio();
         }
         if (peli.kaikkiAvattu()) {
-            System.out.println("VOITIT");
-            return false;
+            return voitto();
         }
         return true;
+    }
+    
+    public void tulostaAlue() {
+        pelialusta.tulosta();
+        System.out.println("kierros: " + peli.getKierroksia());
+    }
+    
+    public boolean havio() {
+        pelialusta.tulosta();
+        System.out.println("Osuit miinaan ja hävisit :( \nkierroksia: " + peli.getKierroksia());
+        return false;
+    }
+    
+    public boolean voitto() {
+        pelialusta.tulosta();
+        System.out.println("Onneksi olkoon! Löysit kaikki miinat! \nkierroksia: " + peli.getKierroksia());
+        return false;
     }
 }

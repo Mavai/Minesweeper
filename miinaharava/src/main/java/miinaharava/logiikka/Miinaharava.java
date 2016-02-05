@@ -11,12 +11,14 @@ public class Miinaharava {
     private Scanner lukija;
     private boolean kaynnissa;
     private Tekstikayttoliittyma kayttoliittyma;
+    private int kierros;
 
     public Miinaharava(Pelialusta pelialusta, Scanner lukija) {
         this.pelialusta = pelialusta;
         this.lukija = lukija;
         this.kaynnissa = false;
         this.kayttoliittyma = new Tekstikayttoliittyma(pelialusta, lukija, this);
+        this.kierros = 1;
     }
 
     public void aloita() {
@@ -25,7 +27,12 @@ public class Miinaharava {
             if (!kayttoliittyma.tulostaKierros()) {
                 break;
             }
+            kierros++;
         }
+    }
+
+    public int getKierroksia() {
+        return kierros;
     }
 
     public boolean avaaRuutu(Ruutu ruutu) {

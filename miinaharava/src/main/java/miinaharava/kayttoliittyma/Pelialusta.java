@@ -34,13 +34,8 @@ public class Pelialusta {
     }
     
     public void luo() {
-        this.alusta = new Ruutu[leveys][leveys];
-        for (int i = 0; i < alusta.length; i++) {
-            for (int j = 0; j < alusta.length; j++) {
-                alusta[j][i] = new Ruutu(j, i);
-            }
-        }
-        luoMiinat(miinojenLkm);
+        luoRuudukko();
+        luoMiinat();
         sijoitaMiinat();
         laskeViereisetMiinat();
         laskeTavallisetRuudut();
@@ -55,9 +50,18 @@ public class Pelialusta {
         }
     }
     
-    public void luoMiinat(int maara) {
+    public void luoRuudukko() {
+        this.alusta = new Ruutu[leveys][leveys];
+        for (int i = 0; i < alusta.length; i++) {
+            for (int j = 0; j < alusta.length; j++) {
+                alusta[j][i] = new Ruutu(j, i);
+            }
+        }
+    }
+    
+    public void luoMiinat() {
         Random r = new Random();
-        for (int i = 0; i < maara; i++) {
+        for (int i = 0; i < miinojenLkm; i++) {
             Miina uusiMiina = new Miina(r.nextInt(alusta.length), r.nextInt(alusta.length));
             if (miinat.contains(uusiMiina)) {
                 i--;
