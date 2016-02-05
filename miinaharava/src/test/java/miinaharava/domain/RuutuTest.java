@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class RuutuTest {
-    Pelialusta alusta = new Pelialusta(3, 3, 0);
+    Pelialusta alusta = new Pelialusta(3, 0);
     
     public RuutuTest() {
     }

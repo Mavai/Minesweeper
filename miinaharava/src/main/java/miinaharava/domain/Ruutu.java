@@ -30,11 +30,11 @@ public class Ruutu {
     public int getY() {
         return y;
     }
-    
+
     public boolean onKiinni() {
         return this.kiinni;
     }
-    
+
     public boolean sisaltaaMiinan() {
         return this.sisaltaaMiinan;
     }
@@ -62,78 +62,93 @@ public class Ruutu {
     public int getViereisetMiinat() {
         return viereisetMiinat;
     }
-    
+
     public void laskeViereisetMiinat(Ruutu[][] alusta) {
         for (int i = 0; i < alusta.length; i++) {
             for (int j = 0; j < alusta.length; j++) {
                 int viereiset = 0;
-                for (Ruutu viereinenRuutu : viereisetRuudut(alusta, i, j)) {
+                for (Ruutu viereinenRuutu : viereisetRuudut(alusta, j, i)) {
                     if (viereinenRuutu.sisaltaaMiinan) {
                         viereiset++;
                     }
                 }
-                alusta[i][j].setViereisetMiinat(viereiset);
+                alusta[j][i].setViereisetMiinat(viereiset);
             }
         }
     }
 
     public ArrayList<Ruutu> viereisetRuudut(Ruutu[][] alusta, int x, int y) {
         ArrayList<Ruutu> viereiset = new ArrayList<>();
+        if ((x == 0 && y == 0) || (x == 0 && y == alusta.length - 1) || (x == alusta.length - 1 && y == 0) || (x == alusta.length - 1 && y == alusta.length - 1)) {
+            return viereisetRuudutKulmassa(viereiset, alusta, x, y);
+
+        } else if ((x == 0) || (x == alusta.length - 1) || (y == 0) || (y == alusta.length - 1)) {
+            return viereisetRuudutSivuilla(viereiset, alusta, x, y);
+
+        } else {
+            return viereisetRuudutKeskella(viereiset, alusta, x, y);
+        }
+    }
+
+    public ArrayList<Ruutu> viereisetRuudutKeskella(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
+        viereiset.add(alusta[x][y - 1]);
+        viereiset.add(alusta[x][y + 1]);
+        viereiset.add(alusta[x - 1][y - 1]);
+        viereiset.add(alusta[x - 1][y + 1]);
+        viereiset.add(alusta[x - 1][y]);
+        viereiset.add(alusta[x + 1][y]);
+        viereiset.add(alusta[x + 1][y - 1]);
+        viereiset.add(alusta[x + 1][y + 1]);
+        return viereiset;
+    }
+
+    public ArrayList<Ruutu> viereisetRuudutKulmassa(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
+        if (x == 0 && y == 0) {
+            viereiset.add(alusta[x + 1][y]);
+            viereiset.add(alusta[x + 1][y + 1]);
+            viereiset.add(alusta[x][y + 1]);
+        } else if (x == 0 && y == alusta.length - 1) {
+            viereiset.add(alusta[x + 1][y]);
+            viereiset.add(alusta[x + 1][y - 1]);
+            viereiset.add(alusta[x][y - 1]);
+        } else if (x == alusta.length - 1 && y == 0) {
+            viereiset.add(alusta[x - 1][y]);
+            viereiset.add(alusta[x - 1][y + 1]);
+            viereiset.add(alusta[x][y + 1]);
+        } else {
+            viereiset.add(alusta[x - 1][y]);
+            viereiset.add(alusta[x - 1][y - 1]);
+            viereiset.add(alusta[x][y - 1]);
+        }
+        return viereiset;
+    }
+
+    public ArrayList<Ruutu> viereisetRuudutSivuilla(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
         if (x == 0) {
-            if (y == 0) {
-                viereiset.add(alusta[x + 1][y]);
-                viereiset.add(alusta[x + 1][y + 1]);
-                viereiset.add(alusta[x][y + 1]);
-            } else if (y == alusta.length - 1) {
-                viereiset.add(alusta[x + 1][y]);
-                viereiset.add(alusta[x + 1][y - 1]);
-                viereiset.add(alusta[x][y - 1]);
-            } else {
-                viereiset.add(alusta[x][y - 1]);
-                viereiset.add(alusta[x + 1][y - 1]);
-                viereiset.add(alusta[x + 1][y]);
-                viereiset.add(alusta[x + 1][y + 1]);
-                viereiset.add(alusta[x][y + 1]);
-            }
+            viereiset.add(alusta[x][y - 1]);
+            viereiset.add(alusta[x + 1][y - 1]);
+            viereiset.add(alusta[x + 1][y]);
+            viereiset.add(alusta[x + 1][y + 1]);
+            viereiset.add(alusta[x][y + 1]);
         } else if (x == alusta.length - 1) {
-            if (y == 0) {
-                viereiset.add(alusta[x - 1][y]);
-                viereiset.add(alusta[x - 1][y + 1]);
-                viereiset.add(alusta[x][y + 1]);
-            } else if (y == alusta.length - 1) {
-                viereiset.add(alusta[x - 1][y]);
-                viereiset.add(alusta[x - 1][y - 1]);
-                viereiset.add(alusta[x][y - 1]);
-            } else {
-                viereiset.add(alusta[x][y - 1]);
-                viereiset.add(alusta[x - 1][y - 1]);
-                viereiset.add(alusta[x - 1][y]);
-                viereiset.add(alusta[x - 1][y + 1]);
-                viereiset.add(alusta[x][y + 1]);
-            }
+            viereiset.add(alusta[x][y - 1]);
+            viereiset.add(alusta[x - 1][y - 1]);
+            viereiset.add(alusta[x - 1][y]);
+            viereiset.add(alusta[x - 1][y + 1]);
+            viereiset.add(alusta[x][y + 1]);
         } else if (y == 0) {
             viereiset.add(alusta[x + 1][y]);
             viereiset.add(alusta[x - 1][y]);
             viereiset.add(alusta[x + 1][y + 1]);
             viereiset.add(alusta[x - 1][y + 1]);
             viereiset.add(alusta[x][y + 1]);
-        } else if (y == alusta.length - 1) {
-            viereiset.add(alusta[x + 1][y]);
-            viereiset.add(alusta[x + 1][y - 1]);
-            viereiset.add(alusta[x][y - 1]);
-            viereiset.add(alusta[x - 1][y - 1]);
-            viereiset.add(alusta[x - 1][y]);
         } else {
-            viereiset.add(alusta[x][y - 1]);
-            viereiset.add(alusta[x][y + 1]);
-            viereiset.add(alusta[x - 1][y - 1]);
-            viereiset.add(alusta[x - 1][y + 1]);
-            viereiset.add(alusta[x - 1][y]);
             viereiset.add(alusta[x + 1][y]);
             viereiset.add(alusta[x + 1][y - 1]);
-            viereiset.add(alusta[x + 1][y + 1]);
+            viereiset.add(alusta[x][y - 1]);
+            viereiset.add(alusta[x - 1][y - 1]);
+            viereiset.add(alusta[x - 1][y]);
         }
         return viereiset;
     }
-
 }

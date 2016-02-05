@@ -3,51 +3,29 @@ package miinaharava.logiikka;
 import java.util.Scanner;
 import miinaharava.domain.Ruutu;
 import miinaharava.kayttoliittyma.Pelialusta;
+import miinaharava.kayttoliittyma.Tekstikayttoliittyma;
 
 public class Miinaharava {
 
     private Pelialusta pelialusta;
     private Scanner lukija;
     private boolean kaynnissa;
+    private Tekstikayttoliittyma kayttoliittyma;
 
     public Miinaharava(Pelialusta pelialusta, Scanner lukija) {
         this.pelialusta = pelialusta;
         this.lukija = lukija;
         this.kaynnissa = false;
+        this.kayttoliittyma = new Tekstikayttoliittyma(pelialusta, lukija, this);
     }
 
     public void aloita() {
-        System.out.println("Tervetuloa 'Miinaharava' -peliin.");
-        System.out.println("Pelataksesi anna koordinaatteja X ja Y arvoilla " + 0 + " - " + (pelialusta.getAlusta().length - 1) + ".");
-        System.out.println("Lopettaaksesi syötä 999 kierroksen alussa.");
-        int[] koordinaatit = new int[2];
-        this.kaynnissa = true;
-        while (kaynnissa) {
-            pelialusta.tulosta();
-            koordinaatit = kysyKoordinaatit();
-            if (koordinaatit[0] == 999) {
-                break;
-            }
-            Ruutu avattava = pelialusta.getAlusta()[koordinaatit[0]][koordinaatit[1]];
-            if (!avaaRuutu(avattava)) {
-                break;
-            }
-        }
-    }
-
-    public int[] kysyKoordinaatit() {
-        int[] koordinaatit = new int[2];
+        kayttoliittyma.tervehdi();
         while (true) {
-            System.out.print("Anna X koordinaatti: ");
-            koordinaatit[0] = Integer.parseInt(lukija.nextLine());
-            if (koordinaatit[0] == 999) {
+            if (!kayttoliittyma.tulostaKierros()) {
                 break;
             }
-            System.out.print("Anna Y koordinaatti: ");
-            koordinaatit[1] = Integer.parseInt(lukija.nextLine());
-            return koordinaatit;
         }
-        return koordinaatit;
     }
 
     public boolean avaaRuutu(Ruutu ruutu) {
@@ -55,17 +33,18 @@ public class Miinaharava {
             return true;
         }
         ruutu.avaa();
-        if (ruutu.getViereisetMiinat() == 0) {
-            avaaViereisetNollat(ruutu);
-        } else if (ruutu.sisaltaaMiinan()) {
+        if (ruutu.sisaltaaMiinan()) {
             pelialusta.tulosta();
             System.out.println("HÄVISIT!");
             return false;
         }
+        if (ruutu.getViereisetMiinat() == 0) {
+            avaaNollanViereiset(ruutu);
+        }
         return true;
     }
 
-    private void avaaViereisetNollat(Ruutu ruutu) {
+    private void avaaNollanViereiset(Ruutu ruutu) {
         for (Ruutu viereinenRuutu : ruutu.viereisetRuudut(pelialusta.getAlusta(), ruutu.getX(), ruutu.getY())) {
             if (ruutu.getViereisetMiinat() == 0) {
                 avaaRuutu(viereinenRuutu);

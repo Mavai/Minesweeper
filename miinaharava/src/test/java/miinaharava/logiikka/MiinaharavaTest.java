@@ -13,7 +13,7 @@ public class MiinaharavaTest {
 
     public MiinaharavaTest() {
     }
-    Pelialusta alusta = new Pelialusta(3, 3, 0);
+    Pelialusta alusta = new Pelialusta(3, 0);
 
     @BeforeClass
     public static void setUpClass() {

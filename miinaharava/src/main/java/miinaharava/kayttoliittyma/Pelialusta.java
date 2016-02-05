@@ -6,13 +6,11 @@ import miinaharava.domain.Ruutu;
 
 public class Pelialusta {
     private int leveys;
-    private int korkeus;
     private int miinojenLkm;
     private Ruutu[][] alusta;
 
-    public Pelialusta(int leveys, int korkeus, int miinojenLkm) {
+    public Pelialusta(int leveys, int miinojenLkm) {
         this.leveys = leveys;
-        this.korkeus = korkeus;
         this.miinojenLkm = miinojenLkm;
         luo();
     }
@@ -22,10 +20,10 @@ public class Pelialusta {
     }
     
     public void luo() {
-        this.alusta = new Ruutu[leveys][korkeus];
+        this.alusta = new Ruutu[leveys][leveys];
         for (int i = 0; i < alusta.length; i++) {
             for (int j = 0; j < alusta.length; j++) {
-                alusta[i][j] = new Ruutu(i, j);
+                alusta[j][i] = new Ruutu(j, i);
             }
         }
         sijoitaMiinat();
@@ -35,7 +33,7 @@ public class Pelialusta {
     public void tulosta() {
         for (int i = 0; i < alusta.length; i++) {
             for (int j = 0; j < alusta.length; j++) {
-                System.out.print(alusta[i][j] + " ");
+                System.out.print(alusta[j][i] + " ");
             }
             System.out.println("");
         }
@@ -52,7 +50,7 @@ public class Pelialusta {
     public void laskeViereisetMiinat() {
         for (int i = 0; i < alusta.length; i++) {
             for (int j = 0; j < alusta.length; j++) {
-                alusta[i][j].laskeViereisetMiinat(alusta);
+                alusta[j][i].laskeViereisetMiinat(alusta);
             }
         }
     }
