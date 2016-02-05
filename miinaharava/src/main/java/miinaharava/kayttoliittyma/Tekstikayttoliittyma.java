@@ -44,6 +44,8 @@ public class Tekstikayttoliittyma {
         }
         Ruutu avattava = pelialusta.getAlusta()[koordinaatit[0]][koordinaatit[1]];
         if (!peli.avaaRuutu(avattava)) {
+            pelialusta.tulosta();
+            System.out.println("HÄVISIT!");
             return false;
         }
         return true;

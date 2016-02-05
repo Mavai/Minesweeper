@@ -1,5 +1,7 @@
 package miinaharava.kayttoliittyma;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import miinaharava.domain.Miina;
 import miinaharava.domain.Ruutu;
@@ -8,15 +10,21 @@ public class Pelialusta {
     private int leveys;
     private int miinojenLkm;
     private Ruutu[][] alusta;
+    private List<Miina> miinat;
 
     public Pelialusta(int leveys, int miinojenLkm) {
         this.leveys = leveys;
         this.miinojenLkm = miinojenLkm;
+        this.miinat = new ArrayList<>();
         luo();
     }
 
     public Ruutu[][] getAlusta() {
         return alusta;
+    }
+
+    public List<Miina> getMiinat() {
+        return miinat;
     }
     
     public void luo() {
@@ -26,6 +34,7 @@ public class Pelialusta {
                 alusta[j][i] = new Ruutu(j, i);
             }
         }
+        luoMiinat(miinojenLkm);
         sijoitaMiinat();
         laskeViereisetMiinat();
     }
@@ -39,10 +48,20 @@ public class Pelialusta {
         }
     }
     
-    public void sijoitaMiinat() {
+    public void luoMiinat(int maara) {
         Random r = new Random();
-        for (int i = 0; i < miinojenLkm; i++) {
-            Miina miina = new Miina(r.nextInt(alusta.length), r.nextInt(alusta.length));
+        for (int i = 0; i < maara; i++) {
+            Miina uusiMiina = new Miina(r.nextInt(alusta.length), r.nextInt(alusta.length));
+            if (miinat.contains(uusiMiina)) {
+                i--;
+            } else {
+                miinat.add(uusiMiina);
+            }
+        }
+    }
+    
+    public void sijoitaMiinat() {
+        for (Miina miina : miinat) {
             alusta[miina.getX()][miina.getY()].asetaMiina();
         }
     }

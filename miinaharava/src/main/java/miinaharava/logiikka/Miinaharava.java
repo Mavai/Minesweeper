@@ -34,8 +34,6 @@ public class Miinaharava {
         }
         ruutu.avaa();
         if (ruutu.sisaltaaMiinan()) {
-            pelialusta.tulosta();
-            System.out.println("HÄVISIT!");
             return false;
         }
         if (ruutu.getViereisetMiinat() == 0) {

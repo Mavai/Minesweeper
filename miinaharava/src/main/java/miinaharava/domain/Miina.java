@@ -16,6 +16,15 @@ public class Miina {
     public int getY() {
         return y;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Miina verrattava = (Miina) obj;
+        
+        return (verrattava.x == this.x && verrattava.y == this.y);
+    }
+    
+    
     
     
 }

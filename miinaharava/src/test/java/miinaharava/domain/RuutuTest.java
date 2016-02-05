@@ -88,4 +88,22 @@ public class RuutuTest {
         ruutu.avaa();
         assertEquals(0 + "", ruutu.toString());
     }
+    
+    @Test
+    public void miinanSijoittaminenToimii() {
+        assertFalse(alusta.getAlusta()[0][0].sisaltaaMiinan());
+    }
+    
+    @Test
+    public void miinanSijoittaminenToimii2() {
+        alusta = new Pelialusta(3, 9);
+        assertTrue(alusta.getAlusta()[0][0].sisaltaaMiinan());
+    }
+    
+    @Test
+    public void miinanSisaltavanRuudunTulostusToimii() {
+        alusta = new Pelialusta(3, 9);
+        alusta.getAlusta()[0][0].avaa();
+        assertEquals("*", alusta.getAlusta()[0][0].toString());
+    }
 }
