@@ -2,7 +2,7 @@ package miinaharava;
 
 import javax.swing.SwingUtilities;
 import miinaharava.kayttoliittyma.MiinaharavaGui;
-import miinaharava.kayttoliittyma.Pelialusta;
+import miinaharava.domain.Pelialusta;
 
 public class Main {
     

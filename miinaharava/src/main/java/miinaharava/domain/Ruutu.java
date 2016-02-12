@@ -104,23 +104,14 @@ public class Ruutu {
 
     public ArrayList<Ruutu> viereisetRuudutKulmassa(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
         if (x == 0 && y == 0) {
-            viereiset.add(alusta[x + 1][y]);
-            viereiset.add(alusta[x + 1][y + 1]);
-            viereiset.add(alusta[x][y + 1]);
+            return vasenYlaNurkka(viereiset, alusta, x, y);
         } else if (x == 0 && y == alusta.length - 1) {
-            viereiset.add(alusta[x + 1][y]);
-            viereiset.add(alusta[x + 1][y - 1]);
-            viereiset.add(alusta[x][y - 1]);
+            return vasenAlaNurkka(viereiset, alusta, x, y);
         } else if (x == alusta.length - 1 && y == 0) {
-            viereiset.add(alusta[x - 1][y]);
-            viereiset.add(alusta[x - 1][y + 1]);
-            viereiset.add(alusta[x][y + 1]);
+            return oikeaYlaNurkka(viereiset, alusta, x, y);
         } else {
-            viereiset.add(alusta[x - 1][y]);
-            viereiset.add(alusta[x - 1][y - 1]);
-            viereiset.add(alusta[x][y - 1]);
+            return oikeaAlaNurkka(viereiset, alusta, x, y);
         }
-        return viereiset;
     }
 
     public ArrayList<Ruutu> viereisetRuudutSivuilla(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
@@ -168,6 +159,34 @@ public class Ruutu {
         viereiset.add(alusta[x][y - 1]);
         viereiset.add(alusta[x - 1][y - 1]);
         viereiset.add(alusta[x - 1][y]);
+        return viereiset;
+    }
+
+    public ArrayList<Ruutu> vasenYlaNurkka(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
+        viereiset.add(alusta[x + 1][y]);
+        viereiset.add(alusta[x + 1][y + 1]);
+        viereiset.add(alusta[x][y + 1]);
+        return viereiset;
+    }
+
+    public ArrayList<Ruutu> oikeaYlaNurkka(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
+        viereiset.add(alusta[x - 1][y]);
+        viereiset.add(alusta[x - 1][y + 1]);
+        viereiset.add(alusta[x][y + 1]);
+        return viereiset;
+    }
+
+    public ArrayList<Ruutu> vasenAlaNurkka(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
+        viereiset.add(alusta[x + 1][y]);
+        viereiset.add(alusta[x + 1][y - 1]);
+        viereiset.add(alusta[x][y - 1]);
+        return viereiset;
+    }
+
+    public ArrayList<Ruutu> oikeaAlaNurkka(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
+        viereiset.add(alusta[x - 1][y]);
+        viereiset.add(alusta[x - 1][y - 1]);
+        viereiset.add(alusta[x][y - 1]);
         return viereiset;
     }
 

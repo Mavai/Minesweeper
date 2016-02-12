@@ -1,7 +1,6 @@
 package miinaharava.domain;
 
 import miinaharava.domain.Ruutu;
-import miinaharava.kayttoliittyma.Pelialusta;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -105,5 +104,16 @@ public class RuutuTest {
         alusta = new Pelialusta(3, 9);
         alusta.getAlusta()[0][0].avaa();
         assertEquals("*", alusta.getAlusta()[0][0].toString());
+    }
+    
+    @Test
+    public void viereisetMiinatLasketaanOikein() {
+        alusta = new Pelialusta(3, 9);
+        assertEquals(8, alusta.getAlusta()[1][1].getViereisetMiinat());
+    }
+    
+    @Test
+    public void equalsToimii() {
+        assertEquals(new Ruutu(1, 1), new Ruutu(1, 1));
     }
 }
