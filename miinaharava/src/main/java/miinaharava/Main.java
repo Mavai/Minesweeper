@@ -1,30 +1,22 @@
 package miinaharava;
 
-import java.util.Random;
-import java.util.Scanner;
+import javax.swing.SwingUtilities;
+import miinaharava.kayttoliittyma.MiinaharavaGui;
 import miinaharava.kayttoliittyma.Pelialusta;
-import miinaharava.logiikka.Miinaharava;
 
 public class Main {
     
     public static void main(String[] args) {
+        Pelialusta alusta = new Pelialusta(5, 2);
+        MiinaharavaGui gui = new MiinaharavaGui(alusta);
+        SwingUtilities.invokeLater(gui);
         
-        Scanner lukija = new Scanner(System.in);
-        Pelialusta alusta = new Pelialusta(3, 2);
+//        Scanner lukija = new Scanner(System.in);
         
-        Miinaharava peli = new Miinaharava(alusta, lukija);
-        
-        peli.aloita();
-        
-//        Pelialusta alusta = new Pelialusta(3, 3, 1);
 //        
-//        String syote = muodostaSyote("1", "1", "999");
-//        
-//        Miinaharava peli = new Miinaharava(alusta, new Scanner(syote));
+//        Miinaharava peli = new Miinaharava(alusta, lukija);
 //        
 //        peli.aloita();
-//        
-//        System.out.println(alusta.getAlusta()[1][1].onKiinni());
         
     }
     

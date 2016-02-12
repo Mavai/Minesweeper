@@ -21,6 +21,10 @@ public class Pelialusta {
         luo();
     }
 
+    public int getLeveys() {
+        return leveys;
+    }
+
     public Ruutu[][] getAlusta() {
         return alusta;
     }
