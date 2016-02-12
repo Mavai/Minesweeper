@@ -24,7 +24,7 @@ public class MiinaharavaGui implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Miinaharava");
-        frame.setPreferredSize(new Dimension(400, 400));
+        frame.setPreferredSize(new Dimension(350, 350));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -36,14 +36,19 @@ public class MiinaharavaGui implements Runnable {
 
     private void luoKomponentit(Container container) {
         JPanel ruudukko = new JPanel();
-        ruudukko.setLayout(new GridLayout(leveys, leveys));
+        GridLayout ruudukkoGrid = new GridLayout(leveys, leveys);
+        ruudukko.setLayout(ruudukkoGrid);
         for (int i = 0; i < pelialusta.getLeveys(); i++) {
             for (int j = 0; j < pelialusta.getLeveys(); j++) {
-                JButton nappi = new JButton(j + ", " + i);
+                JButton nappi = new JButton();
+                nappi.addActionListener(new Kuuntelija(j, i, pelialusta, nappi));
+                
                 ruudukko.add(nappi);
             }
+
+            container.add(ruudukko);
         }
-        container.add(ruudukko);
+
     }
 
     public JFrame getFrame() {
