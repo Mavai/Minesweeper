@@ -43,5 +43,10 @@ public class PelialustaTest {
     public void tavallisiaRuutujaOikeaMaara() {
         assertEquals(15, alusta.getTavallisetRuudut().size());
     }
+    
+    @Test
+    public void leveysOikein() {
+        assertEquals(5, alusta.getLeveys());
+    }
 
 }
