@@ -2,6 +2,12 @@ package miinaharava.domain;
 
 import java.util.ArrayList;
 
+/**
+ * Miinaharava pelialusta koostuu useasta ruudusta. Tarjoaa metodeja ruutujen
+ * käsittelyyn.
+ *
+ * @author markovai
+ */
 public class Ruutu {
 
     private int x;
@@ -18,6 +24,9 @@ public class Ruutu {
         this.kiinni = true;
     }
 
+    /**
+     * Asettaa ruudun aukinaiseksi.
+     */
     public void avaa() {
         this.kiinni = false;
     }
@@ -38,6 +47,9 @@ public class Ruutu {
         return this.sisaltaaMiinan;
     }
 
+    /**
+     * Asettaa ruutuun miinan.
+     */
     public void asetaMiina() {
         this.sisaltaaMiinan = true;
     }
@@ -62,6 +74,11 @@ public class Ruutu {
         return viereisetMiinat;
     }
 
+    /**
+     * Laskeen tämä ruudun viereisten ruutujen sisältävien miinojen määrän.
+     *
+     * @param Ruudun sisältävä pelialusta.
+     */
     public void laskeViereisetMiinat(Ruutu[][] alusta) {
         for (int i = 0; i < alusta.length; i++) {
             for (int j = 0; j < alusta.length; j++) {
@@ -76,6 +93,14 @@ public class Ruutu {
         }
     }
 
+    /**
+     * Palauttaa listan annetun ruudun viereisistä ruuduista.
+     *
+     * @param alusta Ruudun sisältävä pelialusta.
+     * @param x Ruudun x-koordinaatti.
+     * @param y Ruudun y-koordinaatti.
+     * @return
+     */
     public ArrayList<Ruutu> viereisetRuudut(Ruutu[][] alusta, int x, int y) {
         ArrayList<Ruutu> viereiset = new ArrayList<>();
         if ((x == 0 && y == 0) || (x == 0 && y == alusta.length - 1) || (x == alusta.length - 1 && y == 0) || (x == alusta.length - 1 && y == alusta.length - 1)) {
@@ -89,6 +114,15 @@ public class Ruutu {
         }
     }
 
+    /**
+     * Palauttaa listan keskellä olevan ruudun viereisistä ruuduista.
+     *
+     * @param viereiset Lista ruuduista.
+     * @param alusta Ruudun sisältävä pelialusta.
+     * @param x Ruudun x-koordinaatti.
+     * @param y Ruudun y-koordinaatti
+     * @return
+     */
     public ArrayList<Ruutu> viereisetRuudutKeskella(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
         viereiset.add(alusta[x][y - 1]);
         viereiset.add(alusta[x][y + 1]);
@@ -101,6 +135,15 @@ public class Ruutu {
         return viereiset;
     }
 
+    /**
+     * Palauttaa listan kulmassa olevan ruudun viereisistä ruuduista.
+     *
+     * @param viereiset Lista ruuduista.
+     * @param alusta Ruudun sisältävä pelialusta.
+     * @param x Ruudun x-koordinaatti.
+     * @param y Ruudun y-koordinaatti
+     * @return
+     */
     public ArrayList<Ruutu> viereisetRuudutKulmassa(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
         if (x == 0 && y == 0) {
             return vasenYlaNurkka(viereiset, alusta, x, y);
@@ -113,6 +156,16 @@ public class Ruutu {
         }
     }
 
+    /**
+     * Palauttaa listan jollakin pelialusta sivuilla olevan ruudun viereisistä
+     * ruuduista.
+     *
+     * @param viereiset Lista ruuduista.
+     * @param alusta Ruudun sisältävä pelialusta.
+     * @param x Ruudun x-koordinaatti.
+     * @param y Ruudun y-koordinaatti
+     * @return
+     */
     public ArrayList<Ruutu> viereisetRuudutSivuilla(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
         if (x == 0) {
             return vasenSivu(viereiset, alusta, x, y);
@@ -192,7 +245,6 @@ public class Ruutu {
     @Override
     public boolean equals(Object obj) {
         Ruutu verrattava = (Ruutu) obj;
-
         return (verrattava.x == this.x && verrattava.y == this.y);
     }
 

@@ -4,7 +4,11 @@ import java.util.Scanner;
 import miinaharava.domain.Ruutu;
 import miinaharava.domain.Pelialusta;
 import miinaharava.kayttoliittyma.Tekstikayttoliittyma;
-
+/**
+ * Luokka tarjoaa logiikan miinaharava -peliin.
+ *
+ * @author markovai
+ */
 public class Miinaharava {
 
     private Pelialusta pelialusta;
@@ -20,7 +24,9 @@ public class Miinaharava {
         this.kayttoliittyma = new Tekstikayttoliittyma(pelialusta, lukija, this);
         this.kierros = 1;
     }
-
+/**
+ * Aloittaa pelin.
+ */
     public void aloita() {
         kayttoliittyma.tervehdi();
         while (true) {
@@ -34,7 +40,13 @@ public class Miinaharava {
     public int getKierroksia() {
         return kierros;
     }
-
+/**
+ * Avaa ruudun.
+ * Jos ruudussa on miina, palauttaa arvon false. Jos ruudun vieressä ei ole miinoja
+ * avaa rekursiivisesti viereiset ruudut.
+ * @param Avattava ruutu.
+ * @return Palauttaa true, jos ei osuta miinaan.
+ */
     public boolean avaaRuutu(Ruutu ruutu) {
         if (!ruutu.onKiinni()) {
             return true;
@@ -48,7 +60,10 @@ public class Miinaharava {
         }
         return true;
     }
-
+/**
+ * Avaa rekursiivisesti kaikki tyhjän ruudun viereiset ruudut, joissa ei ole miinaa.
+ * @param Avattava ruutu.
+ */
     private void avaaNollanViereiset(Ruutu ruutu) {
         for (Ruutu viereinenRuutu : ruutu.viereisetRuudut(pelialusta.getAlusta(), ruutu.getX(), ruutu.getY())) {
             if (ruutu.getViereisetMiinat() == 0) {
@@ -56,7 +71,10 @@ public class Miinaharava {
             }
         }
     }
-
+/**
+ * Tarkistaa onko kaikki miinattomat ruudut avattu.
+ * @return Palauttaa true jos kaikki miinattomat ruudut on avattu.
+ */
     public boolean kaikkiAvattu() {
         for (Ruutu ruutu : pelialusta.getTavallisetRuudut()) {
             if (ruutu.onKiinni()) {

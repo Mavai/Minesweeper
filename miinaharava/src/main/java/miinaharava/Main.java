@@ -7,7 +7,7 @@ import miinaharava.domain.Pelialusta;
 public class Main {
     
     public static void main(String[] args) {
-        Pelialusta alusta = new Pelialusta(10, 25);
+        Pelialusta alusta = new Pelialusta(10, 15);
         MiinaharavaGui gui = new MiinaharavaGui(alusta);
         SwingUtilities.invokeLater(gui);
         

@@ -1,5 +1,9 @@
 package miinaharava.domain;
-
+/**
+ * Osa miinaharava-pelin ruuduista sisältää miinan.
+ * Tarjoaa equals-metodin jolla varmistetaan ettei samassa ruudussa ole useaa miinaa.
+ * @author markovai
+ */
 public class Miina {
     private int x;
     private int y;

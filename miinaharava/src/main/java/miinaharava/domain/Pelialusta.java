@@ -6,7 +6,13 @@ import java.util.Random;
 import miinaharava.domain.Miina;
 import miinaharava.domain.Ruutu;
 
+/**
+ * Tarjoaa metodeja miinaharava-pelin pelialustan luomiseen ja läpikäymiseen.
+ *
+ * @author markovai
+ */
 public class Pelialusta {
+
     private int leveys;
     private int miinojenLkm;
     private Ruutu[][] alusta;
@@ -36,7 +42,10 @@ public class Pelialusta {
     public List<Ruutu> getTavallisetRuudut() {
         return tavallisetRuudut;
     }
-    
+
+    /**
+     * Luo ruudukon ja sijoittaa miinat ruutuihin.
+     */
     public void luo() {
         luoRuudukko();
         luoMiinat();
@@ -44,7 +53,10 @@ public class Pelialusta {
         laskeViereisetMiinat();
         laskeTavallisetRuudut();
     }
-    
+
+    /**
+     * Tulostaa taulukon.
+     */
     public void tulosta() {
         for (int i = 0; i < alusta.length; i++) {
             for (int j = 0; j < alusta.length; j++) {
@@ -53,7 +65,10 @@ public class Pelialusta {
             System.out.println("");
         }
     }
-    
+
+    /**
+     * Luo int[][] taulukon.
+     */
     public void luoRuudukko() {
         this.alusta = new Ruutu[leveys][leveys];
         for (int i = 0; i < alusta.length; i++) {
@@ -62,7 +77,10 @@ public class Pelialusta {
             }
         }
     }
-    
+
+    /**
+     * Luo miinat, joilla on satunnaiset koordinaatit.
+     */
     public void luoMiinat() {
         Random r = new Random();
         for (int i = 0; i < miinojenLkm; i++) {
@@ -74,14 +92,20 @@ public class Pelialusta {
             }
         }
     }
-    
+
+    /**
+     * Sijoittaa luodut miinat pelialustalle.
+     */
     public void sijoitaMiinat() {
         for (Miina miina : miinat) {
             Ruutu poistettava = alusta[miina.getX()][miina.getY()];
             alusta[miina.getX()][miina.getY()].asetaMiina();
         }
     }
-    
+
+    /**
+     * Luo lista ruuduista, joissa ei ole miinaa.
+     */
     public void laskeTavallisetRuudut() {
         for (int i = 0; i < alusta.length; i++) {
             for (int j = 0; j < alusta.length; j++) {
@@ -91,7 +115,10 @@ public class Pelialusta {
             }
         }
     }
-    
+
+    /**
+     * Laskee ruudun viereiset miinat.
+     */
     public void laskeViereisetMiinat() {
         for (int i = 0; i < alusta.length; i++) {
             for (int j = 0; j < alusta.length; j++) {
