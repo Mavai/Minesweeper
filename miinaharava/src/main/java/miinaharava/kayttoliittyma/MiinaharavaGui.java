@@ -44,7 +44,7 @@ public class MiinaharavaGui implements Runnable {
     private void luoKomponentit(Container container) {
         JPanel ruudukko = luoRuudukko();
         container.add(ruudukko);
-
+        ruudukko.setEnabled(false);
     }
 
     public JPanel luoRuudukko() {
@@ -57,6 +57,7 @@ public class MiinaharavaGui implements Runnable {
                 ruudukko.add(nappi);
             }
         }
+
         return ruudukko;
     }
 

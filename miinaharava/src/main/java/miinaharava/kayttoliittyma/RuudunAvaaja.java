@@ -4,6 +4,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 import miinaharava.domain.Pelialusta;
 import miinaharava.domain.Ruutu;
 import miinaharava.logiikka.Miinaharava;
@@ -35,7 +36,13 @@ public class RuudunAvaaja implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Ruutu avattava = alusta.getAlusta()[x][y];
-        peli.avaaRuutu(avattava);
+        if (!peli.avaaRuutu(avattava)) {
+            for (int i = 0; i < ruudut.length; i++) {
+                for (int j = 0; j < ruudut.length; j++) {
+                    ruudut[j][i].setEnabled(false);
+                }
+            }
+        }
         nappi.setEnabled(false);
         nappi.setText(avattava.toString());
         nappi.setMargin(new Insets(5, 5, 5, 5));
