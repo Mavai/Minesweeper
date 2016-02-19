@@ -19,6 +19,12 @@ public class Miinaharava {
     private int kierros;
     private ArrayList<Ruutu> nollanViereiset;
 
+    /**
+     * Luo Miinaharava-olion, joka toimii pelin logiikkana.
+     *
+     * @param pelialusta Pelissä käytettävä pelialusta.
+     * @param lukija Scanner
+     */
     public Miinaharava(Pelialusta pelialusta, Scanner lukija) {
         this.pelialusta = pelialusta;
         this.lukija = lukija;
@@ -30,7 +36,10 @@ public class Miinaharava {
     public Pelialusta getPelialusta() {
         return pelialusta;
     }
-    
+
+    /**
+     * Kasvattaa kierrosten määrää yhdellä.
+     */
     public void kasvataKierroksia() {
         kierros += 1;
     }
@@ -82,9 +91,8 @@ public class Miinaharava {
     private void avaaNollanViereiset(Ruutu ruutu) {
         for (Ruutu viereinenRuutu : ruutu.viereisetRuudut(pelialusta.getAlusta(), ruutu.getX(), ruutu.getY())) {
             nollanViereiset.add(viereinenRuutu);
-            if (ruutu.getViereisetMiinat() == 0) {
-                avaaRuutu(viereinenRuutu);
-            }
+            avaaRuutu(viereinenRuutu);
+
         }
     }
 

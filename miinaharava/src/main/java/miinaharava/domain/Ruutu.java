@@ -17,6 +17,12 @@ public class Ruutu {
     private boolean kiinni;
     private boolean merkattu;
 
+    /**
+     * Luo ruudun x- ja y-koordinaateilla.
+     *
+     * @param x x-koordinaatti
+     * @param y y-koordinaatti
+     */
     public Ruutu(int x, int y) {
         this.x = x;
         this.y = y;
@@ -32,7 +38,10 @@ public class Ruutu {
     public void avaa() {
         this.kiinni = false;
     }
-    
+
+    /**
+     * Asettaa ruudun merkityksi.
+     */
     public void merkitse() {
         merkattu = true;
     }
@@ -45,10 +54,20 @@ public class Ruutu {
         return y;
     }
 
+    /**
+     * Tarkistaa onko ruutu kiinni vai avattu.
+     *
+     * @return Palauttaa true jos ruutu on kiinni.
+     */
     public boolean onKiinni() {
         return this.kiinni;
     }
 
+    /**
+     * Tarkistaa sisältääkö ruutu miinan.
+     *
+     * @return Palauttaa true jos ruutu sisältää miinan.
+     */
     public boolean sisaltaaMiinan() {
         return this.sisaltaaMiinan;
     }
@@ -86,7 +105,7 @@ public class Ruutu {
     /**
      * Laskeen tämä ruudun viereisten ruutujen sisältävien miinojen määrän.
      *
-     * @param Ruudun sisältävä pelialusta.
+     * @param alusta Ruudun sisältävä pelialusta.
      */
     public void laskeViereisetMiinat(Ruutu[][] alusta) {
         for (int i = 0; i < alusta.length; i++) {
@@ -108,147 +127,37 @@ public class Ruutu {
      * @param alusta Ruudun sisältävä pelialusta.
      * @param x Ruudun x-koordinaatti.
      * @param y Ruudun y-koordinaatti.
-     * @return
+     * @return Palauttaa listan ruudun viereisistä ruuduista.
      */
     public ArrayList<Ruutu> viereisetRuudut(Ruutu[][] alusta, int x, int y) {
-        ArrayList<Ruutu> viereiset = new ArrayList<>();
-        if ((x == 0 && y == 0) || (x == 0 && y == alusta.length - 1) || (x == alusta.length - 1 && y == 0) || (x == alusta.length - 1 && y == alusta.length - 1)) {
-            return viereisetRuudutKulmassa(viereiset, alusta, x, y);
-
-        } else if ((x == 0) || (x == alusta.length - 1) || (y == 0) || (y == alusta.length - 1)) {
-            return viereisetRuudutSivuilla(viereiset, alusta, x, y);
-
-        } else {
-            return viereisetRuudutKeskella(viereiset, alusta, x, y);
-        }
-    }
-
-    /**
-     * Palauttaa listan keskellä olevan ruudun viereisistä ruuduista.
-     *
-     * @param viereiset Lista ruuduista.
-     * @param alusta Ruudun sisältävä pelialusta.
-     * @param x Ruudun x-koordinaatti.
-     * @param y Ruudun y-koordinaatti
-     * @return
-     */
-    public ArrayList<Ruutu> viereisetRuudutKeskella(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
-        viereiset.add(alusta[x][y - 1]);
-        viereiset.add(alusta[x][y + 1]);
-        viereiset.add(alusta[x - 1][y - 1]);
-        viereiset.add(alusta[x - 1][y + 1]);
-        viereiset.add(alusta[x - 1][y]);
-        viereiset.add(alusta[x + 1][y]);
-        viereiset.add(alusta[x + 1][y - 1]);
-        viereiset.add(alusta[x + 1][y + 1]);
-        return viereiset;
-    }
-
-    /**
-     * Palauttaa listan kulmassa olevan ruudun viereisistä ruuduista.
-     *
-     * @param viereiset Lista ruuduista.
-     * @param alusta Ruudun sisältävä pelialusta.
-     * @param x Ruudun x-koordinaatti.
-     * @param y Ruudun y-koordinaatti
-     * @return
-     */
-    public ArrayList<Ruutu> viereisetRuudutKulmassa(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
-        if (x == 0 && y == 0) {
-            return vasenYlaNurkka(viereiset, alusta, x, y);
-        } else if (x == 0 && y == alusta.length - 1) {
-            return vasenAlaNurkka(viereiset, alusta, x, y);
-        } else if (x == alusta.length - 1 && y == 0) {
-            return oikeaYlaNurkka(viereiset, alusta, x, y);
-        } else {
-            return oikeaAlaNurkka(viereiset, alusta, x, y);
-        }
-    }
-
-    /**
-     * Palauttaa listan jollakin pelialusta sivuilla olevan ruudun viereisistä
-     * ruuduista.
-     *
-     * @param viereiset Lista ruuduista.
-     * @param alusta Ruudun sisältävä pelialusta.
-     * @param x Ruudun x-koordinaatti.
-     * @param y Ruudun y-koordinaatti
-     * @return
-     */
-    public ArrayList<Ruutu> viereisetRuudutSivuilla(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
+        ArrayList<Ruutu> viereiset = new ArrayList<Ruutu>();
+        int xMin = x - 1;
+        int xMax = x + 1;
+        int yMin = y - 1;
+        int yMax = y + 1;
         if (x == 0) {
-            return vasenSivu(viereiset, alusta, x, y);
-        } else if (x == alusta.length - 1) {
-            return oikeaSivu(viereiset, alusta, x, y);
-        } else if (y == 0) {
-            return ylaSivu(viereiset, alusta, x, y);
-        } else {
-            return alaSivu(viereiset, alusta, x, y);
+            xMin = 0;
         }
-    }
-
-    public ArrayList<Ruutu> vasenSivu(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
-        viereiset.add(alusta[x][y - 1]);
-        viereiset.add(alusta[x + 1][y - 1]);
-        viereiset.add(alusta[x + 1][y]);
-        viereiset.add(alusta[x + 1][y + 1]);
-        viereiset.add(alusta[x][y + 1]);
+        if (y == 0) {
+            yMin = 0;
+        }
+        if (x == alusta.length - 1) {
+            xMax = alusta.length - 1;
+        }
+        if (y == alusta.length - 1) {
+            yMax = alusta.length - 1;
+        }
+        lisaaListalle(xMin, xMax, yMin, yMax, viereiset, alusta, x, y);
         return viereiset;
     }
 
-    public ArrayList<Ruutu> oikeaSivu(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
-        viereiset.add(alusta[x][y - 1]);
-        viereiset.add(alusta[x - 1][y - 1]);
-        viereiset.add(alusta[x - 1][y]);
-        viereiset.add(alusta[x - 1][y + 1]);
-        viereiset.add(alusta[x][y + 1]);
-        return viereiset;
-    }
-
-    public ArrayList<Ruutu> ylaSivu(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
-        viereiset.add(alusta[x + 1][y]);
-        viereiset.add(alusta[x - 1][y]);
-        viereiset.add(alusta[x + 1][y + 1]);
-        viereiset.add(alusta[x - 1][y + 1]);
-        viereiset.add(alusta[x][y + 1]);
-        return viereiset;
-    }
-
-    public ArrayList<Ruutu> alaSivu(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
-        viereiset.add(alusta[x + 1][y]);
-        viereiset.add(alusta[x + 1][y - 1]);
-        viereiset.add(alusta[x][y - 1]);
-        viereiset.add(alusta[x - 1][y - 1]);
-        viereiset.add(alusta[x - 1][y]);
-        return viereiset;
-    }
-
-    public ArrayList<Ruutu> vasenYlaNurkka(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
-        viereiset.add(alusta[x + 1][y]);
-        viereiset.add(alusta[x + 1][y + 1]);
-        viereiset.add(alusta[x][y + 1]);
-        return viereiset;
-    }
-
-    public ArrayList<Ruutu> oikeaYlaNurkka(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
-        viereiset.add(alusta[x - 1][y]);
-        viereiset.add(alusta[x - 1][y + 1]);
-        viereiset.add(alusta[x][y + 1]);
-        return viereiset;
-    }
-
-    public ArrayList<Ruutu> vasenAlaNurkka(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
-        viereiset.add(alusta[x + 1][y]);
-        viereiset.add(alusta[x + 1][y - 1]);
-        viereiset.add(alusta[x][y - 1]);
-        return viereiset;
-    }
-
-    public ArrayList<Ruutu> oikeaAlaNurkka(ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
-        viereiset.add(alusta[x - 1][y]);
-        viereiset.add(alusta[x - 1][y - 1]);
-        viereiset.add(alusta[x][y - 1]);
-        return viereiset;
+    private void lisaaListalle(int xMin, int xMax, int yMin, int yMax, ArrayList<Ruutu> viereiset, Ruutu[][] alusta, int x, int y) {
+        for (int i = xMin; i <= xMax; i++) {
+            for (int j = yMin; j <= yMax; j++) {
+                viereiset.add(alusta[i][j]);
+            }
+        }
+        viereiset.remove(alusta[x][y]);
     }
 
     @Override

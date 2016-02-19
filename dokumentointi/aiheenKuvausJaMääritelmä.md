@@ -1,4 +1,4 @@
-#Aihemäärittely
+﻿#Aihemäärittely
 
 **Aihe:**
 
@@ -23,4 +23,9 @@ Pelissä voi olla useita vaikeusasteita riippuen ruudukon koosta ja miinojen mä
 - Pelin lopetus
 
 ##Luokkakaavio  
-![alt text](luokkakaavio.png)
+![alt text](luokkakaavio.png)  
+
+##Sekvenssikaavioita  
+![alt text](normaalinRuudunAvaaminen.png)  
+![alt text](miinaanOsuminen.png)  
+![alt text](tyhjanRuudunAvaaminen.png)  

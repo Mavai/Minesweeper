@@ -16,18 +16,33 @@ public class Tekstikayttoliittyma {
     private Scanner lukija;
     private Miinaharava peli;
 
+    /**
+     * Luo tekstikäyttöliittymän miinaharava-pelille.
+     *
+     * @param pelialusta Käytössä oleva pelialusta.
+     * @param lukija Scanner jonka avulla käyttäjä antaa käskyjä.
+     * @param peli Käynnissä oleva peli.
+     */
     public Tekstikayttoliittyma(Pelialusta pelialusta, Scanner lukija, Miinaharava peli) {
         this.pelialusta = pelialusta;
         this.lukija = lukija;
         this.peli = peli;
     }
 
+    /**
+     * Tulostaa tervehdystekstin ja ohjeita.
+     */
     public void tervehdi() {
         System.out.println("Tervetuloa 'Miinaharava' -peliin.");
         System.out.println("Pelataksesi anna koordinaatteja X ja Y arvoilla " + 0 + " - " + (pelialusta.getAlusta().length - 1) + ".");
         System.out.println("Lopettaaksesi syötä 999 kierroksen alussa.");
     }
 
+    /**
+     * Kysyy käyttäjältä avattavan miinan koordinaatit ja palauttaa ne listana.
+     *
+     * @return Palauttaa listana avattavan miinan koordinaatit.
+     */
     public int[] kysyKoordinaatit() {
         int[] koordinaatit = new int[2];
         while (true) {
@@ -43,6 +58,11 @@ public class Tekstikayttoliittyma {
         return koordinaatit;
     }
 
+    /**
+     * Palauttaa avattavan ruudun Ruutu-olion.
+     *
+     * @return Palauttaa avattavan ruudun Ruutu-olion.
+     */
     public Ruutu avattava() {
         int[] koordinaatit = kysyKoordinaatit();
         Ruutu avattava;
@@ -55,6 +75,12 @@ public class Tekstikayttoliittyma {
 
     }
 
+    /**
+     * Tulostaa yhden kierroksen pelistä.
+     *
+     * @return Palauttaa false, jos osutaan miinaan tai saadaan kaikki ruudut
+     * avattua ja peli loppuu.
+     */
     public boolean tulostaKierros() {
         tulostaAlue();
         Ruutu avattava = avattava();
@@ -70,17 +96,30 @@ public class Tekstikayttoliittyma {
         return true;
     }
 
+    /**
+     * Tulostaa pelialueen ja kierrosten lukumäärän.
+     */
     public void tulostaAlue() {
         pelialusta.tulosta();
         System.out.println("kierros: " + peli.getKierroksia());
     }
 
+    /**
+     * Tulostaa häviö-viestin ja palauttaa false.
+     *
+     * @return false
+     */
     public boolean havio() {
         pelialusta.tulosta();
         System.out.println("Osuit miinaan ja hävisit :( \nkierroksia: " + peli.getKierroksia());
         return false;
     }
 
+    /**
+     * Tulostaa voitto-viestin ja palauttaa false.
+     *
+     * @return false
+     */
     public boolean voitto() {
         pelialusta.tulosta();
         System.out.println("Onneksi olkoon! Löysit kaikki miinat! \nkierroksia: " + peli.getKierroksia());

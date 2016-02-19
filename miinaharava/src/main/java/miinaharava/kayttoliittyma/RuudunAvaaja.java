@@ -26,6 +26,17 @@ public class RuudunAvaaja implements MouseListener {
     private JButton[][] ruudut;
     private JLabel kierrostenLkm;
 
+    /**
+     * Luo hiirenkuuntelijan joka avaa ruudun tai merkkaa sen riippuen hiiren
+     * painikkeesta.
+     *
+     * @param x JButtonin x-koordinaatti
+     * @param y JButtonin y-koordinaatti
+     * @param peli Käynnissä oleva peli
+     * @param nappi JButton jota painettiin
+     * @param ruudut Lista pelialustalla olevista JButtoneista
+     * @param kierrostenLkm Päivitettävä JLabel olio
+     */
     public RuudunAvaaja(int x, int y, Miinaharava peli, JButton nappi, JButton[][] ruudut, JLabel kierrostenLkm) {
         this.x = x;
         this.y = y;
@@ -36,60 +47,55 @@ public class RuudunAvaaja implements MouseListener {
         this.kierrostenLkm = kierrostenLkm;
     }
 
-    //@Override
-    public void actionPerformed(ActionEvent e) {
-        Ruutu avattava = alusta.getAlusta()[x][y];
-        if (!peli.avaaRuutu(avattava)) {
-            for (int i = 0; i < ruudut.length; i++) {
-                for (int j = 0; j < ruudut.length; j++) {
-                    ruudut[j][i].setEnabled(false);
-                }
-            }
-        }
-        nappi.setEnabled(false);
-        nappi.setText(avattava.toString());
-        nappi.setMargin(new Insets(5, 5, 5, 5));
-        if (avattava.getViereisetMiinat() == 0) {
-            avaaNollat(avattava);
-        }
-        peli.kasvataKierroksia();
-    }
-
-    public void avaaNollat(Ruutu avattava) {
+    /**
+     * Avaa kaikki viereikkäiset nollat ja asettaa JButtonin epäaktiiviseksi.
+     */
+    public void avaaNollat() {
         for (Ruutu ruutu : peli.getNollanViereiset()) {
             JButton avattavaRuutu = ruudut[ruutu.getX()][ruutu.getY()];
             avattavaRuutu.setEnabled(false);
             avattavaRuutu.setText(ruutu.toString());
-            avattavaRuutu.setMargin(new Insets(5, 5, 5, 5));
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
-            Ruutu avattava = alusta.getAlusta()[x][y];
-            if (!peli.avaaRuutu(avattava)) {
-                for (int i = 0; i < ruudut.length; i++) {
-                    for (int j = 0; j < ruudut.length; j++) {
-                        ruudut[j][i].setEnabled(false);
-                    }
-                }
-            }
-            nappi.setEnabled(false);
-            nappi.setText(avattava.toString());
-            nappi.setMargin(new Insets(5, 5, 5, 5));
-            if (avattava.getViereisetMiinat() == 0) {
-                avaaNollat(avattava);
-            }
+            avaaRuutu();
         } else if (e.getButton() == MouseEvent.BUTTON3) {
-            Ruutu merkattava = alusta.getAlusta()[x][y];
-            merkattava.merkitse();
-            ruudut[x][y].setText(merkattava.toString());
-            nappi.setMargin(new Insets(5, 5, 5, 5));
-
+            merkkaaRuutu();
         }
         peli.kasvataKierroksia();
         kierrostenLkm.setText("Kierros     " + peli.getKierroksia());
+    }
+
+    private void merkkaaRuutu() {
+        Ruutu merkattava = alusta.getAlusta()[x][y];
+        merkattava.merkitse();
+        ruudut[x][y].setText(merkattava.toString());
+    }
+
+    private void avaaRuutu() {
+        Ruutu avattava = alusta.getAlusta()[x][y];
+        if (!peli.avaaRuutu(avattava)) {
+            havio();
+        }
+        nappi.setEnabled(false);
+        nappi.setText(avattava.toString());
+        if (avattava.getViereisetMiinat() == 0) {
+            avaaNollat();
+        }
+    }
+
+    private void havio() {
+        for (int i = 0; i < ruudut.length; i++) {
+            for (int j = 0; j < ruudut.length; j++) {
+                ruudut[j][i].setEnabled(false);
+                if (alusta.getAlusta()[j][i].sisaltaaMiinan()) {
+                    ruudut[j][i].setText("*");
+                }
+            }
+        }
     }
 
     @Override

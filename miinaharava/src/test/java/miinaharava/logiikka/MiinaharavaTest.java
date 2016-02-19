@@ -15,7 +15,7 @@ public class MiinaharavaTest {
     }
     Pelialusta alusta = new Pelialusta(3, 0);
     String syote = muodostaSyote("1", "1");
-    Miinaharava peli= new Miinaharava(alusta, new Scanner(syote));
+    Miinaharava peli = new Miinaharava(alusta, new Scanner(syote));
 
     @BeforeClass
     public static void setUpClass() {
@@ -50,24 +50,43 @@ public class MiinaharavaTest {
         peli.aloita();
         assertEquals(2, peli.getKierroksia());
     }
-    
+
     @Test
     public void miinanSisältävänRuudunAvaaminen() {
         alusta = new Pelialusta(3, 9);
         peli = new Miinaharava(alusta, new Scanner(syote));
         assertFalse(peli.avaaRuutu(alusta.getAlusta()[0][0]));
     }
-    
+
     @Test
     public void avaaNollanViereisetOikein() {
         peli.aloita();
         assertTrue(!alusta.getAlusta()[1][2].onKiinni());
     }
-    
+
     @Test
     public void aukiOlevanRuudunAvaaminen() {
         peli.avaaRuutu(alusta.getAlusta()[0][0]);
         assertTrue(peli.avaaRuutu(alusta.getAlusta()[0][0]));
+    }
+
+    @Test
+    public void kierroksetKasvaaOikein() {
+        peli.kasvataKierroksia();
+        assertEquals(2, peli.getKierroksia());
+    }
+
+    @Test
+    public void getPelialustTesti() {
+        assertEquals(alusta, peli.getPelialusta());
+    }
+
+    @Test
+    public void nollanViereisetKasvaa() {
+        alusta = new Pelialusta(5, 0);
+        peli = new Miinaharava(alusta, null);
+        peli.avaaRuutu(alusta.getAlusta()[2][2]);
+        assertTrue(peli.getNollanViereiset().size() > 0);
     }
 
     private String muodostaSyote(String... rivit) {

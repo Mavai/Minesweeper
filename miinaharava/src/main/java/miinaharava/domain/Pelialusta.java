@@ -19,6 +19,13 @@ public class Pelialusta {
     private List<Miina> miinat;
     private List<Ruutu> tavallisetRuudut;
 
+    /**
+     * Luo pelalustan, jonka leveys ja miinojen lukumäärä määritellään
+     * parametreinä.
+     *
+     * @param leveys Pelialustan leveys
+     * @param miinojenLkm Miinojen lukumäärä pelialustalla
+     */
     public Pelialusta(int leveys, int miinojenLkm) {
         this.leveys = leveys;
         this.miinojenLkm = miinojenLkm;
@@ -85,10 +92,10 @@ public class Pelialusta {
         Random r = new Random();
         for (int i = 0; i < miinojenLkm; i++) {
             Miina uusiMiina = new Miina(r.nextInt(alusta.length), r.nextInt(alusta.length));
-            if (miinat.contains(uusiMiina)) {
-                i--;
-            } else {
+            if (!miinat.contains(uusiMiina)) {
                 miinat.add(uusiMiina);
+            } else {
+                i--;
             }
         }
     }

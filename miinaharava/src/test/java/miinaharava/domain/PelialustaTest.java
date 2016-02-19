@@ -48,5 +48,9 @@ public class PelialustaTest {
     public void leveysOikein() {
         assertEquals(5, alusta.getLeveys());
     }
-
+    
+    @Test(timeout=1000)
+    public void luodaanOikeaMaaraMiinoja() {
+        alusta.luoMiinat();
+    }
 }
