@@ -1,5 +1,6 @@
 package miinaharava.logiikka;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import miinaharava.domain.Ruutu;
 import miinaharava.domain.Pelialusta;
@@ -14,16 +15,24 @@ public class Miinaharava {
 
     private Pelialusta pelialusta;
     private Scanner lukija;
-    private boolean kaynnissa;
     private Tekstikayttoliittyma kayttoliittyma;
     private int kierros;
+    private ArrayList<Ruutu> nollanViereiset;
 
     public Miinaharava(Pelialusta pelialusta, Scanner lukija) {
         this.pelialusta = pelialusta;
         this.lukija = lukija;
-        this.kaynnissa = false;
         this.kayttoliittyma = new Tekstikayttoliittyma(pelialusta, lukija, this);
         this.kierros = 1;
+        this.nollanViereiset = new ArrayList<Ruutu>();
+    }
+
+    public Pelialusta getPelialusta() {
+        return pelialusta;
+    }
+    
+    public void kasvataKierroksia() {
+        kierros += 1;
     }
 
     /**
@@ -47,7 +56,7 @@ public class Miinaharava {
      * Avaa ruudun. Jos ruudussa on miina, palauttaa arvon false. Jos ruudun
      * vieressä ei ole miinoja avaa rekursiivisesti viereiset ruudut.
      *
-     * @param Avattava ruutu.
+     * @param ruutu Avattava ruutu.
      * @return Palauttaa true, jos ei osuta miinaan.
      */
     public boolean avaaRuutu(Ruutu ruutu) {
@@ -68,14 +77,19 @@ public class Miinaharava {
      * Avaa rekursiivisesti kaikki tyhjän ruudun viereiset ruudut, joissa ei ole
      * miinaa.
      *
-     * @param Avattava ruutu.
+     * @param ruutu Avattava ruutu.
      */
     private void avaaNollanViereiset(Ruutu ruutu) {
         for (Ruutu viereinenRuutu : ruutu.viereisetRuudut(pelialusta.getAlusta(), ruutu.getX(), ruutu.getY())) {
+            nollanViereiset.add(viereinenRuutu);
             if (ruutu.getViereisetMiinat() == 0) {
                 avaaRuutu(viereinenRuutu);
             }
         }
+    }
+
+    public ArrayList<Ruutu> getNollanViereiset() {
+        return nollanViereiset;
     }
 
     /**

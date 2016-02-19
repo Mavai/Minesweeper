@@ -3,12 +3,14 @@ package miinaharava;
 import javax.swing.SwingUtilities;
 import miinaharava.kayttoliittyma.MiinaharavaGui;
 import miinaharava.domain.Pelialusta;
+import miinaharava.logiikka.Miinaharava;
 
 public class Main {
     
     public static void main(String[] args) {
-        Pelialusta alusta = new Pelialusta(10, 50);
-        MiinaharavaGui gui = new MiinaharavaGui(alusta);
+        Pelialusta alusta = new Pelialusta(8, 10);
+        Miinaharava peli = new Miinaharava(alusta, null);
+        MiinaharavaGui gui = new MiinaharavaGui(peli);
         SwingUtilities.invokeLater(gui);
         
 //        Scanner lukija = new Scanner(System.in);
