@@ -8,4 +8,4 @@
 **5.2.2016:** 5h ohjelmointia, uutta toiminnallisuutta ja vanhan koodin refaktorointia + 2h testejä + 1h luokkakaavion parantelua  
 **12.2.2016:** 5h graafisen käyttöliittymän väsäystä + 2h Javadoc ja muu dokumentointi  
 **14.2.2016:** 2h käyttöliittymän tekoa  
-**19.2.2016:** 7h käyttöliittymän tekoa, uutta toiminnallisuutta + 1h uusia testejä, koodin siistimistä + 1h sekvenssikaaviot ja muu dokumentointi  
+**19.2.2016:** 6h käyttöliittymän tekoa, uutta toiminnallisuutta + 2h uusia testejä, koodin siistimistä + 1h sekvenssikaaviot ja muu dokumentointi  
