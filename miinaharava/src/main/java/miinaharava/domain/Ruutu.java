@@ -15,6 +15,7 @@ public class Ruutu {
     private int viereisetMiinat;
     private boolean sisaltaaMiinan;
     private boolean kiinni;
+    private boolean merkattu;
 
     public Ruutu(int x, int y) {
         this.x = x;
@@ -22,6 +23,7 @@ public class Ruutu {
         this.sisaltaaMiinan = false;
         this.viereisetMiinat = 0;
         this.kiinni = true;
+        this.merkattu = false;
     }
 
     /**
@@ -29,6 +31,10 @@ public class Ruutu {
      */
     public void avaa() {
         this.kiinni = false;
+    }
+    
+    public void merkitse() {
+        merkattu = true;
     }
 
     public int getX() {
@@ -57,6 +63,9 @@ public class Ruutu {
     @Override
     public String toString() {
         if (kiinni) {
+            if (merkattu) {
+                return "F";
+            }
             return "@";
         } else {
             if (sisaltaaMiinan) {

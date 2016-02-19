@@ -81,6 +81,12 @@ public class RuudunAvaaja implements MouseListener {
             if (avattava.getViereisetMiinat() == 0) {
                 avaaNollat(avattava);
             }
+        } else if (e.getButton() == MouseEvent.BUTTON3) {
+            Ruutu merkattava = alusta.getAlusta()[x][y];
+            merkattava.merkitse();
+            ruudut[x][y].setText(merkattava.toString());
+            nappi.setMargin(new Insets(5, 5, 5, 5));
+
         }
         peli.kasvataKierroksia();
         kierrostenLkm.setText("Kierros     " + peli.getKierroksia());
@@ -93,7 +99,6 @@ public class RuudunAvaaja implements MouseListener {
     @Override
     public void mouseReleased(MouseEvent e) {
     }
-
 
     @Override
     public void mouseExited(MouseEvent e) {
