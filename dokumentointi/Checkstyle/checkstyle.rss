@@ -26,7 +26,7 @@ under the License.
     <copyright>&#169;2016</copyright>
     <item>
       <title>File: 8,
-             Errors: 1,
+             Errors: 0,
              Warnings: 0,
              Infos: 0
       </title>
@@ -111,7 +111,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
               </tr>
                           <tr>
@@ -130,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.Tekstikayttoliittyma.java">miinaharava/kayttoliittyma/Tekstikayttoliittyma.java</a>
+                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.MiinaharavaGui.java">miinaharava/kayttoliittyma/MiinaharavaGui.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +144,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.MiinaharavaGui.java">miinaharava/kayttoliittyma/MiinaharavaGui.java</a>
+                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.Tekstikayttoliittyma.java">miinaharava/kayttoliittyma/Tekstikayttoliittyma.java</a>
                 </td>
                 <td>
                   0
