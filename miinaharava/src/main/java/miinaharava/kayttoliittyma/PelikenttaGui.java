@@ -1,18 +1,16 @@
 package miinaharava.kayttoliittyma;
 
+import com.sun.java.swing.plaf.windows.resources.windows;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 import miinaharava.domain.Pelialusta;
 import miinaharava.logiikka.Miinaharava;
+import sun.nio.ch.WindowsAsynchronousChannelProvider;
 
-/**
- * Tarjoaa graafisen käyttöliittyman miinaharava-peliin.
- *
- * @author markovai
- */
-public class MiinaharavaGui implements Runnable {
+public class PelikenttaGui extends JFrame {
 
-    private JFrame frame;
     private Pelialusta pelialusta;
     private int leveys;
     private JButton[][] ruudut;
@@ -25,34 +23,34 @@ public class MiinaharavaGui implements Runnable {
      *
      * @param peli Peli, joka käytttää käyttöliittymää.
      */
-    public MiinaharavaGui(Miinaharava peli) {
-        this.pelialusta = peli.getPelialusta();
-        this.leveys = pelialusta.getLeveys();
-        ruudut = new JButton[leveys][leveys];
+    public PelikenttaGui(Miinaharava peli) {
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         this.peli = peli;
+        this.pelialusta = peli.getPelialusta();
+        this.leveys = peli.getPelialusta().getLeveys();
+        ruudut = new JButton[leveys][leveys];
+
+        setPreferredSize(new Dimension(35 * leveys, 35 * leveys + 35));
+
         this.kierrostenLkm = new JLabel("Kierros     " + peli.getKierroksia());
         this.merkkienLkm = new JLabel("Merkkejä jäljellä  " + 15);
-    }
 
-    @Override
-    public void run() {
-        frame = new JFrame("Miinaharava");
-        frame.setPreferredSize(new Dimension(35 * leveys, 35 * leveys));
+        luoKomponentit(this.getContentPane());
 
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        luoKomponentit(frame.getContentPane());
-
-        frame.pack();
-        frame.setVisible(true);
+        pack();
+        setVisible(true);
     }
 
     private void luoKomponentit(Container container) {
         container.setLayout(new BorderLayout());
+        container.add(valikko(), BorderLayout.NORTH);
         JPanel ruudukko = luoRuudukko();
         container.add(ruudukko, BorderLayout.CENTER);
         JPanel kierrokset = luoKierrostenJaMerkkienLaskija();
+        kierrokset.setPreferredSize(new Dimension(35 * leveys, 35));
         container.add(kierrokset, BorderLayout.SOUTH);
+
     }
 
     /**
@@ -91,7 +89,17 @@ public class MiinaharavaGui implements Runnable {
         return ruudukko;
     }
 
-    public JFrame getFrame() {
-        return frame;
+    public JMenuBar valikko() {
+        JMenuBar valikko = new JMenuBar();
+        JMenu menu = new JMenu("Peli");
+        valikko.add(menu);
+        JMenuItem uusiPeli = new JMenuItem("Uusi peli");
+        menu.add(uusiPeli);
+        JMenuItem vaihdaVaikeusastetta = new JMenuItem("Vaihda vaikeusastetta");
+        menu.add(vaihdaVaikeusastetta);
+        JMenuItem lopeta = new JMenuItem("Lopeta");
+        menu.add(lopeta);
+        return valikko;
     }
+
 }
