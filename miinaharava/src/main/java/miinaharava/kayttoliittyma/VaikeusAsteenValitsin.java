@@ -23,6 +23,8 @@ public class VaikeusAsteenValitsin implements ActionListener {
 
         } else if (valinta.getText().equals("Vaikea")) {
             peli = new Miinaharava(Vaikeusaste.VAIKEA);
+        } else if (valinta.getText().equals("Haastava")) {
+            peli = new Miinaharava(Vaikeusaste.HAASTAVA);
         }
         dialog.dispose();
         JFrame uusiPeli = new PelikenttaGui(peli);

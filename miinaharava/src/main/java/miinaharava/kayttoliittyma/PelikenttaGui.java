@@ -30,7 +30,7 @@ public class PelikenttaGui extends JFrame {
         this.leveys = peli.getPelialusta().getLeveys();
         ruudut = new JButton[leveys][pelialusta.getKorkeus()];
 
-        setPreferredSize(new Dimension(35 * pelialusta.getKorkeus(), 35 * leveys + 35));
+        setPreferredSize(new Dimension(35 * pelialusta.getLeveys(), 35 * pelialusta.getKorkeus() + 35));
 
         this.kierrostenLkm = new JLabel("Kierros     " + peli.getKierroksia());
         this.merkkienLkm = new JLabel("Merkkejä jäljellä  " + 15);
@@ -75,7 +75,7 @@ public class PelikenttaGui extends JFrame {
      * @return JPanel ruudukko
      */
     public JPanel luoRuudukko() {
-        JPanel ruudukko = new JPanel(new GridLayout(leveys, leveys));
+        JPanel ruudukko = new JPanel(new GridLayout(pelialusta.getKorkeus(), leveys));
         for (int i = 0; i < pelialusta.getKorkeus(); i++) {
             for (int j = 0; j < pelialusta.getLeveys(); j++) {
                 JButton nappi = new JButton();

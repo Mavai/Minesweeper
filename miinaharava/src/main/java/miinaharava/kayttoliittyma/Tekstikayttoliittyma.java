@@ -28,6 +28,15 @@ public class Tekstikayttoliittyma {
         this.lukija = lukija;
         this.peli = peli;
     }
+    
+    public void aloita() {
+        tervehdi();
+        while (true) {
+            if (!tulostaKierros()) {
+                break;
+            }
+        }
+    }
 
     /**
      * Tulostaa tervehdystekstin ja ohjeita.

@@ -25,6 +25,11 @@ public class Miinaharava {
      * @param pelialusta Pelissä käytettävä pelialusta.
      * @param lukija Scanner
      */
+    public Miinaharava(Pelialusta alusta) {
+        this.kierros = 1;
+        this.nollanViereiset = new ArrayList<Ruutu>();
+        this.pelialusta = alusta;
+    }
     public Miinaharava(Vaikeusaste vaikeus) {
         if (vaikeus == Vaikeusaste.HELPPO) {
             this.pelialusta = new Pelialusta(8, 8, 10);
@@ -33,7 +38,7 @@ public class Miinaharava {
             this.pelialusta = new Pelialusta(16, 16,40);
         }
         if (vaikeus == Vaikeusaste.VAIKEA) {
-            this.pelialusta = new Pelialusta(16, 30, 99);
+            this.pelialusta = new Pelialusta(30, 16, 99);
         }
         this.kierros = 1;
         this.nollanViereiset = new ArrayList<Ruutu>();
@@ -51,18 +56,6 @@ public class Miinaharava {
         kierros += 1;
     }
 
-    /**
-     * Aloittaa pelin.
-     */
-    public void aloita() {
-        kayttoliittyma.tervehdi();
-        while (true) {
-            if (!kayttoliittyma.tulostaKierros()) {
-                break;
-            }
-            kierros++;
-        }
-    }
 
     public int getKierroksia() {
         return kierros;

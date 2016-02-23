@@ -41,7 +41,7 @@ public class Gui implements Runnable {
     public JPanel luoVaihtoehdot() {
         JPanel vaihtoehdot = new JPanel(new FlowLayout());
         JButton helppo = new JButton("Helppo");
-        JButton haastava = new JButton("Haasaatava");
+        JButton haastava = new JButton("Haastava");
         JButton vaikea = new JButton("Vaikea");
         helppo.addActionListener(new VaikeusAsteenValitsin(helppo, dialog));
         haastava.addActionListener(new VaikeusAsteenValitsin(haastava, dialog));

@@ -24,6 +24,7 @@ public class Pelialusta {
      * parametreinä.
      *
      * @param leveys Pelialustan leveys
+     * @param korkeus Pelialustan korkeus
      * @param miinojenLkm Miinojen lukumäärä pelialustalla
      */
     public Pelialusta(int leveys, int korkeus, int miinojenLkm) {

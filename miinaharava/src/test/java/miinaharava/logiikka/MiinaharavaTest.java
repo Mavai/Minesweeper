@@ -13,9 +13,9 @@ public class MiinaharavaTest {
 
     public MiinaharavaTest() {
     }
-    Pelialusta alusta = new Pelialusta(3, 0);
+    Pelialusta alusta = new Pelialusta(3, 3, 0);
     String syote = muodostaSyote("1", "1");
-    Miinaharava peli = new Miinaharava(alusta, new Scanner(syote));
+    Miinaharava peli = new Miinaharava(alusta);
 
     @BeforeClass
     public static void setUpClass() {
@@ -36,31 +36,28 @@ public class MiinaharavaTest {
 
     @Test
     public void ruudunAvaaminenToimii() {
-        syote = muodostaSyote("1", "1", "999");
-        peli = new Miinaharava(alusta, new Scanner(syote));
-        peli.aloita();
+        peli.avaaRuutu(alusta.getAlusta()[1][1]);
         assertFalse(alusta.getAlusta()[1][1].onKiinni());
     }
 
     @Test
     public void kierrosKasvaaOikein() {
-        alusta = new Pelialusta(10, 10);
+        alusta = new Pelialusta(10, 10, 10);
         syote = muodostaSyote("1", "1", "999");
-        peli = new Miinaharava(alusta, new Scanner(syote));
-        peli.aloita();
+        peli = new Miinaharava(alusta);
         assertEquals(2, peli.getKierroksia());
     }
 
     @Test
     public void miinanSisältävänRuudunAvaaminen() {
-        alusta = new Pelialusta(3, 9);
-        peli = new Miinaharava(alusta, new Scanner(syote));
+        alusta = new Pelialusta(3, 3, 9);
+        peli = new Miinaharava(alusta);
         assertFalse(peli.avaaRuutu(alusta.getAlusta()[0][0]));
     }
 
     @Test
     public void avaaNollanViereisetOikein() {
-        peli.aloita();
+        peli.avaaRuutu(alusta.getAlusta()[0][0]);
         assertTrue(!alusta.getAlusta()[1][2].onKiinni());
     }
 
@@ -83,8 +80,8 @@ public class MiinaharavaTest {
 
     @Test
     public void nollanViereisetKasvaa() {
-        alusta = new Pelialusta(5, 0);
-        peli = new Miinaharava(alusta, null);
+        alusta = new Pelialusta(5, 5, 0);
+        peli = new Miinaharava(alusta);
         peli.avaaRuutu(alusta.getAlusta()[2][2]);
         assertTrue(peli.getNollanViereiset().size() > 0);
     }

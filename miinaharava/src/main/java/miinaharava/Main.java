@@ -1,11 +1,20 @@
 package miinaharava;
 
+import java.util.Scanner;
 import javax.swing.SwingUtilities;
+import miinaharava.domain.Pelialusta;
 import miinaharava.kayttoliittyma.Gui;
+import miinaharava.kayttoliittyma.Tekstikayttoliittyma;
+import miinaharava.logiikka.Miinaharava;
+import miinaharava.logiikka.Vaikeusaste;
 
 public class Main {
     
     public static void main(String[] args) {
+        Pelialusta alusta = new Pelialusta(10, 10, 1);
+        Miinaharava peli = new Miinaharava(alusta);
+        //Tekstikayttoliittyma tkl = new Tekstikayttoliittyma(alusta, new Scanner(System.in), new Miinaharava(Vaikeusaste.HELPPO));
+        //tkl.aloita();
         Gui kl = new Gui();
         SwingUtilities.invokeLater(kl);
         

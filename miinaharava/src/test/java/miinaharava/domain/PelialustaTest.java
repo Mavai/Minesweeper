@@ -1,5 +1,7 @@
 package miinaharava.domain;
 
+import miinaharava.logiikka.Miinaharava;
+import miinaharava.logiikka.Vaikeusaste;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,7 +21,7 @@ public class PelialustaTest {
     
     @BeforeClass
     public static void setUpClass() {
-        alusta = new Pelialusta(5, 10);
+        alusta = new Pelialusta(5, 5, 10);
     }
     
     @AfterClass
@@ -42,6 +44,13 @@ public class PelialustaTest {
     @Test
     public void tavallisiaRuutujaOikeaMaara() {
         assertEquals(15, alusta.getTavallisetRuudut().size());
+    }
+    
+    @Test
+    public void tavallisiaRuutujaOikeaMaaraIsossaAlustassa() {
+        Miinaharava peli =new Miinaharava(Vaikeusaste.VAIKEA);
+        Pelialusta uusiAlusta = peli.getPelialusta();
+        assertEquals(381, uusiAlusta.getTavallisetRuudut().size());
     }
     
     @Test
