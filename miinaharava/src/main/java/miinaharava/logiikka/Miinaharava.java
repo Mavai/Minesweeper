@@ -14,10 +14,10 @@ import miinaharava.kayttoliittyma.Tekstikayttoliittyma;
 public class Miinaharava {
 
     private Pelialusta pelialusta;
-    private Scanner lukija;
     private Tekstikayttoliittyma kayttoliittyma;
     private int kierros;
     private ArrayList<Ruutu> nollanViereiset;
+    private Vaikeusaste vaikeus;
 
     /**
      * Luo Miinaharava-olion, joka toimii pelin logiikkana.
@@ -25,10 +25,19 @@ public class Miinaharava {
      * @param pelialusta Pelissä käytettävä pelialusta.
      * @param lukija Scanner
      */
-    public Miinaharava(Pelialusta pelialusta) {
-        this.pelialusta = pelialusta;
+    public Miinaharava(Vaikeusaste vaikeus) {
+        if (vaikeus == Vaikeusaste.HELPPO) {
+            this.pelialusta = new Pelialusta(8, 8, 10);
+        }
+        if (vaikeus == Vaikeusaste.HAASTAVA) {
+            this.pelialusta = new Pelialusta(16, 16,40);
+        }
+        if (vaikeus == Vaikeusaste.VAIKEA) {
+            this.pelialusta = new Pelialusta(16, 30, 99);
+        }
         this.kierros = 1;
         this.nollanViereiset = new ArrayList<Ruutu>();
+        this.vaikeus = vaikeus;
     }
 
     public Pelialusta getPelialusta() {
@@ -87,7 +96,7 @@ public class Miinaharava {
      * @param ruutu Avattava ruutu.
      */
     private void avaaNollanViereiset(Ruutu ruutu) {
-        for (Ruutu viereinenRuutu : ruutu.viereisetRuudut(pelialusta.getAlusta(), ruutu.getX(), ruutu.getY())) {
+        for (Ruutu viereinenRuutu : ruutu.viereisetRuudut(pelialusta, ruutu.getX(), ruutu.getY())) {
             nollanViereiset.add(viereinenRuutu);
             avaaRuutu(viereinenRuutu);
 

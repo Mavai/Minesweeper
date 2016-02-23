@@ -91,8 +91,8 @@ public class RuudunAvaaja implements MouseListener {
     }
 
     private void havio() {
-        for (int i = 0; i < ruudut.length; i++) {
-            for (int j = 0; j < ruudut.length; j++) {
+        for (int i = 0; i < alusta.getKorkeus(); i++) {
+            for (int j = 0; j < alusta.getLeveys(); j++) {
                 ruudut[j][i].setEnabled(false);
                 if (alusta.getAlusta()[j][i].sisaltaaMiinan()) {
                     ruudut[j][i].setText("*");

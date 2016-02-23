@@ -13,7 +13,7 @@ public class Gui implements Runnable {
     @Override
     public void run() {
         dialog = new JDialog();
-        dialog.setPreferredSize(new Dimension(300, 100));
+        dialog.setPreferredSize(new Dimension(320, 100));
 
         dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -44,6 +44,8 @@ public class Gui implements Runnable {
         JButton haastava = new JButton("Haasaatava");
         JButton vaikea = new JButton("Vaikea");
         helppo.addActionListener(new VaikeusAsteenValitsin(helppo, dialog));
+        haastava.addActionListener(new VaikeusAsteenValitsin(haastava, dialog));
+        vaikea.addActionListener(new VaikeusAsteenValitsin(vaikea, dialog));
         vaihtoehdot.add(helppo);
         vaihtoehdot.add(haastava);
         vaihtoehdot.add(vaikea);

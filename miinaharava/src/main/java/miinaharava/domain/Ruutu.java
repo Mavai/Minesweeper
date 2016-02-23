@@ -110,16 +110,16 @@ public class Ruutu {
      *
      * @param alusta Ruudun sisältävä pelialusta.
      */
-    public void laskeViereisetMiinat(Ruutu[][] alusta) {
-        for (int i = 0; i < alusta.length; i++) {
-            for (int j = 0; j < alusta.length; j++) {
+    public void laskeViereisetMiinat(Pelialusta alusta) {
+        for (int i = 0; i < alusta.getKorkeus(); i++) {
+            for (int j = 0; j < alusta.getLeveys(); j++) {
                 int viereiset = 0;
                 for (Ruutu viereinenRuutu : viereisetRuudut(alusta, j, i)) {
                     if (viereinenRuutu.sisaltaaMiinan) {
                         viereiset++;
                     }
                 }
-                alusta[j][i].setViereisetMiinat(viereiset);
+                alusta.getAlusta()[j][i].setViereisetMiinat(viereiset);
             }
         }
     }
@@ -132,7 +132,7 @@ public class Ruutu {
      * @param y Ruudun y-koordinaatti.
      * @return Palauttaa listan ruudun viereisistä ruuduista.
      */
-    public ArrayList<Ruutu> viereisetRuudut(Ruutu[][] alusta, int x, int y) {
+    public ArrayList<Ruutu> viereisetRuudut(Pelialusta alusta, int x, int y) {
         ArrayList<Ruutu> viereiset = new ArrayList<Ruutu>();
         int xMin = x - 1;
         int xMax = x + 1;
@@ -144,13 +144,13 @@ public class Ruutu {
         if (y == 0) {
             yMin = 0;
         }
-        if (x == alusta.length - 1) {
-            xMax = alusta.length - 1;
+        if (x == alusta.getLeveys() - 1) {
+            xMax = alusta.getLeveys() - 1;
         }
-        if (y == alusta.length - 1) {
-            yMax = alusta.length - 1;
+        if (y == alusta.getKorkeus() - 1) {
+            yMax = alusta.getKorkeus() - 1;
         }
-        lisaaListalle(xMin, xMax, yMin, yMax, viereiset, alusta, x, y);
+        lisaaListalle(xMin, xMax, yMin, yMax, viereiset, alusta.getAlusta(), x, y);
         return viereiset;
     }
 

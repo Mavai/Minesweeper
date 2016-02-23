@@ -12,7 +12,7 @@ import miinaharava.domain.Ruutu;
  * @author markovai
  */
 public class Pelialusta {
-
+    private int korkeus;
     private int leveys;
     private int miinojenLkm;
     private Ruutu[][] alusta;
@@ -26,12 +26,17 @@ public class Pelialusta {
      * @param leveys Pelialustan leveys
      * @param miinojenLkm Miinojen lukumäärä pelialustalla
      */
-    public Pelialusta(int leveys, int miinojenLkm) {
+    public Pelialusta(int leveys, int korkeus, int miinojenLkm) {
+        this.korkeus = korkeus;
         this.leveys = leveys;
         this.miinojenLkm = miinojenLkm;
         this.miinat = new ArrayList<>();
         this.tavallisetRuudut = new ArrayList<>();
         luo();
+    }
+
+    public int getKorkeus() {
+        return korkeus;
     }
 
     public int getLeveys() {
@@ -65,8 +70,8 @@ public class Pelialusta {
      * Tulostaa taulukon.
      */
     public void tulosta() {
-        for (int i = 0; i < alusta.length; i++) {
-            for (int j = 0; j < alusta.length; j++) {
+        for (int i = 0; i < korkeus; i++) {
+            for (int j = 0; j < leveys; j++) {
                 System.out.print(alusta[j][i] + " ");
             }
             System.out.println("");
@@ -77,9 +82,9 @@ public class Pelialusta {
      * Luo int[][] taulukon.
      */
     public void luoRuudukko() {
-        this.alusta = new Ruutu[leveys][leveys];
-        for (int i = 0; i < alusta.length; i++) {
-            for (int j = 0; j < alusta.length; j++) {
+        this.alusta = new Ruutu[leveys][korkeus];
+        for (int i = 0; i < korkeus; i++) {
+            for (int j = 0; j < leveys; j++) {
                 alusta[j][i] = new Ruutu(j, i);
             }
         }
@@ -91,7 +96,7 @@ public class Pelialusta {
     public void luoMiinat() {
         Random r = new Random();
         for (int i = 0; i < miinojenLkm; i++) {
-            Miina uusiMiina = new Miina(r.nextInt(alusta.length), r.nextInt(alusta.length));
+            Miina uusiMiina = new Miina(r.nextInt(leveys), r.nextInt(korkeus));
             if (!miinat.contains(uusiMiina)) {
                 miinat.add(uusiMiina);
             } else {
@@ -114,8 +119,8 @@ public class Pelialusta {
      * Luo lista ruuduista, joissa ei ole miinaa.
      */
     public void laskeTavallisetRuudut() {
-        for (int i = 0; i < alusta.length; i++) {
-            for (int j = 0; j < alusta.length; j++) {
+        for (int i = 0; i < korkeus; i++) {
+            for (int j = 0; j < leveys; j++) {
                 if (!alusta[j][i].sisaltaaMiinan()) {
                     tavallisetRuudut.add(alusta[j][i]);
                 }
@@ -127,9 +132,9 @@ public class Pelialusta {
      * Laskee ruudun viereiset miinat.
      */
     public void laskeViereisetMiinat() {
-        for (int i = 0; i < alusta.length; i++) {
-            for (int j = 0; j < alusta.length; j++) {
-                alusta[j][i].laskeViereisetMiinat(alusta);
+        for (int i = 0; i < korkeus; i++) {
+            for (int j = 0; j < leveys; j++) {
+                alusta[j][i].laskeViereisetMiinat(this);
             }
         }
     }
