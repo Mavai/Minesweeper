@@ -90,6 +90,9 @@ public class Ruutu {
             if (sisaltaaMiinan) {
                 return "*";
             }
+            if (viereisetMiinat == 0) {
+                return " ";
+            }
             return viereisetMiinat + "";
         }
     }

@@ -62,11 +62,12 @@ public class RuudunAvaaja implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
             avaaRuutu();
+            kierrostenLkm.setText("Kierros     " + peli.getKierroksia());
         } else if (e.getButton() == MouseEvent.BUTTON3) {
             merkkaaRuutu();
         }
         peli.kasvataKierroksia();
-        kierrostenLkm.setText("Kierros     " + peli.getKierroksia());
+        
     }
 
     private void merkkaaRuutu() {
@@ -84,6 +85,8 @@ public class RuudunAvaaja implements MouseListener {
         nappi.setText(avattava.toString());
         if (avattava.getViereisetMiinat() == 0) {
             avaaNollat();
+        }
+        if (peli.kaikkiAvattu()) {
         }
     }
 

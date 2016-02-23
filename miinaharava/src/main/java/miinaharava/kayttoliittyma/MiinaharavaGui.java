@@ -1,18 +1,7 @@
 package miinaharava.kayttoliittyma;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Insets;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+import java.awt.*;
+import javax.swing.*;
 import miinaharava.domain.Pelialusta;
 import miinaharava.logiikka.Miinaharava;
 
