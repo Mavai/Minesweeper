@@ -25,10 +25,8 @@ public class Miinaharava {
      * @param pelialusta Pelissä käytettävä pelialusta.
      * @param lukija Scanner
      */
-    public Miinaharava(Pelialusta pelialusta, Scanner lukija) {
+    public Miinaharava(Pelialusta pelialusta) {
         this.pelialusta = pelialusta;
-        this.lukija = lukija;
-        this.kayttoliittyma = new Tekstikayttoliittyma(pelialusta, lukija, this);
         this.kierros = 1;
         this.nollanViereiset = new ArrayList<Ruutu>();
     }
