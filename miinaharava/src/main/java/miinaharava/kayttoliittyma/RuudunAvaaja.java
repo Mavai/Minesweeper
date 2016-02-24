@@ -4,6 +4,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import miinaharava.domain.Pelialusta;
@@ -62,18 +63,23 @@ public class RuudunAvaaja implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
             avaaRuutu();
-            kierrostenLkm.setText("Kierros     " + peli.getKierroksia());
         } else if (e.getButton() == MouseEvent.BUTTON3) {
             merkkaaRuutu();
         }
         peli.kasvataKierroksia();
-        
+
     }
 
     private void merkkaaRuutu() {
+        ImageIcon icon = new ImageIcon("Lippu.png");
         Ruutu merkattava = alusta.getAlusta()[x][y];
-        merkattava.merkitse();
-        ruudut[x][y].setText(merkattava.toString());
+        if (merkattava.onMerkattu()) {
+            merkattava.poistaMerkinta();
+            ruudut[x][y].setIcon(null);
+        } else {
+            merkattava.merkitse();
+            ruudut[x][y].setIcon(icon);
+        }
     }
 
     private void avaaRuutu() {
@@ -91,11 +97,14 @@ public class RuudunAvaaja implements MouseListener {
     }
 
     private void havio() {
+        ImageIcon icon = new ImageIcon("Miina.png");
         for (int i = 0; i < alusta.getKorkeus(); i++) {
             for (int j = 0; j < alusta.getLeveys(); j++) {
                 ruudut[j][i].setEnabled(false);
                 if (alusta.getAlusta()[j][i].sisaltaaMiinan()) {
-                    ruudut[j][i].setText("*");
+                    ruudut[j][i].setIcon(icon);
+                    ruudut[j][i].setDisabledIcon(icon);
+
                 }
             }
         }

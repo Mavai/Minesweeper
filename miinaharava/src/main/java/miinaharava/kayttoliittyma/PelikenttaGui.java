@@ -1,9 +1,6 @@
 package miinaharava.kayttoliittyma;
 
-import com.sun.java.swing.plaf.windows.resources.windows;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import javax.swing.*;
 import miinaharava.domain.Pelialusta;
 import miinaharava.logiikka.Miinaharava;
@@ -16,6 +13,7 @@ public class PelikenttaGui extends JFrame {
     private Miinaharava peli;
     private JLabel kierrostenLkm;
     private JLabel merkkienLkm;
+    private Timer kello;
 
     /**
      * Luo graafisen käyttöliittymän pelille.
@@ -30,15 +28,16 @@ public class PelikenttaGui extends JFrame {
         this.leveys = peli.getPelialusta().getLeveys();
         ruudut = new JButton[leveys][pelialusta.getKorkeus()];
 
-        setPreferredSize(new Dimension(35 * pelialusta.getLeveys(), 35 * pelialusta.getKorkeus() + 35));
+        setPreferredSize(new Dimension(37 * pelialusta.getLeveys(), 37 * pelialusta.getKorkeus() + 35));
 
-        this.kierrostenLkm = new JLabel("Kierros     " + peli.getKierroksia());
-        this.merkkienLkm = new JLabel("Merkkejä jäljellä  " + 15);
-
+        this.kierrostenLkm = new JLabel("0  :  0", JLabel.CENTER);
+        this.merkkienLkm = new JLabel("Merkkejä jäljellä  " + 15, JLabel.CENTER);
+        this.kello = new Timer(1000, new KellonKuuntelija(kierrostenLkm));
         luoKomponentit(this.getContentPane());
 
         pack();
         setVisible(true);
+        kello.start();
     }
 
     private void luoKomponentit(Container container) {
@@ -75,10 +74,11 @@ public class PelikenttaGui extends JFrame {
      * @return JPanel ruudukko
      */
     public JPanel luoRuudukko() {
+        ImageIcon icon = new ImageIcon("Miina.png");
         JPanel ruudukko = new JPanel(new GridLayout(pelialusta.getKorkeus(), leveys));
         for (int i = 0; i < pelialusta.getKorkeus(); i++) {
             for (int j = 0; j < pelialusta.getLeveys(); j++) {
-                JButton nappi = new JButton();
+                JButton nappi = new JButton("", null);
                 ruudut[j][i] = nappi;
                 nappi.setMargin(new Insets(5, 5, 5, 5));
                 nappi.addMouseListener(new RuudunAvaaja(j, i, peli, nappi, ruudut, kierrostenLkm));
@@ -94,10 +94,16 @@ public class PelikenttaGui extends JFrame {
         valikko.add(menu);
         JMenuItem uusiPeli = new JMenuItem("Uusi peli");
         menu.add(uusiPeli);
-        JMenuItem vaihdaVaikeusastetta = new JMenuItem("Vaihda vaikeusastetta");
+        JMenu vaihdaVaikeusastetta = new JMenu("Vaikeusaste");
         menu.add(vaihdaVaikeusastetta);
         JMenuItem lopeta = new JMenuItem("Lopeta");
         menu.add(lopeta);
+        JMenuItem helppo = new JMenuItem("Helppo");
+        JMenuItem haastava = new JMenuItem("Haastava");
+        JMenuItem vaikea = new JMenuItem("Vaikea");
+        vaihdaVaikeusastetta.add(helppo);
+        vaihdaVaikeusastetta.add(haastava);
+        vaihdaVaikeusastetta.add(vaikea);
         return valikko;
     }
 

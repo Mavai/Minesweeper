@@ -3,11 +3,11 @@ package miinaharava.kayttoliittyma;
 import java.awt.*;
 import javax.swing.*;
 
-public class Gui implements Runnable {
+public class AloitusGui implements Runnable {
 
     private JDialog dialog;
 
-    public Gui() {
+    public AloitusGui() {
     }
 
     @Override

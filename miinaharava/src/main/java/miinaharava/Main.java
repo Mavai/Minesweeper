@@ -3,7 +3,7 @@ package miinaharava;
 import java.util.Scanner;
 import javax.swing.SwingUtilities;
 import miinaharava.domain.Pelialusta;
-import miinaharava.kayttoliittyma.Gui;
+import miinaharava.kayttoliittyma.AloitusGui;
 import miinaharava.kayttoliittyma.Tekstikayttoliittyma;
 import miinaharava.logiikka.Miinaharava;
 import miinaharava.logiikka.Vaikeusaste;
@@ -15,7 +15,7 @@ public class Main {
         Miinaharava peli = new Miinaharava(alusta);
         //Tekstikayttoliittyma tkl = new Tekstikayttoliittyma(alusta, new Scanner(System.in), new Miinaharava(Vaikeusaste.HELPPO));
         //tkl.aloita();
-        Gui kl = new Gui();
+        AloitusGui kl = new AloitusGui();
         SwingUtilities.invokeLater(kl);
         
 //        Scanner lukija = new Scanner(System.in);

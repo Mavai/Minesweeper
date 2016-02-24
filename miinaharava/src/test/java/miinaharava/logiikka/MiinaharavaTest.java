@@ -40,13 +40,6 @@ public class MiinaharavaTest {
         assertFalse(alusta.getAlusta()[1][1].onKiinni());
     }
 
-    @Test
-    public void kierrosKasvaaOikein() {
-        alusta = new Pelialusta(10, 10, 10);
-        syote = muodostaSyote("1", "1", "999");
-        peli = new Miinaharava(alusta);
-        assertEquals(2, peli.getKierroksia());
-    }
 
     @Test
     public void miinanSisältävänRuudunAvaaminen() {

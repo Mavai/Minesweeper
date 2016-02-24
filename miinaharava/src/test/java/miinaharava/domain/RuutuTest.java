@@ -116,10 +116,10 @@ public class RuutuTest {
     }
     
     @Test
-    public void viereisetMiinatLasketaanOikeinIsollaALustalla() {
+    public void viereisetRuudutLasketaanOikeinIsollaALustalla() {
         Miinaharava uusiPeli = new Miinaharava(Vaikeusaste.VAIKEA);
         Pelialusta uusiAlusta = uusiPeli.getPelialusta();
-        assertEquals(8, uusiAlusta.getAlusta()[2][2].getViereisetMiinat());
+        assertEquals(8, uusiAlusta.getAlusta()[5][5].viereisetRuudut(uusiAlusta, 5, 5).size());
     }
 
     @Test
