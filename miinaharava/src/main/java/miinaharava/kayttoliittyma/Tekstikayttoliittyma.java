@@ -110,7 +110,7 @@ public class Tekstikayttoliittyma {
      */
     public void tulostaAlue() {
         pelialusta.tulosta();
-        System.out.println("kierros: " + peli.getKierroksia());
+        System.out.println("kierros: ");
     }
 
     /**
@@ -120,7 +120,7 @@ public class Tekstikayttoliittyma {
      */
     public boolean havio() {
         pelialusta.tulosta();
-        System.out.println("Osuit miinaan ja hävisit :( \nkierroksia: " + peli.getKierroksia());
+        System.out.println("Osuit miinaan ja hävisit :( \nkierroksia: ");
         return false;
     }
 
@@ -131,7 +131,7 @@ public class Tekstikayttoliittyma {
      */
     public boolean voitto() {
         pelialusta.tulosta();
-        System.out.println("Onneksi olkoon! Löysit kaikki miinat! \nkierroksia: " + peli.getKierroksia());
+        System.out.println("Onneksi olkoon! Löysit kaikki miinat! \nkierroksia: ");
         return false;
     }
 }

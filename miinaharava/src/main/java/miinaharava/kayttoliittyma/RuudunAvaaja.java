@@ -1,12 +1,7 @@
 package miinaharava.kayttoliittyma;
 
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
+import java.awt.event.*;
+import javax.swing.*;
 import miinaharava.domain.Pelialusta;
 import miinaharava.domain.Ruutu;
 import miinaharava.logiikka.Miinaharava;
@@ -25,7 +20,9 @@ public class RuudunAvaaja implements MouseListener {
     private Miinaharava peli;
     private JButton nappi;
     private JButton[][] ruudut;
-    private JLabel kierrostenLkm;
+    private JLabel miinojenLkm;
+    private Timer kello;
+    private PelikenttaGui frame;
 
     /**
      * Luo hiirenkuuntelijan joka avaa ruudun tai merkkaa sen riippuen hiiren
@@ -38,14 +35,16 @@ public class RuudunAvaaja implements MouseListener {
      * @param ruudut Lista pelialustalla olevista JButtoneista
      * @param kierrostenLkm Päivitettävä JLabel olio
      */
-    public RuudunAvaaja(int x, int y, Miinaharava peli, JButton nappi, JButton[][] ruudut, JLabel kierrostenLkm) {
+    public RuudunAvaaja(int x, int y, Miinaharava peli, JButton nappi, JButton[][] ruudut, JLabel miinojenLkm, Timer kello,PelikenttaGui frame) {
         this.x = x;
         this.y = y;
         this.nappi = nappi;
         this.peli = peli;
         this.alusta = peli.getPelialusta();
         this.ruudut = ruudut;
-        this.kierrostenLkm = kierrostenLkm;
+        this.miinojenLkm = miinojenLkm;
+        this.kello = kello;
+        this.frame = frame;
     }
 
     /**
@@ -66,20 +65,19 @@ public class RuudunAvaaja implements MouseListener {
         } else if (e.getButton() == MouseEvent.BUTTON3) {
             merkkaaRuutu();
         }
-        peli.kasvataKierroksia();
-
     }
 
     private void merkkaaRuutu() {
         ImageIcon icon = new ImageIcon("Lippu.png");
         Ruutu merkattava = alusta.getAlusta()[x][y];
         if (merkattava.onMerkattu()) {
-            merkattava.poistaMerkinta();
+            peli.postaRuudunMerkinta(merkattava);
             ruudut[x][y].setIcon(null);
         } else {
-            merkattava.merkitse();
+            peli.merkkaaRuutu(merkattava);
             ruudut[x][y].setIcon(icon);
         }
+        miinojenLkm.setText("Miinoja jäljellä  " + peli.getMiinojaJaljella());
     }
 
     private void avaaRuutu() {
@@ -104,10 +102,11 @@ public class RuudunAvaaja implements MouseListener {
                 if (alusta.getAlusta()[j][i].sisaltaaMiinan()) {
                     ruudut[j][i].setIcon(icon);
                     ruudut[j][i].setDisabledIcon(icon);
-
                 }
             }
         }
+        kello.stop();
+        HavioGui havioIlmoitus = new HavioGui(frame);
     }
 
     @Override

@@ -11,8 +11,8 @@ public class PelikenttaGui extends JFrame {
     private int leveys;
     private JButton[][] ruudut;
     private Miinaharava peli;
-    private JLabel kierrostenLkm;
-    private JLabel merkkienLkm;
+    private JLabel kulunutAika;
+    private JLabel miinojenLkm;
     private Timer kello;
 
     /**
@@ -21,6 +21,7 @@ public class PelikenttaGui extends JFrame {
      * @param peli Peli, joka käytttää käyttöliittymää.
      */
     public PelikenttaGui(Miinaharava peli) {
+        super("Miinaharava");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         this.peli = peli;
@@ -30,12 +31,13 @@ public class PelikenttaGui extends JFrame {
 
         setPreferredSize(new Dimension(37 * pelialusta.getLeveys(), 37 * pelialusta.getKorkeus() + 35));
 
-        this.kierrostenLkm = new JLabel("0  :  0", JLabel.CENTER);
-        this.merkkienLkm = new JLabel("Merkkejä jäljellä  " + 15, JLabel.CENTER);
-        this.kello = new Timer(1000, new KellonKuuntelija(kierrostenLkm));
+        this.kulunutAika = new JLabel("0  :  0", JLabel.CENTER);
+        this.miinojenLkm = new JLabel("Miinoja jäljellä  " + peli.getMiinojaJaljella(), JLabel.CENTER);
+        this.kello = new Timer(1000, new KellonKuuntelija(kulunutAika));
         luoKomponentit(this.getContentPane());
 
         pack();
+        setLocationRelativeTo(this);
         setVisible(true);
         kello.start();
     }
@@ -59,11 +61,11 @@ public class PelikenttaGui extends JFrame {
      */
     private JPanel luoKierrostenJaMerkkienLaskija() {
         JPanel kierrokset = new JPanel(new GridLayout(1, 2));
-        merkkienLkm.setFont(new Font("Normal", 12, 12));
-        merkkienLkm.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        kierrostenLkm.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        kierrokset.add(kierrostenLkm);
-        kierrokset.add(merkkienLkm);
+        miinojenLkm.setFont(new Font("Normal", 12, 12));
+        miinojenLkm.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        kulunutAika.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        kierrokset.add(kulunutAika);
+        kierrokset.add(miinojenLkm);
         return kierrokset;
     }
 
@@ -81,7 +83,7 @@ public class PelikenttaGui extends JFrame {
                 JButton nappi = new JButton("", null);
                 ruudut[j][i] = nappi;
                 nappi.setMargin(new Insets(5, 5, 5, 5));
-                nappi.addMouseListener(new RuudunAvaaja(j, i, peli, nappi, ruudut, kierrostenLkm));
+                nappi.addMouseListener(new RuudunAvaaja(j, i, peli, nappi, ruudut, miinojenLkm, kello, this));
                 ruudukko.add(nappi);
             }
         }
@@ -93,18 +95,26 @@ public class PelikenttaGui extends JFrame {
         JMenu menu = new JMenu("Peli");
         valikko.add(menu);
         JMenuItem uusiPeli = new JMenuItem("Uusi peli");
+        uusiPeli.addActionListener(new ValikonKuuntelija(this, peli));
         menu.add(uusiPeli);
         JMenu vaihdaVaikeusastetta = new JMenu("Vaikeusaste");
         menu.add(vaihdaVaikeusastetta);
         JMenuItem lopeta = new JMenuItem("Lopeta");
+        lopeta.addActionListener(new ValikonKuuntelija(this, peli));
         menu.add(lopeta);
         JMenuItem helppo = new JMenuItem("Helppo");
         JMenuItem haastava = new JMenuItem("Haastava");
         JMenuItem vaikea = new JMenuItem("Vaikea");
+        helppo.addActionListener(new ValikonKuuntelija(this, peli));
+        haastava.addActionListener(new ValikonKuuntelija(this, peli));
+        vaikea.addActionListener(new ValikonKuuntelija(this, peli));
         vaihdaVaikeusastetta.add(helppo);
         vaihdaVaikeusastetta.add(haastava);
         vaihdaVaikeusastetta.add(vaikea);
         return valikko;
     }
 
+    public Miinaharava getPeli() {
+        return peli;
+    }
 }

@@ -60,11 +60,6 @@ public class MiinaharavaTest {
         assertTrue(peli.avaaRuutu(alusta.getAlusta()[0][0]));
     }
 
-    @Test
-    public void kierroksetKasvaaOikein() {
-        peli.kasvataKierroksia();
-        assertEquals(2, peli.getKierroksia());
-    }
 
     @Test
     public void getPelialustTesti() {

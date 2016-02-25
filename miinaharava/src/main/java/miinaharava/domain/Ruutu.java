@@ -53,11 +53,11 @@ public class Ruutu {
     public int getY() {
         return y;
     }
-    
+
     public boolean onMerkattu() {
         return merkattu;
     }
-    
+
     public void poistaMerkinta() {
         merkattu = false;
     }

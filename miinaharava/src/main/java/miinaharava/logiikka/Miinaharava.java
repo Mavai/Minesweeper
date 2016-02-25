@@ -14,10 +14,9 @@ import miinaharava.kayttoliittyma.Tekstikayttoliittyma;
 public class Miinaharava {
 
     private Pelialusta pelialusta;
-    private Tekstikayttoliittyma kayttoliittyma;
-    private int kierros;
     private ArrayList<Ruutu> nollanViereiset;
     private Vaikeusaste vaikeus;
+    private int miinojaJaljella;
 
     /**
      * Luo Miinaharava-olion, joka toimii pelin logiikkana.
@@ -26,9 +25,9 @@ public class Miinaharava {
      * @param lukija Scanner
      */
     public Miinaharava(Pelialusta alusta) {
-        this.kierros = 1;
         this.nollanViereiset = new ArrayList<Ruutu>();
         this.pelialusta = alusta;
+        this.miinojaJaljella = pelialusta.getMiinat().size();
     }
     public Miinaharava(Vaikeusaste vaikeus) {
         if (vaikeus == Vaikeusaste.HELPPO) {
@@ -40,25 +39,32 @@ public class Miinaharava {
         if (vaikeus == Vaikeusaste.VAIKEA) {
             this.pelialusta = new Pelialusta(30, 16, 99);
         }
-        this.kierros = 1;
+        this.miinojaJaljella = pelialusta.getMiinat().size();
         this.nollanViereiset = new ArrayList<Ruutu>();
         this.vaikeus = vaikeus;
+    }
+
+    public int getMiinojaJaljella() {
+        return miinojaJaljella;
+    }
+    
+    public Vaikeusaste getVaikeus() {
+        return vaikeus;
     }
 
     public Pelialusta getPelialusta() {
         return pelialusta;
     }
 
-    /**
-     * Kasvattaa kierrosten määrää yhdellä.
-     */
-    public void kasvataKierroksia() {
-        kierros += 1;
+    
+    public void merkkaaRuutu(Ruutu ruutu) {
+        ruutu.merkitse();
+        miinojaJaljella--;
     }
-
-
-    public int getKierroksia() {
-        return kierros;
+    
+    public void postaRuudunMerkinta(Ruutu ruutu) {
+        ruutu.poistaMerkinta();
+        miinojaJaljella++;
     }
 
     /**

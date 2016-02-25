@@ -6,28 +6,41 @@ import javax.swing.*;
 public class AloitusGui implements Runnable {
 
     private JDialog dialog;
+    private ButtonGroup vaihtoehdot;
 
     public AloitusGui() {
+        vaihtoehdot = new ButtonGroup();
     }
 
     @Override
     public void run() {
         dialog = new JDialog();
-        dialog.setPreferredSize(new Dimension(320, 100));
+        dialog.setPreferredSize(new Dimension(300, 180));
 
         dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         luoKomponentit(dialog.getContentPane());
 
         dialog.pack();
+        dialog.setLocationByPlatform(true);
         dialog.setVisible(true);
     }
 
     public void luoKomponentit(Container container) {
         container.setLayout(new BorderLayout());
         container.add(teksti(), BorderLayout.NORTH);
-        container.add(luoVaihtoehdot());
+        container.add(luoVaihtoehdot(), BorderLayout.CENTER);
+        container.add(luoAloitusNappi(), BorderLayout.SOUTH);
         
+    }
+
+    private JPanel luoAloitusNappi() {
+        JPanel paneeli = new JPanel();
+        JButton aloita = new JButton("Aloita");
+        aloita.setSize(new Dimension(100, 500));
+        aloita.addActionListener(new VaikeusAsteenValitsin(dialog, vaihtoehdot));
+        paneeli.add(aloita);
+        return paneeli;
     }
     
     public JLabel teksti() {
@@ -39,17 +52,23 @@ public class AloitusGui implements Runnable {
     }
     
     public JPanel luoVaihtoehdot() {
-        JPanel vaihtoehdot = new JPanel(new FlowLayout());
-        JButton helppo = new JButton("Helppo");
-        JButton haastava = new JButton("Haastava");
-        JButton vaikea = new JButton("Vaikea");
-        helppo.addActionListener(new VaikeusAsteenValitsin(helppo, dialog));
-        haastava.addActionListener(new VaikeusAsteenValitsin(haastava, dialog));
-        vaikea.addActionListener(new VaikeusAsteenValitsin(vaikea, dialog));
+        JPanel paneeli = new JPanel();
+        paneeli.setLayout(new BoxLayout(paneeli, BoxLayout.Y_AXIS));
+        JRadioButton helppo = new JRadioButton("Helppo", true);
+        JRadioButton haastava = new JRadioButton("Haastava");
+        JRadioButton vaikea = new JRadioButton("Vaikea");
+        helppo.setActionCommand("Helppo");
+        haastava.setActionCommand("Haastava");
+        vaikea.setActionCommand("Vaikea");
+        paneeli.add(helppo);
+        paneeli.add(haastava);
+        paneeli.add(vaikea);
         vaihtoehdot.add(helppo);
         vaihtoehdot.add(haastava);
         vaihtoehdot.add(vaikea);
-        return vaihtoehdot;
+        
+        paneeli.setPreferredSize(new Dimension(50,50));
+        return paneeli;
     }
     
     

@@ -9,21 +9,22 @@ import miinaharava.logiikka.Vaikeusaste;
 public class VaikeusAsteenValitsin implements ActionListener {
 
     private JDialog dialog;
-
-    public VaikeusAsteenValitsin(JButton valinta, JDialog dialog) {
+    private ButtonGroup vaihtoehdot;
+    
+    public VaikeusAsteenValitsin(JDialog dialog, ButtonGroup vaihtoehdot) {
         this.dialog = dialog;
+        this.vaihtoehdot = vaihtoehdot;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JButton valinta = (JButton) e.getSource();
+        ButtonModel valinta = vaihtoehdot.getSelection();
         Miinaharava peli = null;
-        if (valinta.getText().equals("Helppo")) {
+        if (valinta.getActionCommand().equals("Helppo")) {
             peli = new Miinaharava(Vaikeusaste.HELPPO);
-
-        } else if (valinta.getText().equals("Vaikea")) {
+        } else if (valinta.getActionCommand().equals("Vaikea")) {
             peli = new Miinaharava(Vaikeusaste.VAIKEA);
-        } else if (valinta.getText().equals("Haastava")) {
+        } else if (valinta.getActionCommand().equals("Haastava")) {
             peli = new Miinaharava(Vaikeusaste.HAASTAVA);
         }
         dialog.dispose();
