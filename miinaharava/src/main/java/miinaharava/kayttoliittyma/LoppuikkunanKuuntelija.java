@@ -27,6 +27,7 @@ public class LoppuikkunanKuuntelija implements ActionListener{
         if (painettu.getText().equals("Lopeta")) {
             loppuikkuna.dispose();
             edellinenPeli.dispose();
+            System.exit(0);
         }
     }
     

@@ -13,7 +13,6 @@ public class HavioGui extends JDialog {
 
         this.isanta = isanta;
 
-        setPreferredSize(new Dimension(300, 100));
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -26,20 +25,16 @@ public class HavioGui extends JDialog {
 
     }
 
-    private void luoKomponentit(Container container){
+    private void luoKomponentit(Container container) {
         container.setLayout(new BorderLayout());
         container.add(luoTekstikentta(), BorderLayout.NORTH);
         container.add(luoJatkoVaihtoehdot(), BorderLayout.CENTER);
     }
 
-    private JPanel luoTekstikentta(){
+    private JPanel luoTekstikentta() {
         JPanel paneeli = new JPanel();
         JLabel havioViesti;
-        try {
-            havioViesti = new JLabel(new String("Osuit miinaan ja hävisit pelin.".getBytes("windows-1252")));
-        } catch (Exception e) {
-            havioViesti = new JLabel("Osuit miinaan ja hävisit pelin.");
-        }
+        havioViesti = new JLabel("Osuit miinaan ja hävisit pelin.");
         paneeli.add(havioViesti);
         return paneeli;
     }
