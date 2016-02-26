@@ -1,7 +1,6 @@
 package miinaharava.kayttoliittyma;
 
 import java.awt.*;
-import java.io.UnsupportedEncodingException;
 import javax.swing.*;
 
 public class PelinPaatosGui extends JDialog {

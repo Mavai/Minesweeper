@@ -1,6 +1,5 @@
 package miinaharava.logiikka;
 
-import java.util.Scanner;
 import miinaharava.domain.Pelialusta;
 import org.junit.After;
 import org.junit.AfterClass;

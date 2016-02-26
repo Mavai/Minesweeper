@@ -1,4 +1,4 @@
-package miinaharava.kayttoliittyma.komponentit;
+package miinaharava.kayttoliittyma;
 
 import java.awt.*;
 import javax.swing.*;
@@ -55,10 +55,10 @@ public class AloitusGui implements Runnable {
     public JPanel luoVaihtoehdot() {
         JPanel paneeli = new JPanel();
         paneeli.setLayout(new BoxLayout(paneeli, BoxLayout.Y_AXIS));
-        JRadioButton helppo = new JRadioButton("Helppo", true);
-        JRadioButton haastava = new JRadioButton("Haastava");
-        JRadioButton vaikea = new JRadioButton("Vaikea");
-        JRadioButton demo = new JRadioButton("Demo");
+        JRadioButton helppo = new JRadioButton("Helppo  (8x8, 10 miinaa)", true);
+        JRadioButton haastava = new JRadioButton("Haastava  (16x16, 40 miinaa)");
+        JRadioButton vaikea = new JRadioButton("Vaikea  (16x32, 99 miinaa)");
+        JRadioButton demo = new JRadioButton("Demo  (8x8, 3 miinaa)");
         helppo.setActionCommand("Helppo");
         haastava.setActionCommand("Haastava");
         vaikea.setActionCommand("Vaikea");
