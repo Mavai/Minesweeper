@@ -29,7 +29,6 @@ public class PelikenttaGui extends JFrame {
         this.leveys = peli.getPelialusta().getLeveys();
         ruudut = new JButton[leveys][pelialusta.getKorkeus()];
 
-
         this.kulunutAika = new JLabel("0  :  0", JLabel.CENTER);
         this.miinojenLkm = new JLabel("Miinoja jäljellä  " + peli.getMiinojaJaljella(), JLabel.CENTER);
         this.kello = new Timer(1000, new KellonKuuntelija(kulunutAika));
@@ -81,6 +80,7 @@ public class PelikenttaGui extends JFrame {
                 JButton nappi = new JButton("", null);
                 ruudut[j][i] = nappi;
                 nappi.setPreferredSize(new Dimension(35, 35));
+                nappi.setFont(new Font("Normal", Font.BOLD, 14));
                 nappi.setMargin(new Insets(5, 5, 5, 5));
                 nappi.addMouseListener(new RuudunAvaaja(j, i, peli, nappi, ruudut, miinojenLkm, kello, this));
                 ruudukko.add(nappi);
@@ -108,16 +108,25 @@ public class PelikenttaGui extends JFrame {
         JMenuItem helppo = new JMenuItem("Helppo");
         JMenuItem haastava = new JMenuItem("Haastava");
         JMenuItem vaikea = new JMenuItem("Vaikea");
+        JMenuItem demo = new JMenuItem("Demo");
         helppo.addActionListener(new ValikonKuuntelija(this, peli));
         haastava.addActionListener(new ValikonKuuntelija(this, peli));
         vaikea.addActionListener(new ValikonKuuntelija(this, peli));
+        demo.addActionListener(new ValikonKuuntelija(this, peli));
         vaihdaVaikeusastetta.add(helppo);
         vaihdaVaikeusastetta.add(haastava);
         vaihdaVaikeusastetta.add(vaikea);
+        vaihdaVaikeusastetta.add(demo);
         return vaihdaVaikeusastetta;
     }
 
     public Miinaharava getPeli() {
         return peli;
     }
+
+    public JLabel getKulunutAika() {
+        return kulunutAika;
+    }
+    
+    
 }

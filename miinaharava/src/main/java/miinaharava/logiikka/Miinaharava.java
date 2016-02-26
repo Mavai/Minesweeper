@@ -39,6 +39,9 @@ public class Miinaharava {
         if (vaikeus == Vaikeusaste.VAIKEA) {
             this.pelialusta = new Pelialusta(30, 16, 99);
         }
+        if (vaikeus == Vaikeusaste.DEMO) {
+            this.pelialusta = new Pelialusta(8, 8, 3);
+        }
         this.miinojaJaljella = pelialusta.getMiinat().size();
         this.nollanViereiset = new ArrayList<Ruutu>();
         this.vaikeus = vaikeus;

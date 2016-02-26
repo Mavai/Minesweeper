@@ -1,7 +1,8 @@
-package miinaharava.kayttoliittyma;
+package miinaharava.kayttoliittyma.komponentit;
 
 import java.awt.*;
 import javax.swing.*;
+import miinaharava.kayttoliittyma.VaikeusAsteenValitsin;
 
 public class AloitusGui implements Runnable {
 
@@ -15,14 +16,14 @@ public class AloitusGui implements Runnable {
     @Override
     public void run() {
         dialog = new JDialog();
-        dialog.setPreferredSize(new Dimension(300, 180));
+        dialog.setPreferredSize(new Dimension(300, 220));
 
         dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         luoKomponentit(dialog.getContentPane());
 
         dialog.pack();
-        dialog.setLocationByPlatform(true);
+        dialog.setLocationRelativeTo(dialog);
         dialog.setVisible(true);
     }
 
@@ -57,15 +58,19 @@ public class AloitusGui implements Runnable {
         JRadioButton helppo = new JRadioButton("Helppo", true);
         JRadioButton haastava = new JRadioButton("Haastava");
         JRadioButton vaikea = new JRadioButton("Vaikea");
+        JRadioButton demo = new JRadioButton("Demo");
         helppo.setActionCommand("Helppo");
         haastava.setActionCommand("Haastava");
         vaikea.setActionCommand("Vaikea");
+        demo.setActionCommand("Demo");
         paneeli.add(helppo);
         paneeli.add(haastava);
         paneeli.add(vaikea);
+        paneeli.add(demo);
         vaihtoehdot.add(helppo);
         vaihtoehdot.add(haastava);
         vaihtoehdot.add(vaikea);
+        vaihtoehdot.add(demo);
         
         paneeli.setPreferredSize(new Dimension(50,50));
         return paneeli;

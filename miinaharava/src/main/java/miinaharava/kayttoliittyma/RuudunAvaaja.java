@@ -91,8 +91,16 @@ public class RuudunAvaaja implements MouseListener {
             avaaNollat();
         }
         if (peli.kaikkiAvattu()) {
+            voitto();
         }
     }
+
+    private void voitto() {
+        PelinPaatosGui voittoIlmoitus = new PelinPaatosGui(frame, "voitto");
+        kello.stop();
+    }
+    
+    
 
     private void havio() {
         ImageIcon icon = new ImageIcon("Miina.png");
@@ -106,7 +114,7 @@ public class RuudunAvaaja implements MouseListener {
             }
         }
         kello.stop();
-        HavioGui havioIlmoitus = new HavioGui(frame);
+        PelinPaatosGui havioIlmoitus = new PelinPaatosGui(frame, "havio");
     }
 
     @Override

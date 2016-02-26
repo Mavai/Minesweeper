@@ -3,7 +3,7 @@ package miinaharava;
 import java.util.Scanner;
 import javax.swing.SwingUtilities;
 import miinaharava.domain.Pelialusta;
-import miinaharava.kayttoliittyma.AloitusGui;
+import miinaharava.kayttoliittyma.komponentit.AloitusGui;
 import miinaharava.kayttoliittyma.Tekstikayttoliittyma;
 import miinaharava.logiikka.Miinaharava;
 import miinaharava.logiikka.Vaikeusaste;

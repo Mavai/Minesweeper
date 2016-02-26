@@ -1,4 +1,3 @@
-
 package miinaharava.kayttoliittyma;
 
 import java.awt.event.*;
@@ -6,8 +5,8 @@ import javax.swing.*;
 import miinaharava.logiikka.Miinaharava;
 import miinaharava.logiikka.Vaikeusaste;
 
+public class ValikonKuuntelija implements ActionListener {
 
-public class ValikonKuuntelija implements ActionListener{
     private JFrame frame;
     private Miinaharava peli;
 
@@ -19,31 +18,27 @@ public class ValikonKuuntelija implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         JMenuItem valinta = (JMenuItem) e.getSource();
+        PelikenttaGui uusiPeli = null;
         if (valinta.getText().equals("Uusi peli")) {
-            PelikenttaGui uusiPeli = new PelikenttaGui(new Miinaharava(peli.getVaikeus()));
-            uusiPeli.setLocationRelativeTo(frame);
-            frame.dispose();
+            uusiPeli = new PelikenttaGui(new Miinaharava(peli.getVaikeus()));
         }
         if (valinta.getText().equals("Lopeta")) {
             System.exit(0);
         }
         if (valinta.getText().equals("Helppo")) {
-            PelikenttaGui uusiPeli = new PelikenttaGui(new Miinaharava(Vaikeusaste.HELPPO));
-            uusiPeli.setLocationRelativeTo(frame);
-            frame.dispose();
+            uusiPeli = new PelikenttaGui(new Miinaharava(Vaikeusaste.HELPPO));
         }
         if (valinta.getText().equals("Haastava")) {
-            PelikenttaGui uusiPeli = new PelikenttaGui(new Miinaharava(Vaikeusaste.HAASTAVA));
-            uusiPeli.setLocationRelativeTo(frame);
-            frame.dispose();
+            uusiPeli = new PelikenttaGui(new Miinaharava(Vaikeusaste.HAASTAVA));
         }
         if (valinta.getText().equals("Vaikea")) {
-            PelikenttaGui uusiPeli = new PelikenttaGui(new Miinaharava(Vaikeusaste.VAIKEA));
-            uusiPeli.setLocationRelativeTo(frame);
-            frame.dispose();
+            uusiPeli = new PelikenttaGui(new Miinaharava(Vaikeusaste.VAIKEA));
         }
+        if (valinta.getText().equals("Demo")) {
+            uusiPeli = new PelikenttaGui(new Miinaharava(Vaikeusaste.DEMO));
+        }
+        uusiPeli.setLocationRelativeTo(frame);
+        frame.dispose();
     }
-    
-    
-    
+
 }

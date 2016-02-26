@@ -1,5 +1,5 @@
 package miinaharava.logiikka;
 
 public enum Vaikeusaste {
-    HELPPO, HAASTAVA, VAIKEA
+    HELPPO, HAASTAVA, VAIKEA, DEMO
 }

@@ -4,14 +4,16 @@ import java.awt.*;
 import java.io.UnsupportedEncodingException;
 import javax.swing.*;
 
-public class HavioGui extends JDialog {
+public class PelinPaatosGui extends JDialog {
 
     private PelikenttaGui isanta;
+    private String havioVaiVoitto;
 
-    public HavioGui(PelikenttaGui isanta) {
+    public PelinPaatosGui(PelikenttaGui isanta, String havioVaiVoitto) {
         super();
 
         this.isanta = isanta;
+        this.havioVaiVoitto = havioVaiVoitto;
 
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -34,7 +36,12 @@ public class HavioGui extends JDialog {
     private JPanel luoTekstikentta() {
         JPanel paneeli = new JPanel();
         JLabel havioViesti;
-        havioViesti = new JLabel("Osuit miinaan ja hävisit pelin.");
+        havioViesti = new JLabel("");
+        if (havioVaiVoitto.equals("havio")) {
+            havioViesti.setText("Osuit miinaan ja hävisit pelin.");
+        } else {
+            havioViesti.setText("Onneksi olkoon! Voitit pelin ajassa  " + isanta.getKulunutAika().getText());
+        }
         paneeli.add(havioViesti);
         return paneeli;
     }
