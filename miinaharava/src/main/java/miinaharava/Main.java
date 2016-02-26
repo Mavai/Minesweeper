@@ -16,12 +16,4 @@ public class Main {
         
     }
     
-    public static String muodostaSyote(String... rivit) {
-        String syote = "";
-        for (String rivi : rivit) {
-            syote += rivi + "\n";
-        }
-        return syote;
-    }
-    
 }
