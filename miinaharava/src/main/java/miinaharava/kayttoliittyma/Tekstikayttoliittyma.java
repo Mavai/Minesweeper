@@ -29,6 +29,9 @@ public class Tekstikayttoliittyma {
         this.peli = peli;
     }
     
+    /**
+     * Aloittaa pelin.
+     */
     public void aloita() {
         tervehdi();
         while (true) {

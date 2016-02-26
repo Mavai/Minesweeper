@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2016</copyright>
     <item>
-      <title>File: 8,
-             Errors: 0,
+      <title>File: 15,
+             Errors: 4,
              Warnings: 0,
              Infos: 0
       </title>
@@ -60,7 +60,77 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.AloitusGui.java">miinaharava/kayttoliittyma/AloitusGui.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.Tekstikayttoliittyma.java">miinaharava/kayttoliittyma/Tekstikayttoliittyma.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.kuuntelijat.VaikeusAsteenValitsin.java">miinaharava/kayttoliittyma/kuuntelijat/VaikeusAsteenValitsin.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#miinaharava.domain.Pelialusta.java">miinaharava/domain/Pelialusta.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.kuuntelijat.RuudunAvaaja.java">miinaharava/kayttoliittyma/kuuntelijat/RuudunAvaaja.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.PelikenttaGui.java">miinaharava/kayttoliittyma/PelikenttaGui.java</a>
                 </td>
                 <td>
                   0
@@ -116,7 +186,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.RuudunAvaaja.java">miinaharava/kayttoliittyma/RuudunAvaaja.java</a>
+                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.kuuntelijat.LoppuikkunanKuuntelija.java">miinaharava/kayttoliittyma/kuuntelijat/LoppuikkunanKuuntelija.java</a>
                 </td>
                 <td>
                   0
@@ -130,7 +200,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.MiinaharavaGui.java">miinaharava/kayttoliittyma/MiinaharavaGui.java</a>
+                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.kuuntelijat.ValikonKuuntelija.java">miinaharava/kayttoliittyma/kuuntelijat/ValikonKuuntelija.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +214,35 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.Tekstikayttoliittyma.java">miinaharava/kayttoliittyma/Tekstikayttoliittyma.java</a>
+                  <a href="${project.url}/checkstyle.html#miinaharava.logiikka.Vaikeusaste.java">miinaharava/logiikka/Vaikeusaste.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.kuuntelijat.KellonKuuntelija.java">miinaharava/kayttoliittyma/kuuntelijat/KellonKuuntelija.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#miinaharava.kayttoliittyma.PelinPaatosGui.java">miinaharava/kayttoliittyma/PelinPaatosGui.java</a>
                 </td>
                 <td>
                   0

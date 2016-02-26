@@ -9,3 +9,8 @@
 **12.2.2016:** 5h graafisen käyttöliittymän väsäystä + 2h Javadoc ja muu dokumentointi  
 **14.2.2016:** 2h käyttöliittymän tekoa  
 **19.2.2016:** 6h käyttöliittymän tekoa, uutta toiminnallisuutta + 2h uusia testejä, koodin siistimistä + 1h sekvenssikaaviot ja muu dokumentointi  
+**21.2.2016:** 1h ohjelmointia  
+**22.2.2016:** 2h käyttöliittymän ohjelmointia  
+**24.2.2016:** 3h käyttöliittymän ohjelmointia, uutta toiminnallisuutta  
+**25.2.2016:** 2h käyttöliittymän ohjelmointia  
+**26.2.2016:** 3h käyttöliittymä, testejä, koodin siivousta + 2h Javadoc, rakennekuvaus, käyttöohje, päivitetty luokkakaavio, jar tiedosto  

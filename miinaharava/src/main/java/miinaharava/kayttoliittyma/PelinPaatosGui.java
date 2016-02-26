@@ -2,18 +2,24 @@ package miinaharava.kayttoliittyma;
 
 import java.awt.*;
 import javax.swing.*;
+import miinaharava.kayttoliittyma.kuuntelijat.LoppuikkunanKuuntelija;
 
 public class PelinPaatosGui extends JDialog {
 
     private PelikenttaGui isanta;
     private String havioVaiVoitto;
 
+    /**
+     * Pelin päätyttyä esiin ilmestyvä ikkuna joka kertoo pelin tuloksen.
+     *
+     * @param isanta Peli-ikkuna joka kutsuu päätösikkunaa.
+     * @param havioVaiVoitto Tieto siitä loppuiko peli voittoon vai havioon.
+     */
     public PelinPaatosGui(PelikenttaGui isanta, String havioVaiVoitto) {
         super();
 
         this.isanta = isanta;
         this.havioVaiVoitto = havioVaiVoitto;
-
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -23,7 +29,6 @@ public class PelinPaatosGui extends JDialog {
         setModal(true);
         setLocationRelativeTo(isanta);
         setVisible(true);
-
     }
 
     private void luoKomponentit(Container container) {

@@ -1,5 +1,8 @@
 package miinaharava.kayttoliittyma;
 
+import miinaharava.kayttoliittyma.kuuntelijat.ValikonKuuntelija;
+import miinaharava.kayttoliittyma.kuuntelijat.RuudunAvaaja;
+import miinaharava.kayttoliittyma.kuuntelijat.KellonKuuntelija;
 import java.awt.*;
 import javax.swing.*;
 import miinaharava.domain.Pelialusta;
@@ -88,7 +91,10 @@ public class PelikenttaGui extends JFrame {
         }
         return ruudukko;
     }
-
+/**
+ * Luo valikkopalkin peli-ikkunan yläreunaan.
+ * @return Palauttaa JMenuBar komponentin.
+ */
     public JMenuBar valikko() {
         JMenuBar valikko = new JMenuBar();
         JMenu menu = new JMenu("Peli");

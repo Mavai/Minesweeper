@@ -53,11 +53,16 @@ public class Ruutu {
     public int getY() {
         return y;
     }
-
+/**
+ * Palauttaa true jos ruutu on merkattu.
+ * @return Palauttaa true jos ruutu on merkattu.
+ */
     public boolean onMerkattu() {
         return merkattu;
     }
-
+/**
+ * Poistaa merkinnan ruudusta.
+ */
     public void poistaMerkinta() {
         merkattu = false;
     }

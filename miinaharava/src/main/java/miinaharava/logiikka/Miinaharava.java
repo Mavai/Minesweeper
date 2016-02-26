@@ -21,20 +21,25 @@ public class Miinaharava {
     /**
      * Luo Miinaharava-olion, joka toimii pelin logiikkana.
      *
-     * @param pelialusta Pelissä käytettävä pelialusta.
-     * @param lukija Scanner
+     * @param alusta Peliin liittyvä pelialusta.
      */
     public Miinaharava(Pelialusta alusta) {
         this.nollanViereiset = new ArrayList<Ruutu>();
         this.pelialusta = alusta;
         this.miinojaJaljella = pelialusta.getMiinat().size();
     }
+
+    /**
+     * Luo Miinaharava-olion, joka toimii pelin logiikkana.
+     *
+     * @param vaikeus Vaikeusaste, jonka perusteella luodaan oikea pelialusta.
+     */
     public Miinaharava(Vaikeusaste vaikeus) {
         if (vaikeus == Vaikeusaste.HELPPO) {
             this.pelialusta = new Pelialusta(8, 8, 10);
         }
         if (vaikeus == Vaikeusaste.HAASTAVA) {
-            this.pelialusta = new Pelialusta(16, 16,40);
+            this.pelialusta = new Pelialusta(16, 16, 40);
         }
         if (vaikeus == Vaikeusaste.VAIKEA) {
             this.pelialusta = new Pelialusta(30, 16, 99);
@@ -50,7 +55,7 @@ public class Miinaharava {
     public int getMiinojaJaljella() {
         return miinojaJaljella;
     }
-    
+
     public Vaikeusaste getVaikeus() {
         return vaikeus;
     }
@@ -59,12 +64,21 @@ public class Miinaharava {
         return pelialusta;
     }
 
-    
+    /**
+     * Asettaa ruudun merkatuksi.
+     *
+     * @param ruutu Merkattava ruutu.
+     */
     public void merkkaaRuutu(Ruutu ruutu) {
         ruutu.merkitse();
         miinojaJaljella--;
     }
-    
+
+    /**
+     * Asettaa ruudun merkitsemättömäksi.
+     *
+     * @param ruutu Ruutu josta merkkaus poistetaan.
+     */
     public void postaRuudunMerkinta(Ruutu ruutu) {
         ruutu.poistaMerkinta();
         miinojaJaljella++;
