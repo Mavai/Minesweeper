@@ -7,3 +7,7 @@ Jokainen ruutu sisältää tiedon sen viereisten miinojen määrästä. Lisäksi pelialu
 Pelin moottorina ja logiikkana toimii Miinaharava-luokka. Miinaharava-olio saa parametrikseen joko pelkän vaikeusasteen tai valmiin pelialustan.
 Vaikeusasteen perusteella luodaan uusi pelialusta, jonka yhteydessä sinne sijoitetaan miinat. Ruutujen avaaminen ja merkkaaminen tapahtuu Miinaharava -olion kautta
 ja lopputulos välittyy käyttäjälle graafisen käyttöliittymän kautta.
+
+Ohjelman mukana tulee kolme tekstitiedostoa, joissa ylläpidetään pelin huipputuloksia. Miinaharava olio luo syntyessään uuden Tuloslista- olion joka luo listan 
+tuloksista vaikeusasteen perusteella valitusta tiedostosta ja sitä päivitetään pelisession aikana, jos pelaaja voittaa pelin. Tuloslista olio myös tallentaa listaan 
+tapahtuvat muutokset tiedostoon.

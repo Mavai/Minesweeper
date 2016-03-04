@@ -14,3 +14,5 @@
 **24.2.2016:** 3h käyttöliittymän ohjelmointia, uutta toiminnallisuutta  
 **25.2.2016:** 2h käyttöliittymän ohjelmointia  
 **26.2.2016:** 3h käyttöliittymä, testejä, koodin siivousta + 2h Javadoc, rakennekuvaus, käyttöohje, päivitetty luokkakaavio, jar tiedosto  
+**2.3.2016:** 3h käyttöliittymä, uutta toiminnallisuutta  
+**4.3.2016:** 10h käyttöliittymä, huipputulosten tallennuksen toteutus  

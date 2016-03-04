@@ -12,3 +12,6 @@ hiiren oikealla painikkeella.
 Pelin tarkoituksena on saada kaikki miinattomat ruudut avattua osumatta miinaan. Jos osut miinaan pelin aikana, peli päättyy ja tällöin ilmestyvässä ikkunassa voit
 aloittaa uuden pelin tai lopettaa ohjelman. Myös pelin aikana voit vasemmasta yläkulmasta löytyvän valikon avulla aloittaa uuden pelin samalla vaikeusasteella, 
 tai halutessasi vaihtaa vaikeusastetta.
+
+Aloittaessa pelin pelaaja voi halutessaan valita nimimerkin. Tämän perusteella hänen tuloksensa tallennetaa huipputuloksiin. Kuitenkin vain jos aika mahtuu 15 parhaan joukkoon. 
+Jos pelaaja ei valitse nimimerkkiä tämä on automaattisesti "Unknown". Huipputuloksia pääset tarkastelemaan valitsemalla aloitusnäytössä "tuloslista".
