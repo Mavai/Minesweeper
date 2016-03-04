@@ -25,7 +25,7 @@ public class AloitusGui implements Runnable {
         dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         luoKomponentit(dialog.getContentPane());
-        
+
         dialog.setResizable(false);
         dialog.pack();
         dialog.setLocationRelativeTo(dialog);
@@ -43,7 +43,7 @@ public class AloitusGui implements Runnable {
         container.add(luoVaihtoehdot(), BorderLayout.CENTER);
         container.add(luoNimimerkkiKentta(), BorderLayout.SOUTH);
         container.add(luoNapit(), BorderLayout.EAST);
-        
+
     }
 
     /**
@@ -90,7 +90,12 @@ public class AloitusGui implements Runnable {
         paneeli.add(valikko);
         return paneeli;
     }
-    
+
+    /**
+     * Luo kentän johon pelaaja voi kirjoittaa nimimerkkinsä.
+     *
+     * @return Palauttaa JPanel komponentin
+     */
     public JPanel luoNimimerkkiKentta() {
         JPanel paneeli = new JPanel(new BorderLayout());
         nimimerkkiKentanOtsikko = new JLabel("Anna nimimerkki");
@@ -99,7 +104,7 @@ public class AloitusGui implements Runnable {
         paneeli.add(nimimerkkiKentanOtsikko, BorderLayout.NORTH);
         paneeli.add(nimimerkki, BorderLayout.CENTER);
         return paneeli;
-        
+
     }
 
 }

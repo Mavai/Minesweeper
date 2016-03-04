@@ -31,7 +31,7 @@ public class ValikonKuuntelija implements ActionListener {
             if (edellinenPeli.getVaikeus() != null) {
                 uusiPeli = new PelikenttaGui(new Miinaharava(edellinenPeli.getVaikeus()));
             } else {
-                uusiPeli = new PelikenttaGui(new Miinaharava(new Pelialusta(edellinenPeli.getPelialusta().getLeveys(), 
+                uusiPeli = new PelikenttaGui(new Miinaharava(new Pelialusta(edellinenPeli.getPelialusta().getLeveys(),
                         edellinenPeli.getPelialusta().getKorkeus(), edellinenPeli.getPelialusta().getMiinat().size())));
             }
         }

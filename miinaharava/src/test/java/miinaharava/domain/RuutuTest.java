@@ -114,7 +114,7 @@ public class RuutuTest {
         alusta = new Pelialusta(3, 3, 9);
         assertEquals(8, alusta.getAlusta()[1][1].getViereisetMiinat());
     }
-    
+
     @Test
     public void viereisetRuudutLasketaanOikeinIsollaALustalla() {
         Miinaharava uusiPeli = new Miinaharava(Vaikeusaste.VAIKEA);
@@ -135,7 +135,7 @@ public class RuutuTest {
 
     @Test
     public void ruudunXjaYKoordinaattiHaetaanOikein() {
-        Ruutu ruutu = new Ruutu(5,5);
+        Ruutu ruutu = new Ruutu(5, 5);
         assertEquals(25, ruutu.getX() * ruutu.getY());
     }
 }

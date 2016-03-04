@@ -12,6 +12,7 @@ import miinaharava.domain.Ruutu;
  * @author markovai
  */
 public class Pelialusta {
+
     private int korkeus;
     private int leveys;
     private int miinojenLkm;

@@ -8,18 +8,21 @@ public class PelinPaatosGui extends JDialog {
 
     private final PelikenttaGui isanta;
     private final String havioVaiVoitto;
+    private int sijoitus;
 
     /**
      * Pelin päätyttyä esiin ilmestyvä ikkuna joka kertoo pelin tuloksen.
      *
      * @param isanta Peli-ikkuna joka kutsuu päätösikkunaa.
      * @param havioVaiVoitto Tieto siitä loppuiko peli voittoon vai havioon.
+     * @param sijoitus Kuinka monenneksi paras saatu tulos oli.
      */
-    public PelinPaatosGui(PelikenttaGui isanta, String havioVaiVoitto) {
+    public PelinPaatosGui(PelikenttaGui isanta, String havioVaiVoitto, int sijoitus) {
         super();
 
         this.isanta = isanta;
         this.havioVaiVoitto = havioVaiVoitto;
+        this.sijoitus = sijoitus;
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -44,7 +47,12 @@ public class PelinPaatosGui extends JDialog {
         if (havioVaiVoitto.equals("havio")) {
             havioViesti.setText("Osuit miinaan ja hävisit pelin.");
         } else {
-            havioViesti.setText("Onneksi olkoon! Voitit pelin ajassa  " + isanta.getKulunutAika().getText());
+            if (sijoitus == 0 || sijoitus > 15) {
+                havioViesti.setText("<html>Onneksi olkoon! Voitit pelin ajassa  <b>" + isanta.getKulunutAika().getText() + "</b></html>");
+            } else {
+                havioViesti.setText("<html>Onneksi olkoon! Voitit pelin ajassa  <b>" + isanta.getKulunutAika().getText()
+                        + "</b><br>Se oli <b>" + sijoitus + "</b>. nopein aika tällä vaikeusasteella</html>");
+            }
         }
         paneeli.add(havioViesti);
         return paneeli;

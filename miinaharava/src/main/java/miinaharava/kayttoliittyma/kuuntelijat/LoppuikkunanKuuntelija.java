@@ -34,7 +34,7 @@ public class LoppuikkunanKuuntelija implements ActionListener {
                 uusiPeli = new Miinaharava(edellinenPeli.getVaikeus());
                 uusiPeli.setPelaaja(edellinenPeli.getPelaaja());
             } else {
-                uusiPeli = new Miinaharava(new Pelialusta(edellinenPeli.getPelialusta().getLeveys(), 
+                uusiPeli = new Miinaharava(new Pelialusta(edellinenPeli.getPelialusta().getLeveys(),
                         edellinenPeli.getPelialusta().getKorkeus(), edellinenPeli.getPelialusta().getMiinat().size()));
             }
             PelikenttaGui uusiPelikentta = new PelikenttaGui(uusiPeli);

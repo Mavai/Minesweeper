@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package miinaharava.kayttoliittyma;
 
 import java.awt.Container;
@@ -13,23 +8,23 @@ import javax.swing.*;
 import miinaharava.kayttoliittyma.kuuntelijat.CustomPelinAloittaja;
 import miinaharava.kayttoliittyma.kuuntelijat.CustomSliderinKuuntelija;
 
-/**
- *
- * @author Marko Vainio
- */
-public class CustomPelinLuontiIkkuna extends JFrame{
+public class CustomPelinLuontiIkkuna extends JFrame {
+
     private JSlider korkeus;
     private JSlider leveys;
     private JSlider miinat;
 
+    /**
+     * Luo ikkunan jossa pelaaja luo itsellen customoidun pelin.
+     */
     public CustomPelinLuontiIkkuna() {
         super("Miinaharava");
-        
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.korkeus = new JSlider();
         this.leveys = new JSlider();
         this.miinat = new JSlider();
-        
+
         setPreferredSize(new Dimension(300, 220));
 
         luoKomponentit(getContentPane());
@@ -46,7 +41,7 @@ public class CustomPelinLuontiIkkuna extends JFrame{
         container.add(luoMiinojenValitsin());
         container.add(luoALoitusNappi());
     }
-    
+
     private JPanel luoKorkeudenValitsin() {
         JPanel paneeli = new JPanel();
         paneeli.setLayout(new BoxLayout(paneeli, BoxLayout.Y_AXIS));
@@ -58,7 +53,7 @@ public class CustomPelinLuontiIkkuna extends JFrame{
         paneeli.add(teksti);
         return paneeli;
     }
-    
+
     private JPanel luoLeveydenValitsin() {
         JPanel paneeli = new JPanel();
         paneeli.setLayout(new BoxLayout(paneeli, BoxLayout.Y_AXIS));
@@ -70,7 +65,7 @@ public class CustomPelinLuontiIkkuna extends JFrame{
         paneeli.add(teksti);
         return paneeli;
     }
-    
+
     private JPanel luoMiinojenValitsin() {
         JPanel paneeli = new JPanel();
         paneeli.setLayout(new BoxLayout(paneeli, BoxLayout.Y_AXIS));
@@ -82,18 +77,21 @@ public class CustomPelinLuontiIkkuna extends JFrame{
         paneeli.add(teksti);
         return paneeli;
     }
-    
+
     private void muokkaaSlideria(JSlider slideri, JLabel teksti, int merkkienVali) {
         slideri.setMajorTickSpacing(merkkienVali);
         slideri.setPaintTicks(true);
         slideri.addChangeListener(new CustomSliderinKuuntelija(teksti, this));
     }
-    
+
+    /**
+     * Päivittaa miina sliderin maximia korkeuden ja leveyden perusteella.
+     */
     public void paivitaMiinat() {
         miinat.setMaximum(korkeus.getValue() * leveys.getValue());
         miinat.setMajorTickSpacing(miinat.getMaximum() / 20);
     }
-    
+
     private JPanel luoALoitusNappi() {
         JPanel paneeli = new JPanel();
         JButton aloita = new JButton("Aloita");
@@ -101,7 +99,5 @@ public class CustomPelinLuontiIkkuna extends JFrame{
         paneeli.add(aloita);
         return paneeli;
     }
-    
-    
-    
+
 }

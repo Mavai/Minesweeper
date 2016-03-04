@@ -2,10 +2,7 @@ package miinaharava.domain;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import miinaharava.logiikka.Vaikeusaste;
 
 public class Tuloslista {
@@ -14,6 +11,12 @@ public class Tuloslista {
     private Tulostenlukija lukija;
     private Vaikeusaste vaikeusaste;
 
+    /**
+     * Tarjoaa listatoteutuksen tekstitiedostosta haettaville tuloksille ja
+     * niiden tallentamiseen.
+     *
+     * @param vaikeusaste Vaikeusaste jonka tuloksia käsitellään.
+     */
     public Tuloslista(Vaikeusaste vaikeusaste) {
         this.vaikeusaste = vaikeusaste;
         if (vaikeusaste == Vaikeusaste.HELPPO) {
@@ -30,6 +33,26 @@ public class Tuloslista {
         }
     }
 
+    /**
+     * Luo Tulostenlukijan ja hakee tiedostossa sijaitsevat tulokset.
+     *
+     * @param tiedosto Tiedosto josta tulokset haetaan.
+     */
+    public Tuloslista(File tiedosto) {
+        lukija = new Tulostenlukija(tiedosto);
+        tuloslista = lukija.lueTulokset();
+    }
+
+    public List<Tulos> getTuloslista() {
+        return tuloslista;
+    }
+
+    /**
+     * Lisää tuloksetn listalle ja jos listan koko ylittyy poistaa sieltä
+     * huonoimman tuloksen.
+     *
+     * @param tulos Lisättävä tulos
+     */
     public void lisaaTulos(Tulos tulos) {
         tuloslista.add(tulos);
         Collections.sort(tuloslista);
@@ -38,6 +61,11 @@ public class Tuloslista {
         }
     }
 
+    /**
+     * Tulostaa listan.
+     *
+     * @return Palauttaa String muuttujan.
+     */
     public String tulostaLista() {
         String tulokset = "";
         if (!tuloslista.isEmpty()) {
@@ -48,6 +76,21 @@ public class Tuloslista {
         return tulokset;
     }
 
+    /**
+     * Palauttaa tuloksen indeksin + 1, eli tuloksen sijoitukesn.
+     *
+     * @param tulos Haluttu tulos
+     * @return Palauttaa sijoituksen int-muodossa
+     */
+    public int sijoitus(Tulos tulos) {
+        return tuloslista.indexOf(tulos) + 1;
+    }
+
+    /**
+     * Tallentaa tuloslistaan tehdyt muutokset tiedostoon.
+     *
+     * @return Palauttaa arvon true jos tallennus onnistui.
+     */
     public boolean tallenna() {
         FileWriter kirjoittaja = null;
         try {
@@ -67,7 +110,10 @@ public class Tuloslista {
         } catch (Exception e) {
             return false;
         }
+    }
 
+    public Vaikeusaste getVaikeusaste() {
+        return vaikeusaste;
     }
 
 }

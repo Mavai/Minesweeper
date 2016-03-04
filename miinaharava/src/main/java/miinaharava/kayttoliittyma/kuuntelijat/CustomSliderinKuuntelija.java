@@ -4,15 +4,17 @@ import javax.swing.*;
 import javax.swing.event.*;
 import miinaharava.kayttoliittyma.CustomPelinLuontiIkkuna;
 
-/**
- *
- * @author Marko Vainio
- */
 public class CustomSliderinKuuntelija implements ChangeListener {
 
     private final JLabel teksti;
     private final CustomPelinLuontiIkkuna frame;
 
+    /**
+     * Luo ChangeListenerin CustomPelinLuontiIkkunan slidereille.
+     *
+     * @param teksti Päivitettävä teksti
+     * @param frame Päivitettävä JFrame
+     */
     public CustomSliderinKuuntelija(JLabel teksti, CustomPelinLuontiIkkuna frame) {
         this.teksti = teksti;
         this.frame = frame;

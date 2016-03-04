@@ -6,20 +6,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Toimii tiedostonlukijana.
+ *
+ * @author Marko Vainio
+ */
 public class Tulostenlukija {
 
-    private File tiedosto;
     private Scanner lukija;
 
+    /**
+     * Luo tiedostonlukijan.
+     *
+     * @param tiedosto
+     */
     public Tulostenlukija(File tiedosto) {
-        this.tiedosto = tiedosto;
         try {
             this.lukija = new Scanner(tiedosto);
         } catch (FileNotFoundException ex) {
-            System.out.println("Tiedostoa " + tiedosto + " ei löydy");
+            return;
         }
     }
 
+    /**
+     * Palauttaa listana tiedoston sisältämät tulokset.
+     *
+     * @return Lista tuloksista
+     */
     public List<Tulos> lueTulokset() {
         ArrayList<Tulos> tuloslista = new ArrayList<>();
         while (lukija.hasNextLine()) {

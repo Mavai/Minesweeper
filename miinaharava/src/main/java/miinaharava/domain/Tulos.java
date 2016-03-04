@@ -7,6 +7,12 @@ public class Tulos implements Comparable<Tulos> {
     private long aika;
     private String pelaaja;
 
+    /**
+     * Tarjoaa toteutuksen miinaharava pelin tuloksille.
+     *
+     * @param pelaaja Pelaajan nimimerkki
+     * @param aika Peliin kulunut aika
+     */
     public Tulos(String pelaaja, long aika) {
         this.aika = aika;
         this.pelaaja = pelaaja;

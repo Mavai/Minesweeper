@@ -29,11 +29,11 @@ public class PelikenttaGui extends JFrame {
         this.pelialusta = peli.getPelialusta();
         this.leveys = peli.getPelialusta().getLeveys();
         ruudut = new JButton[leveys][pelialusta.getKorkeus()];
-        
+
         this.kulunutAika = new JLabel("0  :  0", JLabel.CENTER);
         this.miinojenLkm = new JLabel("Miinoja: " + peli.getMiinojaJaljella(), JLabel.CENTER);
         this.kello = new Timer(1000, new KellonKuuntelija(kulunutAika));
-        
+
         luoKomponentit(this.getContentPane());
         setResizable(false);
         pack();
@@ -53,8 +53,8 @@ public class PelikenttaGui extends JFrame {
     }
 
     /**
-     * Luo käyttöliittymään JPanel olion joka sisältää aikalaskurin ja
-     * jäljellä olevien miinojen määrän.
+     * Luo käyttöliittymään JPanel olion joka sisältää aikalaskurin ja jäljellä
+     * olevien miinojen määrän.
      *
      * @return JPanel käyttöliittymäkomponentti
      */
@@ -100,10 +100,12 @@ public class PelikenttaGui extends JFrame {
         nappi.setBorder(null);
         nappi.setFocusPainted(false);
     }
-/**
- * Luo valikkopalkin peli-ikkunan yläreunaan.
- * @return Palauttaa JMenuBar komponentin.
- */
+
+    /**
+     * Luo valikkopalkin peli-ikkunan yläreunaan.
+     *
+     * @return Palauttaa JMenuBar komponentin.
+     */
     public JMenuBar valikko() {
         JMenuBar valikko = new JMenuBar();
         JMenu menu = new JMenu("Peli");
@@ -120,7 +122,7 @@ public class PelikenttaGui extends JFrame {
 
     private JMenu luoVaikeusasteenVaihtaja() {
         JMenu vaihdaVaikeusastetta = new JMenu("Vaikeusaste");
-        String[] vaikeusasteet = new String[] {"Helppo", "Haastava", "Vaikea"};
+        String[] vaikeusasteet = new String[]{"Helppo", "Haastava", "Vaikea"};
         for (int i = 0; i < vaikeusasteet.length; i++) {
             JMenuItem vaihtoehto = new JMenuItem(vaikeusasteet[i]);
             vaihtoehto.addActionListener(new ValikonKuuntelija(this, peli));
@@ -136,6 +138,5 @@ public class PelikenttaGui extends JFrame {
     public JLabel getKulunutAika() {
         return kulunutAika;
     }
-    
-    
+
 }

@@ -1,14 +1,11 @@
 package miinaharava.kayttoliittyma.kuuntelijat;
 
-import java.awt.*;
 import java.awt.event.*;
-import java.net.URL;
 import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import miinaharava.domain.*;
 import miinaharava.kayttoliittyma.*;
 import miinaharava.logiikka.Miinaharava;
-import miinaharava.logiikka.Vaikeusaste;
 
 /**
  * RuudunAvaajaa kutsutaan kun painetaan pelialustalla olevaa JButtonia.
@@ -107,9 +104,14 @@ public class PelikentanKuuntelija implements MouseListener {
 
     private void voitto() {
         kello.stop();
-        peli.getTuloslista().lisaaTulos(new Tulos(peli.getPelaaja(), TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - peli.getAloitusAika())));
-        peli.getTuloslista().tallenna();
-        PelinPaatosGui voittoIlmoitus = new PelinPaatosGui(frame, "voitto");
+        int sijoitus = 0;
+        if (peli.getVaikeus() != null && peli.getTuloslista() != null) {
+            Tulos tulos = new Tulos(peli.getPelaaja(), TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - peli.getAloitusAika()));
+            peli.getTuloslista().lisaaTulos(tulos);
+            sijoitus = peli.getTuloslista().sijoitus(tulos);
+            peli.getTuloslista().tallenna();
+        }
+        PelinPaatosGui voittoIlmoitus = new PelinPaatosGui(frame, "voitto", sijoitus);
     }
 
     private void havio() {
@@ -124,13 +126,8 @@ public class PelikentanKuuntelija implements MouseListener {
             }
         }
         kello.stop();
-        PelinPaatosGui havioIlmoitus = new PelinPaatosGui(frame, "havio");
+        PelinPaatosGui havioIlmoitus = new PelinPaatosGui(frame, "havio", 0);
     }
-    
-    public static Image haeKuva(final String kuvanSijainti) {
-    final URL url = Thread.currentThread().getContextClassLoader().getResource(kuvanSijainti);
-    return Toolkit.getDefaultToolkit().getImage(url);
-}
 
     @Override
     public void mousePressed(MouseEvent e) {

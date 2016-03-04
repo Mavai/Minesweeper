@@ -28,7 +28,7 @@ public class Tekstikayttoliittyma {
         this.lukija = lukija;
         this.peli = peli;
     }
-    
+
     /**
      * Aloittaa pelin.
      */

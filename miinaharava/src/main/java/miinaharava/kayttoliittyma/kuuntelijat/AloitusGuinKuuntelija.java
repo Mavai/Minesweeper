@@ -20,6 +20,8 @@ public class AloitusGuinKuuntelija implements ActionListener {
      *
      * @param dialog Aloitusikkuna
      * @param valikko JComboBox
+     * @param nimimerkki Tekstikenttä johon pelaaja syöttää nimimerkkinsä
+     * @param tekstikentta Nimimerkkikentän otsikko jota päivitetään
      */
     public AloitusGuinKuuntelija(JDialog dialog, JComboBox valikko, JTextField nimimerkki, JLabel tekstikentta) {
         this.dialog = dialog;
@@ -45,7 +47,7 @@ public class AloitusGuinKuuntelija implements ActionListener {
                 dialog.dispose();
                 return;
             }
-            if(!asetaPelaaja(peli)) {
+            if (!asetaPelaaja(peli)) {
                 return;
             }
             PelikenttaGui uusiPeli = new PelikenttaGui(peli);
@@ -55,6 +57,13 @@ public class AloitusGuinKuuntelija implements ActionListener {
         }
     }
 
+    /**
+     * Asettaa pelaajan syottaman nimimerkin jos se ei sisalla kiellettyja
+     * merkkeja.
+     *
+     * @param peli Käynnistettänä peli.
+     * @return Palauttaa true jos nimimerkki kelpaa, muuten false.
+     */
     public boolean asetaPelaaja(Miinaharava peli) {
         if (nimimerkki.getText().contains("-")) {
             tekstikentta.setText("Anna nimimerkki     Nimi ei saa sisältää merkkiä '-'");

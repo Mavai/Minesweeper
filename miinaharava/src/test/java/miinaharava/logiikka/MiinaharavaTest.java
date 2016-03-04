@@ -1,6 +1,7 @@
 package miinaharava.logiikka;
 
 import miinaharava.domain.Pelialusta;
+import miinaharava.domain.Tuloslista;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,7 +40,6 @@ public class MiinaharavaTest {
         assertFalse(alusta.getAlusta()[1][1].onKiinni());
     }
 
-
     @Test
     public void miinanSisältävänRuudunAvaaminen() {
         alusta = new Pelialusta(3, 3, 9);
@@ -59,7 +59,6 @@ public class MiinaharavaTest {
         assertTrue(peli.avaaRuutu(alusta.getAlusta()[0][0]));
     }
 
-
     @Test
     public void getPelialustTesti() {
         assertEquals(alusta, peli.getPelialusta());
@@ -72,32 +71,32 @@ public class MiinaharavaTest {
         peli.avaaRuutu(alusta.getAlusta()[2][2]);
         assertTrue(peli.getNollanViereiset().size() > 0);
     }
-    
+
     @Test
     public void kentanKokoOikeinHelpollaVaikeusasteella() {
         peli = new Miinaharava(Vaikeusaste.HELPPO);
         assertEquals(8, peli.getPelialusta().getLeveys());
     }
-    
+
     @Test
     public void kentanKokoOikeinHaastavallaVaikeusasteella() {
         peli = new Miinaharava(Vaikeusaste.HAASTAVA);
         assertEquals(16, peli.getPelialusta().getLeveys());
     }
-    
+
     @Test
     public void kentanKokoOikeinVaikeallaVaikeusasteella() {
         peli = new Miinaharava(Vaikeusaste.VAIKEA);
         assertTrue(peli.getPelialusta().getLeveys() == 30 && peli.getPelialusta().getKorkeus() == 16);
     }
-    
+
     @Test
     public void jaljellaOlevienMiinojenMaaraVaheneeOikein() {
         peli = new Miinaharava(Vaikeusaste.HELPPO);
         peli.merkkaaRuutu(peli.getPelialusta().getAlusta()[0][0]);
         assertTrue(peli.getMiinojaJaljella() == 9 && peli.getPelialusta().getAlusta()[0][0].onMerkattu());
     }
-    
+
     @Test
     public void jaljellaOlevienMiinojenMaaraKasvaaOikein() {
         peli = new Miinaharava(Vaikeusaste.HELPPO);
@@ -105,18 +104,48 @@ public class MiinaharavaTest {
         peli.postaRuudunMerkinta(peli.getPelialusta().getAlusta()[0][0]);
         assertTrue(peli.getMiinojaJaljella() == 10 && (!peli.getPelialusta().getAlusta()[0][0].onMerkattu()));
     }
-    
+
     @Test
     public void kaikkiAvattuToimiiOikeinKunKaikkiOnAvattu() {
         peli = new Miinaharava(new Pelialusta(5, 5, 0));
         peli.avaaRuutu(peli.getPelialusta().getAlusta()[2][2]);
         assertTrue(peli.kaikkiAvattu());
     }
-    
+
     @Test
     public void kaikkiAvattuToimiiOikeinKunKaikkiEiAvattu() {
         peli = new Miinaharava(new Pelialusta(5, 5, 0));
         assertTrue(!peli.kaikkiAvattu());
+    }
+
+    @Test
+    public void tuloslistaOikeinHelpolla() {
+        peli = new Miinaharava(Vaikeusaste.HELPPO);
+        assertEquals(Vaikeusaste.HELPPO, peli.getTuloslista().getVaikeusaste());
+    }
+
+    @Test
+    public void tuloslistaOikeinHaastavalla() {
+        peli = new Miinaharava(Vaikeusaste.HAASTAVA);
+        assertEquals(Vaikeusaste.HAASTAVA, peli.getTuloslista().getVaikeusaste());
+    }
+
+    @Test
+    public void tuloslistaOikeinVaikealla() {
+        peli = new Miinaharava(Vaikeusaste.VAIKEA);
+        assertEquals(Vaikeusaste.VAIKEA, peli.getTuloslista().getVaikeusaste());
+    }
+
+    @Test
+    public void pelinVaikeusasteOikein() {
+        peli = new Miinaharava(Vaikeusaste.HELPPO);
+        assertEquals(Vaikeusaste.HELPPO, peli.getVaikeus());
+    }
+
+    @Test
+    public void pelaajaAsetetaanOikein() {
+        peli.setPelaaja("Jaska Jokunen");
+        assertEquals("Jaska Jokunen", peli.getPelaaja());
     }
 
     private String muodostaSyote(String... rivit) {

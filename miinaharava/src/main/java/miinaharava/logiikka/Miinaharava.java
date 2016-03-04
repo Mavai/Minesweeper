@@ -40,21 +40,35 @@ public class Miinaharava {
     public Miinaharava(Vaikeusaste vaikeus) {
         if (vaikeus == Vaikeusaste.HELPPO) {
             this.pelialusta = new Pelialusta(8, 8, 10);
-            this.tuloslista = new Tuloslista(Vaikeusaste.HELPPO);
+            asetaTuloslista(Vaikeusaste.HELPPO);
         }
         if (vaikeus == Vaikeusaste.HAASTAVA) {
             this.pelialusta = new Pelialusta(16, 16, 40);
-            this.tuloslista = new Tuloslista(Vaikeusaste.HAASTAVA);
+            asetaTuloslista(Vaikeusaste.HAASTAVA);
         }
         if (vaikeus == Vaikeusaste.VAIKEA) {
             this.pelialusta = new Pelialusta(30, 16, 99);
-            this.tuloslista = new Tuloslista(Vaikeusaste.VAIKEA);
+            asetaTuloslista(Vaikeusaste.VAIKEA);
         }
         this.miinojaJaljella = pelialusta.getMiinat().size();
         this.nollanViereiset = new ArrayList<>();
         this.vaikeus = vaikeus;
         this.aloitusAika = System.currentTimeMillis();
         this.pelaaja = "Unknown";
+    }
+
+    /**
+     * Asettaa pelille tuloslistan vaikeusasteen perusteella. Null jos tämä ei
+     * onnistu.
+     *
+     * @param vaikeus Pelin vaikeusaste
+     */
+    public void asetaTuloslista(Vaikeusaste vaikeus) {
+        try {
+            this.tuloslista = new Tuloslista(vaikeus);
+        } catch (Exception e) {
+            this.tuloslista = null;
+        }
     }
 
     public Tuloslista getTuloslista() {
