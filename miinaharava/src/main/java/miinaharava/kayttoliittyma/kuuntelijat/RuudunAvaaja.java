@@ -1,15 +1,11 @@
 package miinaharava.kayttoliittyma.kuuntelijat;
 
-import com.sun.webkit.graphics.WCImage;
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
 import javax.swing.*;
-import miinaharava.domain.Pelialusta;
-import miinaharava.domain.Ruutu;
-import miinaharava.kayttoliittyma.PelikenttaGui;
-import miinaharava.kayttoliittyma.PelinPaatosGui;
+import miinaharava.domain.*;
+import miinaharava.kayttoliittyma.*;
 import miinaharava.logiikka.Miinaharava;
 
 /**
@@ -20,15 +16,14 @@ import miinaharava.logiikka.Miinaharava;
  */
 public class RuudunAvaaja implements MouseListener {
 
-    private int x;
-    private int y;
-    private Pelialusta alusta;
-    private Miinaharava peli;
-    private JButton nappi;
-    private JButton[][] ruudut;
-    private JLabel miinojenLkm;
-    private Timer kello;
-    private PelikenttaGui frame;
+    private final int x;
+    private final int y;
+    private final Pelialusta alusta;
+    private final Miinaharava peli;
+    private final JButton[][] ruudut;
+    private final JLabel miinojenLkm;
+    private final Timer kello;
+    private final PelikenttaGui frame;
 
     /**
      * Luo hiirenkuuntelijan joka avaa ruudun tai merkkaa sen riippuen hiiren
@@ -37,16 +32,14 @@ public class RuudunAvaaja implements MouseListener {
      * @param x JButtonin x-koordinaatti
      * @param y JButtonin y-koordinaatti
      * @param peli Käynnissä oleva peli
-     * @param nappi JButton jota painettiin
      * @param ruudut Lista pelialustalla olevista JButtoneista
      * @param miinojenLkm JLabel johon päivitetään löydettyjen miinojen määrä.
      * @param kello Sekunttikello joka pysäytetään pelin loppuessa.
      * @param frame Pelin pääikkuna jossa ruutu avataan.
      */
-    public RuudunAvaaja(int x, int y, Miinaharava peli, JButton nappi, JButton[][] ruudut, JLabel miinojenLkm, Timer kello, PelikenttaGui frame) {
+    public RuudunAvaaja(int x, int y, Miinaharava peli, JButton[][] ruudut, JLabel miinojenLkm, Timer kello, PelikenttaGui frame) {
         this.x = x;
         this.y = y;
-        this.nappi = nappi;
         this.peli = peli;
         this.alusta = peli.getPelialusta();
         this.ruudut = ruudut;
@@ -68,15 +61,16 @@ public class RuudunAvaaja implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        JButton painettuNappi = (JButton) e.getSource();
         if (e.getButton() == MouseEvent.BUTTON1) {
-            avaaRuutu();
+            avaaRuutu(painettuNappi);
         } else if (e.getButton() == MouseEvent.BUTTON3) {
             merkkaaRuutu();
         }
     }
 
     private void merkkaaRuutu() {
-        ImageIcon icon = new ImageIcon(getImage("Lippu.png"));
+        ImageIcon icon = new ImageIcon(haeKuva("Lippu.png"));
         Ruutu merkattava = alusta.getAlusta()[x][y];
         if (merkattava.onMerkattu()) {
             peli.postaRuudunMerkinta(merkattava);
@@ -88,7 +82,7 @@ public class RuudunAvaaja implements MouseListener {
         miinojenLkm.setText("Miinoja: " + peli.getMiinojaJaljella());
     }
 
-    private void avaaRuutu() {
+    private void avaaRuutu(JButton nappi) {
         Ruutu avattava = alusta.getAlusta()[x][y];
         if (avattava.onMerkattu()) {
             return;
@@ -112,7 +106,7 @@ public class RuudunAvaaja implements MouseListener {
     }
 
     private void havio() {
-        ImageIcon icon = new ImageIcon(getImage("Miina.png"));
+        ImageIcon icon = new ImageIcon(haeKuva("Miina.png"));
         for (int i = 0; i < alusta.getKorkeus(); i++) {
             for (int j = 0; j < alusta.getLeveys(); j++) {
                 ruudut[j][i].setEnabled(false);
@@ -126,8 +120,8 @@ public class RuudunAvaaja implements MouseListener {
         PelinPaatosGui havioIlmoitus = new PelinPaatosGui(frame, "havio");
     }
     
-    public static Image getImage(final String pathAndFileName) {
-    final URL url = Thread.currentThread().getContextClassLoader().getResource(pathAndFileName);
+    public static Image haeKuva(final String kuvanSijainti) {
+    final URL url = Thread.currentThread().getContextClassLoader().getResource(kuvanSijainti);
     return Toolkit.getDefaultToolkit().getImage(url);
 }
 

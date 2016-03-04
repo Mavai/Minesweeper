@@ -5,8 +5,8 @@
  */
 package miinaharava.kayttoliittyma;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.*;
 import miinaharava.kayttoliittyma.kuuntelijat.CustomPelinAloittaja;
@@ -28,6 +28,8 @@ public class CustomPelinLuontiIkkuna extends JFrame{
         this.korkeus = new JSlider();
         this.leveys = new JSlider();
         this.miinat = new JSlider();
+        
+        setPreferredSize(new Dimension(300, 220));
 
         luoKomponentit(getContentPane());
 
@@ -50,9 +52,7 @@ public class CustomPelinLuontiIkkuna extends JFrame{
         korkeus = new JSlider(JSlider.HORIZONTAL, 5, 30, 8);
         JLabel teksti = new JLabel("Korkeus: " + korkeus.getValue());
         teksti.setFont(new Font("Normal", Font.BOLD, 16));
-        korkeus.setMajorTickSpacing(5);
-        korkeus.setPaintTicks(true);
-        korkeus.addChangeListener(new CustomSliderinKuuntelija(teksti, this));
+        muokkaaSlideria(korkeus, teksti, 5);
         paneeli.add(korkeus);
         paneeli.add(teksti);
         return paneeli;
@@ -64,9 +64,7 @@ public class CustomPelinLuontiIkkuna extends JFrame{
         leveys = new JSlider(JSlider.HORIZONTAL, 5, 50, 8);
         JLabel teksti = new JLabel("Leveys: " + leveys.getValue());
         teksti.setFont(new Font("Normal", Font.BOLD, 16));
-        leveys.setMajorTickSpacing(5);
-        leveys.setPaintTicks(true);
-        leveys.addChangeListener(new CustomSliderinKuuntelija(teksti, this));
+        muokkaaSlideria(leveys, teksti, 5);
         paneeli.add(leveys);
         paneeli.add(teksti);
         return paneeli;
@@ -78,12 +76,16 @@ public class CustomPelinLuontiIkkuna extends JFrame{
         miinat = new JSlider(JSlider.HORIZONTAL, 0, korkeus.getValue() * leveys.getValue(), 8);
         JLabel teksti = new JLabel("Miinat: " + miinat.getValue());
         teksti.setFont(new Font("Normal", Font.BOLD, 16));
-        miinat.setMajorTickSpacing(miinat.getMaximum() / 20);
-        miinat.setPaintTicks(true);
-        miinat.addChangeListener(new CustomSliderinKuuntelija(teksti, this));
+        muokkaaSlideria(miinat, teksti, miinat.getMaximum() / 20);
         paneeli.add(miinat);
         paneeli.add(teksti);
         return paneeli;
+    }
+    
+    private void muokkaaSlideria(JSlider slideri, JLabel teksti, int merkkienVali) {
+        slideri.setMajorTickSpacing(merkkienVali);
+        slideri.setPaintTicks(true);
+        slideri.addChangeListener(new CustomSliderinKuuntelija(teksti, this));
     }
     
     public void paivitaMiinat() {

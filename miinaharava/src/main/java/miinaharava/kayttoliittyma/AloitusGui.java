@@ -78,11 +78,10 @@ public class AloitusGui implements Runnable {
     public JPanel luoVaihtoehdot() {
         JPanel paneeli = new JPanel();
         valikko = new JComboBox<>();
-        String[] vaihtoehdot = {"Helppo", "Haastava", "Vaikea", "Custom"};
+        String[] vaihtoehdot = {"Helppo (8x8, 10 miinaa)", "Haastava (16x16, 40 miinaa)", "Vaikea (16x30, 99 miinaa)", "Custom"};
         for (int i = 0; i < vaihtoehdot.length; i++) {
             valikko.addItem(vaihtoehdot[i]);
         }
-        
         paneeli.add(valikko);
         return paneeli;
     }

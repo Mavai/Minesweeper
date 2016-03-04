@@ -6,8 +6,8 @@ import miinaharava.kayttoliittyma.kuuntelijat.LoppuikkunanKuuntelija;
 
 public class PelinPaatosGui extends JDialog {
 
-    private PelikenttaGui isanta;
-    private String havioVaiVoitto;
+    private final PelikenttaGui isanta;
+    private final String havioVaiVoitto;
 
     /**
      * Pelin päätyttyä esiin ilmestyvä ikkuna joka kertoo pelin tuloksen.

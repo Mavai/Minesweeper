@@ -27,13 +27,13 @@ public class VaikeusAsteenValitsin implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String valinta = (String) valikko.getSelectedItem();
         Miinaharava peli = null;
-        if (valinta.equals("Helppo")) {
+        if (valinta.contains("Helppo")) {
             peli = new Miinaharava(Vaikeusaste.HELPPO);
-        } else if (valinta.equals("Vaikea")) {
+        } else if (valinta.contains("Vaikea")) {
             peli = new Miinaharava(Vaikeusaste.VAIKEA);
-        } else if (valinta.equals("Haastava")) {
+        } else if (valinta.contains("Haastava")) {
             peli = new Miinaharava(Vaikeusaste.HAASTAVA);
-        } else if (valinta.equals("Custom")) {
+        } else if (valinta.contains("Custom")) {
             CustomPelinLuontiIkkuna uusiIkkuna = new CustomPelinLuontiIkkuna();
             dialog.dispose();
             return;

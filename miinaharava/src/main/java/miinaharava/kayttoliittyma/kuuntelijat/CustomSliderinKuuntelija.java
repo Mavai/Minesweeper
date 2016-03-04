@@ -10,15 +10,11 @@ import miinaharava.kayttoliittyma.CustomPelinLuontiIkkuna;
  */
 public class CustomSliderinKuuntelija implements ChangeListener {
 
-    private JLabel teksti;
-    private JSlider slider;
-    private JSlider miinat;
-    private CustomPelinLuontiIkkuna frame;
+    private final JLabel teksti;
+    private final CustomPelinLuontiIkkuna frame;
 
     public CustomSliderinKuuntelija(JLabel teksti, CustomPelinLuontiIkkuna frame) {
         this.teksti = teksti;
-        this.slider = slider;
-        this.miinat = miinat;
         this.frame = frame;
     }
 

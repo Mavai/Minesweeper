@@ -12,7 +12,7 @@ import miinaharava.domain.Pelialusta;
 public class Miinaharava {
 
     private Pelialusta pelialusta;
-    private ArrayList<Ruutu> nollanViereiset;
+    private final ArrayList<Ruutu> nollanViereiset;
     private Vaikeusaste vaikeus;
     private int miinojaJaljella;
 
@@ -22,7 +22,7 @@ public class Miinaharava {
      * @param alusta Peliin liittyvä pelialusta.
      */
     public Miinaharava(Pelialusta alusta) {
-        this.nollanViereiset = new ArrayList<Ruutu>();
+        this.nollanViereiset = new ArrayList<>();
         this.pelialusta = alusta;
         this.miinojaJaljella = pelialusta.getMiinat().size();
     }
@@ -46,7 +46,7 @@ public class Miinaharava {
             this.pelialusta = new Pelialusta(8, 8, 3);
         }
         this.miinojaJaljella = pelialusta.getMiinat().size();
-        this.nollanViereiset = new ArrayList<Ruutu>();
+        this.nollanViereiset = new ArrayList<>();
         this.vaikeus = vaikeus;
     }
 
@@ -116,7 +116,6 @@ public class Miinaharava {
         for (Ruutu viereinenRuutu : ruutu.viereisetRuudut(pelialusta, ruutu.getX(), ruutu.getY())) {
             nollanViereiset.add(viereinenRuutu);
             avaaRuutu(viereinenRuutu);
-
         }
     }
 
