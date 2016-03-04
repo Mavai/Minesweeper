@@ -15,3 +15,5 @@ tai halutessasi vaihtaa vaikeusastetta.
 
 Aloittaessa pelin pelaaja voi halutessaan valita nimimerkin. Tämän perusteella hänen tuloksensa tallennetaa huipputuloksiin. Kuitenkin vain jos aika mahtuu 15 parhaan joukkoon. 
 Jos pelaaja ei valitse nimimerkkiä tämä on automaattisesti "Unknown". Huipputuloksia pääset tarkastelemaan valitsemalla aloitusnäytössä "tuloslista".
+
+Jos tulostiedostoja ei löydy, tuloksia ei kirjata ylös.
