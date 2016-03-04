@@ -86,7 +86,7 @@ public class PelikenttaGui extends JFrame {
                 JButton nappi = new JButton("", null);
                 ruudut[j][i] = nappi;
                 muokkaaNappia(nappi);
-                nappi.addMouseListener(new RuudunAvaaja(j, i, peli, ruudut, miinojenLkm, kello, this));
+                nappi.addMouseListener(new PelikentanKuuntelija(j, i, peli, ruudut, miinojenLkm, kello, this));
                 ruudukko.add(nappi);
             }
         }

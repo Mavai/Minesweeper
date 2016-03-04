@@ -62,7 +62,7 @@ public class CustomPelinLuontiIkkuna extends JFrame{
     private JPanel luoLeveydenValitsin() {
         JPanel paneeli = new JPanel();
         paneeli.setLayout(new BoxLayout(paneeli, BoxLayout.Y_AXIS));
-        leveys = new JSlider(JSlider.HORIZONTAL, 5, (Toolkit.getDefaultToolkit().getScreenSize().width - 150) / 30, 8);
+        leveys = new JSlider(JSlider.HORIZONTAL, 5, (Toolkit.getDefaultToolkit().getScreenSize().width - 90) / 30, 8);
         JLabel teksti = new JLabel("Leveys: " + leveys.getValue());
         teksti.setFont(new Font("Normal", Font.BOLD, 16));
         muokkaaSlideria(leveys, teksti, 5);

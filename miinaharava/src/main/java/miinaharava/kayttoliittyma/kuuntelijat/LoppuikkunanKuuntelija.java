@@ -2,12 +2,13 @@ package miinaharava.kayttoliittyma.kuuntelijat;
 
 import java.awt.event.*;
 import javax.swing.*;
+import miinaharava.domain.Pelialusta;
 import miinaharava.kayttoliittyma.PelikenttaGui;
 import miinaharava.logiikka.Miinaharava;
 
 public class LoppuikkunanKuuntelija implements ActionListener {
 
-    private PelikenttaGui edellinenPeli;
+    private PelikenttaGui edellinenPelikentta;
     private JDialog loppuikkuna;
 
     /**
@@ -18,22 +19,29 @@ public class LoppuikkunanKuuntelija implements ActionListener {
      * @param loppuikkuna Päättyneen pelin loppuikkuna.
      */
     public LoppuikkunanKuuntelija(PelikenttaGui edellinenPeli, JDialog loppuikkuna) {
-        this.edellinenPeli = edellinenPeli;
+        this.edellinenPelikentta = edellinenPeli;
         this.loppuikkuna = loppuikkuna;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton painettu = (JButton) e.getSource();
+        Miinaharava edellinenPeli = edellinenPelikentta.getPeli();
+        PelikenttaGui uusiPeli = null;
         if (painettu.getText().equals("Uusi peli")) {
             loppuikkuna.dispose();
-            PelikenttaGui uusiPeli = new PelikenttaGui(new Miinaharava(edellinenPeli.getPeli().getVaikeus()));
-            uusiPeli.setLocationRelativeTo(edellinenPeli);
-            edellinenPeli.dispose();
+            if (edellinenPelikentta.getPeli().getVaikeus() != null) {
+                uusiPeli = new PelikenttaGui(new Miinaharava(edellinenPelikentta.getPeli().getVaikeus()));
+            } else {
+                uusiPeli = new PelikenttaGui(new Miinaharava(new Pelialusta(edellinenPeli.getPelialusta().getLeveys(), 
+                        edellinenPeli.getPelialusta().getKorkeus(), edellinenPeli.getPelialusta().getMiinat().size())));
+            }
+            uusiPeli.setLocationRelativeTo(edellinenPelikentta);
+            edellinenPelikentta.dispose();
         }
         if (painettu.getText().equals("Lopeta")) {
             loppuikkuna.dispose();
-            edellinenPeli.dispose();
+            edellinenPelikentta.dispose();
             System.exit(0);
         }
     }

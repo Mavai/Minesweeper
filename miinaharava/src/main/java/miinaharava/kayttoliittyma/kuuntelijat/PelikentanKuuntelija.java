@@ -14,7 +14,7 @@ import miinaharava.logiikka.Miinaharava;
  *
  * @author markovai
  */
-public class RuudunAvaaja implements MouseListener {
+public class PelikentanKuuntelija implements MouseListener {
 
     private final int x;
     private final int y;
@@ -37,7 +37,7 @@ public class RuudunAvaaja implements MouseListener {
      * @param kello Sekunttikello joka pysäytetään pelin loppuessa.
      * @param frame Pelin pääikkuna jossa ruutu avataan.
      */
-    public RuudunAvaaja(int x, int y, Miinaharava peli, JButton[][] ruudut, JLabel miinojenLkm, Timer kello, PelikenttaGui frame) {
+    public PelikentanKuuntelija(int x, int y, Miinaharava peli, JButton[][] ruudut, JLabel miinojenLkm, Timer kello, PelikenttaGui frame) {
         this.x = x;
         this.y = y;
         this.peli = peli;
@@ -72,6 +72,9 @@ public class RuudunAvaaja implements MouseListener {
     private void merkkaaRuutu() {
         ImageIcon icon = new ImageIcon(haeKuva("Lippu.png"));
         Ruutu merkattava = alusta.getAlusta()[x][y];
+        if (!merkattava.onKiinni()) {
+            return;
+        }
         if (merkattava.onMerkattu()) {
             peli.postaRuudunMerkinta(merkattava);
             ruudut[x][y].setIcon(null);
