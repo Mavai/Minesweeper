@@ -27,16 +27,18 @@ public class LoppuikkunanKuuntelija implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton painettu = (JButton) e.getSource();
         Miinaharava edellinenPeli = edellinenPelikentta.getPeli();
-        PelikenttaGui uusiPeli = null;
+        Miinaharava uusiPeli = null;
         if (painettu.getText().equals("Uusi peli")) {
             loppuikkuna.dispose();
             if (edellinenPelikentta.getPeli().getVaikeus() != null) {
-                uusiPeli = new PelikenttaGui(new Miinaharava(edellinenPelikentta.getPeli().getVaikeus()));
+                uusiPeli = new Miinaharava(edellinenPeli.getVaikeus());
+                uusiPeli.setPelaaja(edellinenPeli.getPelaaja());
             } else {
-                uusiPeli = new PelikenttaGui(new Miinaharava(new Pelialusta(edellinenPeli.getPelialusta().getLeveys(), 
-                        edellinenPeli.getPelialusta().getKorkeus(), edellinenPeli.getPelialusta().getMiinat().size())));
+                uusiPeli = new Miinaharava(new Pelialusta(edellinenPeli.getPelialusta().getLeveys(), 
+                        edellinenPeli.getPelialusta().getKorkeus(), edellinenPeli.getPelialusta().getMiinat().size()));
             }
-            uusiPeli.setLocationRelativeTo(edellinenPelikentta);
+            PelikenttaGui uusiPelikentta = new PelikenttaGui(uusiPeli);
+            uusiPelikentta.setLocationRelativeTo(edellinenPelikentta);
             edellinenPelikentta.dispose();
         }
         if (painettu.getText().equals("Lopeta")) {

@@ -2,12 +2,14 @@ package miinaharava.kayttoliittyma;
 
 import java.awt.*;
 import javax.swing.*;
-import miinaharava.kayttoliittyma.kuuntelijat.VaikeusAsteenValitsin;
+import miinaharava.kayttoliittyma.kuuntelijat.AloitusGuinKuuntelija;
 
 public class AloitusGui implements Runnable {
 
     private JDialog dialog;
     private JComboBox<String> valikko;
+    private JTextField nimimerkki;
+    private JLabel nimimerkkiKentanOtsikko;
 
     /**
      * Luo aloitusikkunan Miinaharava pelin graafiseen käyttöliittymään.
@@ -24,7 +26,7 @@ public class AloitusGui implements Runnable {
 
         luoKomponentit(dialog.getContentPane());
         
-
+        dialog.setResizable(false);
         dialog.pack();
         dialog.setLocationRelativeTo(dialog);
         dialog.setVisible(true);
@@ -39,8 +41,9 @@ public class AloitusGui implements Runnable {
         container.setLayout(new BorderLayout());
         container.add(teksti(), BorderLayout.NORTH);
         container.add(luoVaihtoehdot(), BorderLayout.CENTER);
-        container.add(luoAloitusNappi(), BorderLayout.SOUTH);
-
+        container.add(luoNimimerkkiKentta(), BorderLayout.SOUTH);
+        container.add(luoNapit(), BorderLayout.EAST);
+        
     }
 
     /**
@@ -48,11 +51,14 @@ public class AloitusGui implements Runnable {
      *
      * @return Palauttaa JPanel komponentin.
      */
-    private JPanel luoAloitusNappi() {
+    private JPanel luoNapit() {
         JPanel paneeli = new JPanel();
         JButton aloita = new JButton("Aloita");
-        aloita.addActionListener(new VaikeusAsteenValitsin(dialog, valikko));
+        JButton tuloslista = new JButton("tuloslista");
+        aloita.addActionListener(new AloitusGuinKuuntelija(dialog, valikko, nimimerkki, nimimerkkiKentanOtsikko));
+        tuloslista.addActionListener(new AloitusGuinKuuntelija(dialog, valikko, nimimerkki, nimimerkkiKentanOtsikko));
         paneeli.add(aloita);
+        paneeli.add(tuloslista);
         return paneeli;
     }
 
@@ -83,6 +89,17 @@ public class AloitusGui implements Runnable {
         }
         paneeli.add(valikko);
         return paneeli;
+    }
+    
+    public JPanel luoNimimerkkiKentta() {
+        JPanel paneeli = new JPanel(new BorderLayout());
+        nimimerkkiKentanOtsikko = new JLabel("Anna nimimerkki");
+        nimimerkkiKentanOtsikko.setFont(new Font("Normal", Font.PLAIN, 14));
+        nimimerkki = new JTextField();
+        paneeli.add(nimimerkkiKentanOtsikko, BorderLayout.NORTH);
+        paneeli.add(nimimerkki, BorderLayout.CENTER);
+        return paneeli;
+        
     }
 
 }

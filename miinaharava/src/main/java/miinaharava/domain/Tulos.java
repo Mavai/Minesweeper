@@ -1,10 +1,13 @@
 package miinaharava.domain;
 
-public class Tulos {
+import java.util.concurrent.TimeUnit;
+
+public class Tulos implements Comparable<Tulos> {
+
     private long aika;
     private String pelaaja;
 
-    public Tulos(long aika, String pelaaja) {
+    public Tulos(String pelaaja, long aika) {
         this.aika = aika;
         this.pelaaja = pelaaja;
     }
@@ -16,7 +19,21 @@ public class Tulos {
     public String getPelaaja() {
         return pelaaja;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return pelaaja + " - " + TimeUnit.SECONDS.toMinutes(aika) % 60 + ":" + aika % 60;
+    }
+
+    @Override
+    public int compareTo(Tulos tulos) {
+        if (this.aika == tulos.aika) {
+            return 0;
+        } else if (this.aika < tulos.aika) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+
 }

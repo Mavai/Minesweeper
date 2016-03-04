@@ -3,6 +3,7 @@ package miinaharava.logiikka;
 import java.util.ArrayList;
 import miinaharava.domain.Ruutu;
 import miinaharava.domain.Pelialusta;
+import miinaharava.domain.Tuloslista;
 
 /**
  * Luokka tarjoaa logiikan miinaharava -peliin.
@@ -15,6 +16,9 @@ public class Miinaharava {
     private final ArrayList<Ruutu> nollanViereiset;
     private Vaikeusaste vaikeus;
     private int miinojaJaljella;
+    private String pelaaja;
+    private long aloitusAika;
+    private Tuloslista tuloslista;
 
     /**
      * Luo Miinaharava-olion, joka toimii pelin logiikkana.
@@ -25,6 +29,7 @@ public class Miinaharava {
         this.nollanViereiset = new ArrayList<>();
         this.pelialusta = alusta;
         this.miinojaJaljella = pelialusta.getMiinat().size();
+        this.aloitusAika = System.currentTimeMillis();
     }
 
     /**
@@ -35,19 +40,29 @@ public class Miinaharava {
     public Miinaharava(Vaikeusaste vaikeus) {
         if (vaikeus == Vaikeusaste.HELPPO) {
             this.pelialusta = new Pelialusta(8, 8, 10);
+            this.tuloslista = new Tuloslista(Vaikeusaste.HELPPO);
         }
         if (vaikeus == Vaikeusaste.HAASTAVA) {
             this.pelialusta = new Pelialusta(16, 16, 40);
+            this.tuloslista = new Tuloslista(Vaikeusaste.HAASTAVA);
         }
         if (vaikeus == Vaikeusaste.VAIKEA) {
             this.pelialusta = new Pelialusta(30, 16, 99);
-        }
-        if (vaikeus == Vaikeusaste.DEMO) {
-            this.pelialusta = new Pelialusta(8, 8, 3);
+            this.tuloslista = new Tuloslista(Vaikeusaste.VAIKEA);
         }
         this.miinojaJaljella = pelialusta.getMiinat().size();
         this.nollanViereiset = new ArrayList<>();
         this.vaikeus = vaikeus;
+        this.aloitusAika = System.currentTimeMillis();
+        this.pelaaja = "Unknown";
+    }
+
+    public Tuloslista getTuloslista() {
+        return tuloslista;
+    }
+
+    public long getAloitusAika() {
+        return aloitusAika;
     }
 
     public int getMiinojaJaljella() {
@@ -60,6 +75,14 @@ public class Miinaharava {
 
     public Pelialusta getPelialusta() {
         return pelialusta;
+    }
+
+    public String getPelaaja() {
+        return pelaaja;
+    }
+
+    public void setPelaaja(String pelaaja) {
+        this.pelaaja = pelaaja;
     }
 
     /**

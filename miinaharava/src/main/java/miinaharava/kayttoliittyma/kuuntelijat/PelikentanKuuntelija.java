@@ -3,10 +3,12 @@ package miinaharava.kayttoliittyma.kuuntelijat;
 import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import miinaharava.domain.*;
 import miinaharava.kayttoliittyma.*;
 import miinaharava.logiikka.Miinaharava;
+import miinaharava.logiikka.Vaikeusaste;
 
 /**
  * RuudunAvaajaa kutsutaan kun painetaan pelialustalla olevaa JButtonia.
@@ -70,7 +72,7 @@ public class PelikentanKuuntelija implements MouseListener {
     }
 
     private void merkkaaRuutu() {
-        ImageIcon icon = new ImageIcon(haeKuva("Lippu.png"));
+        ImageIcon icon = new ImageIcon("images/Lippu.png");
         Ruutu merkattava = alusta.getAlusta()[x][y];
         if (!merkattava.onKiinni()) {
             return;
@@ -105,11 +107,13 @@ public class PelikentanKuuntelija implements MouseListener {
 
     private void voitto() {
         kello.stop();
+        peli.getTuloslista().lisaaTulos(new Tulos(peli.getPelaaja(), TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - peli.getAloitusAika())));
+        peli.getTuloslista().tallenna();
         PelinPaatosGui voittoIlmoitus = new PelinPaatosGui(frame, "voitto");
     }
 
     private void havio() {
-        ImageIcon icon = new ImageIcon(haeKuva("Miina.png"));
+        ImageIcon icon = new ImageIcon("images/Miina.png");
         for (int i = 0; i < alusta.getKorkeus(); i++) {
             for (int j = 0; j < alusta.getLeveys(); j++) {
                 ruudut[j][i].setEnabled(false);

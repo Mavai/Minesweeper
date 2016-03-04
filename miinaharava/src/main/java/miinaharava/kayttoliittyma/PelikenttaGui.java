@@ -120,7 +120,7 @@ public class PelikenttaGui extends JFrame {
 
     private JMenu luoVaikeusasteenVaihtaja() {
         JMenu vaihdaVaikeusastetta = new JMenu("Vaikeusaste");
-        String[] vaikeusasteet = new String[] {"Helppo", "Haastava", "Vaikea", "Demo"};
+        String[] vaikeusasteet = new String[] {"Helppo", "Haastava", "Vaikea"};
         for (int i = 0; i < vaikeusasteet.length; i++) {
             JMenuItem vaihtoehto = new JMenuItem(vaikeusasteet[i]);
             vaihtoehto.addActionListener(new ValikonKuuntelija(this, peli));

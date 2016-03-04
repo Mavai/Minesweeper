@@ -10,7 +10,7 @@ import miinaharava.logiikka.Vaikeusaste;
 public class ValikonKuuntelija implements ActionListener {
 
     private JFrame frame;
-    private Miinaharava peli;
+    private Miinaharava edellinenPeli;
 
     /**
      * Toteuttaa toiminnallisuuden valikon eri komponenteille.
@@ -20,7 +20,7 @@ public class ValikonKuuntelija implements ActionListener {
      */
     public ValikonKuuntelija(JFrame frame, Miinaharava peli) {
         this.frame = frame;
-        this.peli = peli;
+        this.edellinenPeli = peli;
     }
 
     @Override
@@ -28,10 +28,11 @@ public class ValikonKuuntelija implements ActionListener {
         JMenuItem valinta = (JMenuItem) e.getSource();
         PelikenttaGui uusiPeli = null;
         if (valinta.getText().equals("Uusi peli")) {
-            if (peli.getVaikeus() != null) {
-                uusiPeli = new PelikenttaGui(new Miinaharava(peli.getVaikeus()));
+            if (edellinenPeli.getVaikeus() != null) {
+                uusiPeli = new PelikenttaGui(new Miinaharava(edellinenPeli.getVaikeus()));
             } else {
-                uusiPeli = new PelikenttaGui(new Miinaharava(new Pelialusta(peli.getPelialusta().getLeveys(), peli.getPelialusta().getKorkeus(), peli.getPelialusta().getMiinat().size())));
+                uusiPeli = new PelikenttaGui(new Miinaharava(new Pelialusta(edellinenPeli.getPelialusta().getLeveys(), 
+                        edellinenPeli.getPelialusta().getKorkeus(), edellinenPeli.getPelialusta().getMiinat().size())));
             }
         }
         if (valinta.getText().equals("Lopeta")) {

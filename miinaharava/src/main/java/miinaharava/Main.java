@@ -2,7 +2,9 @@ package miinaharava;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import miinaharava.domain.Tuloslista;
 import miinaharava.kayttoliittyma.AloitusGui;
+import miinaharava.logiikka.Vaikeusaste;
 
 public class Main {
 
