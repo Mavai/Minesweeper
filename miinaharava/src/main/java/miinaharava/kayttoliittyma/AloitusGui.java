@@ -24,7 +24,6 @@ public class AloitusGui implements Runnable {
 
         luoKomponentit(dialog.getContentPane());
         
-        dialog.setPreferredSize(new Dimension(200, 150));
 
         dialog.pack();
         dialog.setLocationRelativeTo(dialog);

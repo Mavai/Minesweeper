@@ -8,6 +8,7 @@ package miinaharava.kayttoliittyma;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import javax.swing.*;
 import miinaharava.kayttoliittyma.kuuntelijat.CustomPelinAloittaja;
 import miinaharava.kayttoliittyma.kuuntelijat.CustomSliderinKuuntelija;
@@ -49,7 +50,7 @@ public class CustomPelinLuontiIkkuna extends JFrame{
     private JPanel luoKorkeudenValitsin() {
         JPanel paneeli = new JPanel();
         paneeli.setLayout(new BoxLayout(paneeli, BoxLayout.Y_AXIS));
-        korkeus = new JSlider(JSlider.HORIZONTAL, 5, 30, 8);
+        korkeus = new JSlider(JSlider.HORIZONTAL, 5, (Toolkit.getDefaultToolkit().getScreenSize().height - 150) / 30, 8);
         JLabel teksti = new JLabel("Korkeus: " + korkeus.getValue());
         teksti.setFont(new Font("Normal", Font.BOLD, 16));
         muokkaaSlideria(korkeus, teksti, 5);
@@ -61,7 +62,7 @@ public class CustomPelinLuontiIkkuna extends JFrame{
     private JPanel luoLeveydenValitsin() {
         JPanel paneeli = new JPanel();
         paneeli.setLayout(new BoxLayout(paneeli, BoxLayout.Y_AXIS));
-        leveys = new JSlider(JSlider.HORIZONTAL, 5, 50, 8);
+        leveys = new JSlider(JSlider.HORIZONTAL, 5, (Toolkit.getDefaultToolkit().getScreenSize().width - 150) / 30, 8);
         JLabel teksti = new JLabel("Leveys: " + leveys.getValue());
         teksti.setFont(new Font("Normal", Font.BOLD, 16));
         muokkaaSlideria(leveys, teksti, 5);

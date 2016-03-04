@@ -48,7 +48,7 @@ public class PelikenttaGui extends JFrame {
         JPanel ruudukko = luoRuudukko();
         container.add(ruudukko, BorderLayout.CENTER);
         JPanel kierrokset = luoAjanJaMiinojenLaskija();
-        kierrokset.setPreferredSize(new Dimension(35 * leveys, 35));
+        kierrokset.setPreferredSize(new Dimension(30 * leveys, 30));
         container.add(kierrokset, BorderLayout.SOUTH);
     }
 
