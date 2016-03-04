@@ -1,10 +1,8 @@
 package miinaharava.logiikka;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import miinaharava.domain.Ruutu;
 import miinaharava.domain.Pelialusta;
-import miinaharava.kayttoliittyma.Tekstikayttoliittyma;
 
 /**
  * Luokka tarjoaa logiikan miinaharava -peliin.
@@ -92,6 +90,9 @@ public class Miinaharava {
      * @return Palauttaa true, jos ei osuta miinaan.
      */
     public boolean avaaRuutu(Ruutu ruutu) {
+        if (ruutu.onMerkattu()) {
+            return true;
+        }
         if (!ruutu.onKiinni()) {
             return true;
         }

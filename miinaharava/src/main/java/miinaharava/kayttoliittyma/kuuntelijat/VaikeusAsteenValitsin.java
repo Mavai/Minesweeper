@@ -2,7 +2,7 @@ package miinaharava.kayttoliittyma.kuuntelijat;
 
 import java.awt.event.*;
 import javax.swing.*;
-import miinaharava.domain.Pelialusta;
+import miinaharava.kayttoliittyma.CustomPelinLuontiIkkuna;
 import miinaharava.kayttoliittyma.PelikenttaGui;
 import miinaharava.logiikka.Miinaharava;
 import miinaharava.logiikka.Vaikeusaste;
@@ -10,34 +10,36 @@ import miinaharava.logiikka.Vaikeusaste;
 public class VaikeusAsteenValitsin implements ActionListener {
 
     private JDialog dialog;
-    private ButtonGroup vaihtoehdot;
+    private JComboBox<String> valikko;
 
     /**
      * Aloittaa pelin riippuen siitä mikä vaihtoehto aloitusikkunassa valittiin.
      *
      * @param dialog Aloitusikkuna
-     * @param vaihtoehdot Aloitusikkunan vaihtoehdot
+     * @param valikko JComboBox 
      */
-    public VaikeusAsteenValitsin(JDialog dialog, ButtonGroup vaihtoehdot) {
+    public VaikeusAsteenValitsin(JDialog dialog, JComboBox valikko) {
         this.dialog = dialog;
-        this.vaihtoehdot = vaihtoehdot;
+        this.valikko = valikko;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ButtonModel valinta = vaihtoehdot.getSelection();
+        String valinta = (String) valikko.getSelectedItem();
         Miinaharava peli = null;
-        if (valinta.getActionCommand().equals("Helppo")) {
+        if (valinta.equals("Helppo")) {
             peli = new Miinaharava(Vaikeusaste.HELPPO);
-        } else if (valinta.getActionCommand().equals("Vaikea")) {
+        } else if (valinta.equals("Vaikea")) {
             peli = new Miinaharava(Vaikeusaste.VAIKEA);
-        } else if (valinta.getActionCommand().equals("Haastava")) {
+        } else if (valinta.equals("Haastava")) {
             peli = new Miinaharava(Vaikeusaste.HAASTAVA);
-        } else if (valinta.getActionCommand().equals("Demo")) {
-            peli = new Miinaharava(Vaikeusaste.DEMO);
+        } else if (valinta.equals("Custom")) {
+            CustomPelinLuontiIkkuna uusiIkkuna = new CustomPelinLuontiIkkuna();
+            dialog.dispose();
+            return;
         }
-        dialog.dispose();
         JFrame uusiPeli = new PelikenttaGui(peli);
+        dialog.dispose();
     }
 
 }

@@ -7,23 +7,24 @@ import miinaharava.kayttoliittyma.kuuntelijat.VaikeusAsteenValitsin;
 public class AloitusGui implements Runnable {
 
     private JDialog dialog;
-    private ButtonGroup vaihtoehdot;
+    private JComboBox<String> valikko;
 
     /**
      * Luo aloitusikkunan Miinaharava pelin graafiseen käyttöliittymään.
      */
     public AloitusGui() {
-        vaihtoehdot = new ButtonGroup();
+        valikko = new JComboBox<String>();
     }
 
     @Override
     public void run() {
         dialog = new JDialog();
-        dialog.setPreferredSize(new Dimension(300, 220));
 
         dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         luoKomponentit(dialog.getContentPane());
+        
+        dialog.setPreferredSize(new Dimension(200, 150));
 
         dialog.pack();
         dialog.setLocationRelativeTo(dialog);
@@ -51,8 +52,7 @@ public class AloitusGui implements Runnable {
     private JPanel luoAloitusNappi() {
         JPanel paneeli = new JPanel();
         JButton aloita = new JButton("Aloita");
-        aloita.setSize(new Dimension(100, 500));
-        aloita.addActionListener(new VaikeusAsteenValitsin(dialog, vaihtoehdot));
+        aloita.addActionListener(new VaikeusAsteenValitsin(dialog, valikko));
         paneeli.add(aloita);
         return paneeli;
     }
@@ -77,25 +77,13 @@ public class AloitusGui implements Runnable {
      */
     public JPanel luoVaihtoehdot() {
         JPanel paneeli = new JPanel();
-        paneeli.setLayout(new BoxLayout(paneeli, BoxLayout.Y_AXIS));
-        JRadioButton helppo = new JRadioButton("Helppo  (8x8, 10 miinaa)", true);
-        JRadioButton haastava = new JRadioButton("Haastava  (16x16, 40 miinaa)");
-        JRadioButton vaikea = new JRadioButton("Vaikea  (16x32, 99 miinaa)");
-        JRadioButton demo = new JRadioButton("Demo  (8x8, 3 miinaa)");
-        helppo.setActionCommand("Helppo");
-        haastava.setActionCommand("Haastava");
-        vaikea.setActionCommand("Vaikea");
-        demo.setActionCommand("Demo");
-        paneeli.add(helppo);
-        paneeli.add(haastava);
-        paneeli.add(vaikea);
-        paneeli.add(demo);
-        vaihtoehdot.add(helppo);
-        vaihtoehdot.add(haastava);
-        vaihtoehdot.add(vaikea);
-        vaihtoehdot.add(demo);
-
-        paneeli.setPreferredSize(new Dimension(50, 50));
+        valikko = new JComboBox<>();
+        String[] vaihtoehdot = {"Helppo", "Haastava", "Vaikea", "Custom"};
+        for (int i = 0; i < vaihtoehdot.length; i++) {
+            valikko.addItem(vaihtoehdot[i]);
+        }
+        
+        paneeli.add(valikko);
         return paneeli;
     }
 

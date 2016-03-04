@@ -33,7 +33,7 @@ public class PelikenttaGui extends JFrame {
         ruudut = new JButton[leveys][pelialusta.getKorkeus()];
 
         this.kulunutAika = new JLabel("0  :  0", JLabel.CENTER);
-        this.miinojenLkm = new JLabel("Miinoja jäljellä  " + peli.getMiinojaJaljella(), JLabel.CENTER);
+        this.miinojenLkm = new JLabel("Miinoja: " + peli.getMiinojaJaljella(), JLabel.CENTER);
         this.kello = new Timer(1000, new KellonKuuntelija(kulunutAika));
         luoKomponentit(this.getContentPane());
         setResizable(false);
@@ -82,7 +82,7 @@ public class PelikenttaGui extends JFrame {
             for (int j = 0; j < pelialusta.getLeveys(); j++) {
                 JButton nappi = new JButton("", null);
                 ruudut[j][i] = nappi;
-                nappi.setPreferredSize(new Dimension(35, 35));
+                nappi.setPreferredSize(new Dimension(30, 30));
                 nappi.setFont(new Font("Normal", Font.BOLD, 14));
                 nappi.setMargin(new Insets(5, 5, 5, 5));
                 nappi.addMouseListener(new RuudunAvaaja(j, i, peli, nappi, ruudut, miinojenLkm, kello, this));

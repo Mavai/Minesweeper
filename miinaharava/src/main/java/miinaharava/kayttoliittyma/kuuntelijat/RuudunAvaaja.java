@@ -85,11 +85,14 @@ public class RuudunAvaaja implements MouseListener {
             peli.merkkaaRuutu(merkattava);
             ruudut[x][y].setIcon(icon);
         }
-        miinojenLkm.setText("Miinoja jäljellä  " + peli.getMiinojaJaljella());
+        miinojenLkm.setText("Miinoja: " + peli.getMiinojaJaljella());
     }
 
     private void avaaRuutu() {
         Ruutu avattava = alusta.getAlusta()[x][y];
+        if (avattava.onMerkattu()) {
+            return;
+        }
         if (!peli.avaaRuutu(avattava)) {
             havio();
         }
@@ -104,8 +107,8 @@ public class RuudunAvaaja implements MouseListener {
     }
 
     private void voitto() {
-        PelinPaatosGui voittoIlmoitus = new PelinPaatosGui(frame, "voitto");
         kello.stop();
+        PelinPaatosGui voittoIlmoitus = new PelinPaatosGui(frame, "voitto");
     }
 
     private void havio() {

@@ -2,6 +2,7 @@ package miinaharava.kayttoliittyma.kuuntelijat;
 
 import java.awt.event.*;
 import javax.swing.*;
+import miinaharava.domain.Pelialusta;
 import miinaharava.kayttoliittyma.PelikenttaGui;
 import miinaharava.logiikka.Miinaharava;
 import miinaharava.logiikka.Vaikeusaste;
@@ -27,7 +28,11 @@ public class ValikonKuuntelija implements ActionListener {
         JMenuItem valinta = (JMenuItem) e.getSource();
         PelikenttaGui uusiPeli = null;
         if (valinta.getText().equals("Uusi peli")) {
-            uusiPeli = new PelikenttaGui(new Miinaharava(peli.getVaikeus()));
+            if (peli.getVaikeus() != null) {
+                uusiPeli = new PelikenttaGui(new Miinaharava(peli.getVaikeus()));
+            } else {
+                uusiPeli = new PelikenttaGui(new Miinaharava(new Pelialusta(peli.getPelialusta().getLeveys(), peli.getPelialusta().getKorkeus(), peli.getPelialusta().getMiinat().size())));
+            }
         }
         if (valinta.getText().equals("Lopeta")) {
             System.exit(0);
